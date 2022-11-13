@@ -1,21 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-import Navbar from './components/NavBar';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Acasa from './pages/Acasa';
-import Detalii from './pages/Detalii';
+import './App.css'
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Acasa from './pages/Acasa'
+import Calendar from './pages/Calendar'
+import Contact from './pages/Contact'
+import Detalii from './pages/Detalii'
+import Juvenil from './pages/Juvenil'
+import Noutati from './pages/Noutati'
+import Sponsori from './pages/Sponsori'
+import SignIn from './pages/SignIn'
+import Home from './pages/Home'
 
 function App() {
   return (
     <Router>
-      <Navbar/>
+      <Home />
       <Routes>
-        <Route path='/acasa' exact component={Acasa}/>
-        <Route path='/detalii' exact component={Detalii}/>
+        <Route path='/acasa' element={<Acasa />} />
+        <Route path='/calendar' element={<Calendar />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/detalii' element={<Detalii />} />
+        <Route path='/juvenil' element={<Juvenil />} />
+        <Route path='/noutati' element={<Noutati />} />
+        <Route path='/sponsori' element={<Sponsori />} />
+        <Route path='/signin' element={<SignIn />} />
       </Routes>
     </Router>
-   
-  );
+  )
 }
 
-export default App;
+export default App

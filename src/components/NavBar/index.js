@@ -1,39 +1,48 @@
 import React from 'react'
-import {Nav, NavLink, Bars, NavMenu,NavBtn,NavBtnLink} from './NavBarComponents'
-const Navbar = () => {
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink,
+} from './NavBarComponents'
+const Navbar = ({ toggle }) => {
   return (
     <Nav>
-        <NavLink to="/">
-            <h1>Logo</h1>
+      <NavLink to='/'>
+        <img
+          src={require('./images/csm-logo2.png')}
+          alt='Logo'
+          style={{ maxWidth: '80px', paddingTop: '3rem' }}
+        />
+        {/* <h1>Logo</h1> */}
+      </NavLink>
+      <Bars onClick={toggle} />
+      <NavMenu>
+        <NavLink to='/acasa'>Acasa</NavLink>
+        <NavLink to='/detalii' activestyle='true'>
+          Detalii Club
         </NavLink>
-        <Bars/>
-        <NavMenu>
-            <NavLink to="/acasa" activeStyle >
-                Acasa
-            </NavLink>
-            <NavLink to="/detalii" activeStyle >
-                Detalii Club
-            </NavLink>
-            <NavLink to="/calendar" activeStyle >
-                Calendar
-            </NavLink>
-            <NavLink to="/noutati" activeStyle >
-                Noutati
-            </NavLink>
-            <NavLink to="/juvenil" activeStyle >
-                Volei Juvenil
-            </NavLink>
-            <NavLink to="/sponsori" activeStyle >
-                Sponsori
-            </NavLink>
-            <NavLink to="/contact" activeStyle >
-                Contact
-            </NavLink>
-            <NavBtn>
-                <NavBtnLink to="/signin">Sign In</NavBtnLink>
-            </NavBtn>
-        </NavMenu>
-
+        <NavLink to='/calendar' activestyle='true'>
+          Calendar
+        </NavLink>
+        <NavLink to='/noutati' activestyle='true'>
+          Noutati
+        </NavLink>
+        <NavLink to='/juvenil' activestyle='true'>
+          Volei Juvenil
+        </NavLink>
+        <NavLink to='/sponsori' activestyle='true'>
+          Sponsori
+        </NavLink>
+        <NavLink to='/contact' activestyle='true'>
+          Contact
+        </NavLink>
+        <NavBtn>
+          <NavBtnLink to='/signin'>Sign In</NavBtnLink>
+        </NavBtn>
+      </NavMenu>
     </Nav>
   )
 }

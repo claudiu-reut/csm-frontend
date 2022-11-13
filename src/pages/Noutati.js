@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Acasa = () => {
+const Noutati = () => {
   return (
     <>
       <div
@@ -11,10 +11,10 @@ const Acasa = () => {
           height: '90vh',
         }}
       >
-        <h1>Acasa</h1>
+        <h1>Noutati</h1>
       </div>
     </>
   )
 }
 
-export default Acasa
+export default Noutati

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Acasa = () => {
+const Juvenil = () => {
   return (
     <>
       <div
@@ -11,10 +11,10 @@ const Acasa = () => {
           height: '90vh',
         }}
       >
-        <h1>Acasa</h1>
+        <h1>Juvenil</h1>
       </div>
     </>
   )
 }
 
-export default Acasa
+export default Juvenil

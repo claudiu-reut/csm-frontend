@@ -1,30 +1,42 @@
 import styled from 'styled-components'
-import {NavLink as Link} from 'react-router-dom'
-import {FaBars} from 'react-icons/fa'
-
+import { NavLink as Link } from 'react-router-dom'
+import { FaBars } from 'react-icons/fa'
 
 export const Nav = styled.nav`
-background: #3C5A9C;
-height: 80px;
-display: flex;
-justify-content: space-between;
-padding: 0.5rem calc((100vw - 1000px)/2);
-z-index: 10;
+  background: #0504b7;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 3rem;
+  z-index: 10;
+  @media screen and (min-width: 1070px) {
+    padding: 0.5rem 6rem;
+  }
+  @media screen and (min-width: 1400px) {
+    padding: 0.5rem 10rem;
+  }
 `
 
 export const NavLink = styled(Link)`
-color: #fff;
-display: flex;
-align-items: center:
-text-decoration: none;
-padding: 0 1rem;
-height: 100%;
-cursor: pointer;
-&.active{
-    color: #6DB1FF;
-
-}
-
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0 0.8rem;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+  &.active {
+    color: #6db1ff;
+    // border-bottom: 2px solid #6db1ff;
+  }
+  @media screen and (max-width: 1020px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 900px) {
+    font-size: 14px;
+  }
 `
 
 export const Bars = styled(FaBars)`
@@ -39,39 +51,39 @@ export const Bars = styled(FaBars)`
     font-size: 1.8rem;
     cursor: pointer;
   }
-`;
+`
 
 export const NavMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right: -24px;
+  justify-content: space-around;
   /* Second Nav */
   /* margin-right: 24px; */
   /* Third Nav */
-  /* width: 100vw;
-  white-space: nowrap; */
+  width: 100vw;
+  white-space: nowrap;
   @media screen and (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 export const NavBtn = styled.nav`
   display: flex;
   align-items: center;
-  margin-right: 24px;
+  // margin-right: 24px;
   /* Third Nav */
   /* justify-content: flex-end;
   width: 100vw; */
   @media screen and (max-width: 768px) {
     display: none;
   }
-`;
+`
 
 export const NavBtnLink = styled(Link)`
   border-radius: 4px;
   background: #256ce1;
   padding: 10px 22px;
-  color:  #6DB1FF;
+  color: #fff;
   outline: none;
   border: none;
   cursor: pointer;
@@ -84,4 +96,10 @@ export const NavBtnLink = styled(Link)`
     background: #fff;
     color: #010606;
   }
-`;
+  @media screen and (max-width: 1020px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 900px) {
+    font-size: 14px;
+  }
+`
