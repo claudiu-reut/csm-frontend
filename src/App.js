@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 import Acasa from './pages/Acasa/Acasa'
 import Calendar from './pages/Calendar/Calendar'
-import Contact from './pages/Contact/Contact'
+import ContactForm from './pages/Contact/ContactForm'
 import Detalii from './pages/Detalii/Detalii'
 import Juvenil from './pages/Juvenil/Juvenil'
 import Noutati from './pages/Noutati/Noutati'
@@ -24,7 +24,7 @@ function App() {
         <Route path='/acasa' element={<Acasa />} />
         <Route path='/' element={<Navigate to='/acasa' />} />
         <Route path='/calendar' element={<Calendar />} />
-        <Route path='/contact' element={<Contact />} />
+        <Route path='/contact' element={<ContactForm />} />
         <Route path='/detalii' element={<Detalii />} />
         <Route path='/juvenil' element={<Juvenil />} />
         <Route path='/noutati' element={<Noutati />} />
