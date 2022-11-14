@@ -6,15 +6,15 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom'
-import Acasa from './pages/Acasa'
-import Calendar from './pages/Calendar'
-import Contact from './pages/Contact'
-import Detalii from './pages/Detalii'
-import Juvenil from './pages/Juvenil'
-import Noutati from './pages/Noutati'
-import Sponsori from './pages/Sponsori'
-import SignIn from './pages/SignIn'
-import Home from './pages/Home'
+import Acasa from './pages/Acasa/Acasa'
+import Calendar from './pages/Calendar/Calendar'
+import Contact from './pages/Contact/Contact'
+import Detalii from './pages/Detalii/Detalii'
+import Juvenil from './pages/Juvenil/Juvenil'
+import Noutati from './pages/Noutati/Noutati'
+import Sponsori from './pages/Sponsori/Sponsori'
+import SignIn from './pages/SignIn/SignIn'
+import Home from './pages/Home/Home'
 
 function App() {
   return (
@@ -23,7 +23,6 @@ function App() {
       <Routes>
         <Route path='/acasa' element={<Acasa />} />
         <Route path='/' element={<Navigate to='/acasa' />} />
-
         <Route path='/calendar' element={<Calendar />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/detalii' element={<Detalii />} />
