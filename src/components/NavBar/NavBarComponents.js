@@ -3,7 +3,8 @@ import { NavLink as Link } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 
 export const Nav = styled.nav`
-  background: #0504b7;
+  
+  background-image: linear-gradient(to right, #0504b7, #1819b9, #2426ba, #2f31bb, #383bbc);
   height: 80px;
   display: flex;
   justify-content: space-between;

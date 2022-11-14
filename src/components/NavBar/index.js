@@ -1,4 +1,5 @@
 import React from 'react'
+import ImageShadow from 'react-image-shadow'
 import {
   Nav,
   NavLink,
@@ -14,7 +15,7 @@ const Navbar = ({ toggle }) => {
         <img
           src={require('./images/csm-logo2.png')}
           alt='Logo'
-          style={{ maxWidth: '80px', paddingTop: '3rem' }}
+          const style={{ maxWidth: '80px', paddingTop: '3rem'}}
         />
         {/* <h1>Logo</h1> */}
       </NavLink>
