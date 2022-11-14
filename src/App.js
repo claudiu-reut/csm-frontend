@@ -1,5 +1,5 @@
 import './App.css'
-
+import "bootstrap/dist/css/bootstrap.min.css"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Acasa from './pages/Acasa'
 import Calendar from './pages/Calendar'
@@ -10,6 +10,7 @@ import Noutati from './pages/Noutati'
 import Sponsori from './pages/Sponsori'
 import SignIn from './pages/SignIn'
 import Home from './pages/Home'
+
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
       </Routes>
     </Router>
+    
   )
 }
 
