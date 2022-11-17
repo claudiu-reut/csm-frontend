@@ -15,6 +15,7 @@ import Noutati from './pages/Noutati/Noutati'
 import Sponsori from './pages/Sponsori/Sponsori'
 import SignIn from './pages/SignIn/SignIn'
 import Home from './pages/Home/Home'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<SignIn />} />
       </Routes>
+      <Footer />
     </Router>
   )
 }

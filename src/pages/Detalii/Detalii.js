@@ -7,7 +7,7 @@ const Detalii = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '90vh'
+        height: '90%',
       }}
     >
       <h1>Detalii Club</h1>
