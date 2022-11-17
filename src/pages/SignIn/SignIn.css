@@ -37,6 +37,9 @@ label {
   font-weight: 600;
   color: rgb(34, 34, 34);
 }
+.link-primary:hover {
+  cursor: pointer;
+}
 @media only screen and (max-width: 500px) {
   .Auth-form-container {
     height: 80vh;
