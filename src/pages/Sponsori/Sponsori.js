@@ -14,7 +14,7 @@ const sponsori_init = [
     lot: '2022-2023 2021-2022',
     URLsigla: `https://www.liveradio.ie/files/images/329741/resized/180x172c/kiss_fm_romania.jpg`,
     nume_complet: 'KISS FM',
-    URLsite: `https://www.orange.ro/`,
+    URLsite: `https://www.kissfm.ro/`,
   },
   {
     lot: '2022-2023 2020-2021',

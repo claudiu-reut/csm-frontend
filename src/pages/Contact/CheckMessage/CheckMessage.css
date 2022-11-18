@@ -1,0 +1,12 @@
+.checkmark-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.checkmark-div * {
+  margin: 0;
+}
+.icon {
+  margin-left: 0.5rem;
+}
