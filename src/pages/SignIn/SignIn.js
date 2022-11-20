@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './SignIn.css'
-
+import {Navigate} from 
 export default function (props) {
   let [authMode, setAuthMode] = useState('signin')
 

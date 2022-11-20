@@ -13,7 +13,7 @@ import Detalii from './pages/Detalii/Detalii'
 import Juvenil from './pages/Juvenil/Juvenil'
 import Noutati from './pages/Noutati/Noutati'
 import Sponsori from './pages/Sponsori/Sponsori'
-import SignIn from './pages/SignIn/SignIn'
+import Login from './pages/SignIn/Login'
 import Home from './pages/Home/Home'
 import Footer from './components/Footer'
 
@@ -30,7 +30,7 @@ function App() {
         <Route path='/juvenil' element={<Juvenil />} />
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/sponsori' element={<Sponsori />} />
-        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signin' element={<Login />} />
       </Routes>
       <Footer />
     </Router>
