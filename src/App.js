@@ -14,6 +14,7 @@ import Juvenil from './pages/Juvenil/Juvenil'
 import Noutati from './pages/Noutati/Noutati'
 import Sponsori from './pages/Sponsori/Sponsori'
 import Login from './pages/SignIn/Login'
+import Register from './pages/SignIn/Register'
 import Home from './pages/Home/Home'
 import Footer from './components/Footer'
 
@@ -31,6 +32,7 @@ function App() {
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
+        <Route path='/register' element={<Register />} />
       </Routes>
       <Footer />
     </Router>
