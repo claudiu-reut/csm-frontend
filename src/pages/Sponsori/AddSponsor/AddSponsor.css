@@ -1,0 +1,55 @@
+.Add-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95vw;
+  height: 95vh;
+  transition: all 0.4s ease-in-out;
+}
+.checkbox-group {
+  margin: 0.3rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Add-form {
+  width: 80vh;
+  max-width: 800px;
+  max-height: 90%;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+  padding: 30px 20px 20px 20px;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.Add-form-content {
+  padding-left: 12%;
+  padding-right: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-group {
+  margin: 0.3rem 0;
+  width: 80%;
+}
+.Add-form-title {
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(34, 34, 34);
+}
+
+@media only screen and (max-width: 550px) {
+  .Add-form {
+    width: 350px;
+  }
+}

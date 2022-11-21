@@ -102,7 +102,7 @@ const Login = () => {
                 <div className='form-group mt-3'>
                   <label htmlFor='username'>Email:</label>
                   <input
-                    type='text'
+                    type='email'
                     id='username'
                     ref={userRef}
                     autoComplete='off'
