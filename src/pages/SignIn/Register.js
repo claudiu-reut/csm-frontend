@@ -1,111 +1,97 @@
-import React, { useState,useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './SignIn.css'
-import axios from "./api/axios"
+import './Register.css'
+import axios from './api/axios'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../Contact/CheckMessage/CheckMessage'
 
-const LOGIN_URL = '/register';
+const LOGIN_URL = '/register'
 
 let iconSucces = <Checkmark size='40px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='40px' />
 let iconLoading = <UseAnimations animation={loading} size={50} />
 
 export default function (props) {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [fname, setFname] = useState("");
-    const [lname, setLname] = useState("");
-    const [role, setRole] = useState("");
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
-    const userRef = useRef();
-    const errRef = useRef();
-//confirm
-    const [status, setStatus] = useState('Send')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [fname, setFname] = useState('')
+  const [lname, setLname] = useState('')
+  const [role, setRole] = useState('')
+  const errRef = useRef()
+
+  //confirm
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
   const [message, setMessage] = useState('')
-const [valid,setValid]= useState(true)
-    function checkPass()
-    {
-        var pass=document.getElementById("password");
-        var confirm=document.getElementById("confirm_password");
+  const [valid, setValid] = useState(true)
 
-        if(confirm.value!==pass.value)
-        {
-            pass.style.backgroundColor="pink";
-            confirm.style.backgroundColor='pink';
-            setValid(false);
-            setMessage("Passwords must match")
+  function checkPass() {
+    var pass = document.getElementById('password')
+    var confirm = document.getElementById('confirm_password')
+
+    if (confirm.value !== pass.value) {
+      pass.style.backgroundColor = 'pink'
+      confirm.style.backgroundColor = 'pink'
+      setValid(false)
+      setMessage('Passwords must match')
+    } else {
+      pass.style.backgroundColor = 'white'
+      confirm.style.backgroundColor = 'white'
+      setValid(true)
+      setMessage('')
+    }
+  }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIcon(iconLoading)
+    setMessage('Sending..')
+    if (valid) {
+      try {
+        setCheckmark(true)
+        const response = await axios.post(LOGIN_URL, {
+          firstName: fname,
+          lastName: lname,
+          email: email,
+          role: role,
+          password: password,
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        })
+        console.log(JSON.stringify(response?.data))
+        if (response.data.status !== 'ERROR') {
+          setIcon(iconSucces)
+          setMessage('User creat cu succes')
+        } else {
+          setIcon(iconError)
+          setMessage('Oops, Eroare.Incearca din nou...')
         }
-        else{
-            pass.style.backgroundColor="white";
-            confirm.style.backgroundColor='white';
-            setValid(true);
-            setMessage("")
-        }   
+      } catch (err) {
+        console.log(err)
+        if (!err?.response) {
+          setIcon(iconError)
+          setMessage('No Server Response')
+        } else if (err.response?.status === 400) {
+          setIcon(iconError)
+          setMessage('Missing Username or Password')
+        } else if (err.response?.status === 401) {
+          setIcon(iconError)
+          setMessage('Unauthorized')
+        } else {
+          setIcon(iconError)
+          setMessage('Register Failed')
+        }
+      }
+      errRef.current.focus()
+    } else {
+      setIcon(iconError)
+      setMessage('Password is invalid')
     }
-    const smb = async (e) =>{
-        console.log("check")
-    }
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setStatus('Sending...')
-        setIcon(iconLoading)
-         setMessage('Sending..')
-         console.log("submit")
-        if(valid){
-        try {
-            setStatus('Send')
-            setCheckmark(true)
-            const response = await axios.post(LOGIN_URL,
-              { firstName:fname,
-                lastName:lname,
-                email:email,
-                role:role,
-                password:password,
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            }
-            );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            if (response.data.status !== 'ERROR') {
-                setIcon(iconSucces)
-                setMessage("User creat cu succes");
-              } else {
-                setIcon(iconError)
-                setMessage('Oops, Eroare.Incearca din nou...')
-              }
-           
-            setSuccess(true);
-            
-        } catch (err) {
-            console.log(err)
-            if (!err?.response) {
-                setMessage('No Server Response');
-            } else if (err.response?.status === 400) {
-                setMessage('Missing Username or Password');
-            } else if (err.response?.status === 401) {
-                setMessage('Unauthorized');
-            } else {
-                setMessage('Register Failed');
-            }
-            
-        }errRef.current.focus();
-    }
-    else{
-        setMessage("Password is invalid");
-    }
-      
-    }
+  }
 
   return (
-    
     <div className='Auth-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
@@ -113,9 +99,7 @@ const [valid,setValid]= useState(true)
           <div className='text-center'>
             Already registered?{' '}
             <span className='link-primary'>
-                <a href="/signin">
-              Sign In
-              </a>
+              <a href='/signin'>Sign In</a>
             </span>
           </div>
           <div className='form-group mt-3'>
@@ -123,7 +107,7 @@ const [valid,setValid]= useState(true)
             <input
               type='text'
               className='form-control mt-1'
-              placeholder='Full Name'
+              placeholder='First Name'
               required
               onChange={(e) => setFname(e.target.value)}
             />
@@ -133,7 +117,7 @@ const [valid,setValid]= useState(true)
             <input
               type='text'
               className='form-control mt-1'
-              placeholder='Full Name'
+              placeholder='Last Name'
               required
               onChange={(e) => setLname(e.target.value)}
             />
@@ -152,54 +136,63 @@ const [valid,setValid]= useState(true)
             <label>Password</label>
             <input
               type='password'
-              name="password"
+              name='password'
               className='form-control mt-1'
               placeholder='Password'
               required
-              id="password" 
+              id='password'
               onChange={(e) => setPassword(e.target.value)}
               onInput={checkPass}
             />
-             
           </div>
           <div className='form-group mt-3'>
             <label>Confirm Password</label>
             <input
               type='password'
-              name="confirm_password"
+              name='confirm_password'
               className='form-control mt-1'
               placeholder='Confirm password'
               required
-              id="confirm_password"
-             onInput={checkPass}
-             message={message}
-             
+              id='confirm_password'
+              onInput={checkPass}
+              message={message}
             />
             <label>Role</label>
-            <select class="form-select" aria-label="Default select example"  onChange={(e) => setRole(e.target.value)} required>
-  <option selected disabled>Select a role</option>
-  <option value="admin">Administrator</option>
-  <option value="creator">Content Creator</option>
-  
-</select>
-<input
-            type='checkbox'
-            checked={checkmark}
-            className='checkmark-check'
-            onChange={() => {
-              setCheckmark(!checkmark)
-            }}
-          />
-          <CheckMessage visibility={checkmark} icon={icon} message={message} />
-           <p>{message}</p>
+            <select
+              class='form-select'
+              aria-label='Default select example'
+              onChange={(e) => setRole(e.target.value)}
+              required
+            >
+              <option selected disabled>
+                Select a role
+              </option>
+              <option value='admin'>Administrator</option>
+              <option value='creator'>Content Creator</option>
+            </select>
+            <input
+              type='checkbox'
+              checked={checkmark}
+              className='checkmark-check'
+              onChange={() => {
+                setCheckmark(!checkmark)
+              }}
+            />
+            <CheckMessage
+              visibility={checkmark}
+              icon={icon}
+              message={message}
+            />
           </div>
-          <span id='message'></span>
           <div className='d-grid gap-2 mt-3'>
-            <button type='button' className='btn btn-primary' onClick={handleSubmit}>
+            <button
+              type='button'
+              className='btn btn-primary'
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </div>
-          
         </div>
       </form>
     </div>

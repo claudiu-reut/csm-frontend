@@ -9,7 +9,7 @@ import loading from 'react-useanimations/lib/loading'
 import CheckMessage from './CheckMessage/CheckMessage'
 const app = axios.create({
   baseURL: 'http://localhost:5000',
-  timeout: 5000,
+  timeout: 6000,
 })
 let iconSucces = <Checkmark size='40px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='40px' />

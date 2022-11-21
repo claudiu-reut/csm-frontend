@@ -68,7 +68,6 @@ label {
 
 @media only screen and (max-width: 500px) {
   .Contact-form-container {
-    height: 80vh;
   }
   .Contact-form {
     width: 350px;
