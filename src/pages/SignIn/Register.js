@@ -7,12 +7,13 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../Contact/CheckMessage/CheckMessage'
+import { useEffect } from 'react'
 
 const LOGIN_URL = '/register'
 
-let iconSucces = <Checkmark size='40px' color='green' />
-let iconError = <VscError className='icon-inside' color='red' size='40px' />
-let iconLoading = <UseAnimations animation={loading} size={50} />
+let iconSucces = <Checkmark size='25px' color='green' />
+let iconError = <VscError className='icon-inside' color='red' size='25px' />
+let iconLoading = <UseAnimations animation={loading} size={35} />
 
 export default function (props) {
   const [email, setEmail] = useState('')
@@ -26,6 +27,7 @@ export default function (props) {
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
   const [message, setMessage] = useState('')
+  const [textColor, setTextColor] = useState('black')
   const [valid, setValid] = useState(true)
 
   function checkPass() {
@@ -44,10 +46,17 @@ export default function (props) {
       setMessage('')
     }
   }
+  useEffect(() => {
+    setCheckmark(false)
+    setIcon(iconLoading)
+    setMessage('Logging..')
+    setTextColor('black')
+  }, [email, password, fname, lname, role])
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIcon(iconLoading)
-    setMessage('Sending..')
+    setMessage('Logging..')
+    setTextColor('black')
     if (valid) {
       try {
         setCheckmark(true)
@@ -64,30 +73,37 @@ export default function (props) {
         if (response.data.status !== 'ERROR') {
           setIcon(iconSucces)
           setMessage('User creat cu succes')
+          setTextColor('black')
         } else {
           setIcon(iconError)
           setMessage('Oops, Eroare.Incearca din nou...')
+          setTextColor('red')
         }
       } catch (err) {
         console.log(err)
         if (!err?.response) {
           setIcon(iconError)
           setMessage('No Server Response')
+          setTextColor('red')
         } else if (err.response?.status === 400) {
           setIcon(iconError)
           setMessage('Missing Username or Password')
+          setTextColor('red')
         } else if (err.response?.status === 401) {
+          setTextColor('red')
           setIcon(iconError)
           setMessage('Unauthorized')
         } else {
           setIcon(iconError)
           setMessage('Register Failed')
+          setTextColor('red')
         }
       }
       errRef.current.focus()
     } else {
       setIcon(iconError)
       setMessage('Password is invalid')
+      setTextColor('red')
     }
   }
 
@@ -179,6 +195,7 @@ export default function (props) {
               }}
             />
             <CheckMessage
+              textColor={textColor}
               visibility={checkmark}
               icon={icon}
               message={message}

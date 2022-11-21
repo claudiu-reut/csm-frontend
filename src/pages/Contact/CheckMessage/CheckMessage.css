@@ -7,6 +7,9 @@
 .checkmark-div * {
   margin: 0;
 }
+.checkmark-div h1 {
+  font-size: 1.1rem;
+}
 .icon {
   margin-left: 0.5rem;
 }

@@ -7,12 +7,12 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../Contact/CheckMessage/CheckMessage'
-//import AuthContext from "./context/AuthProvider";
+
 import axios from './api/axios'
 const LOGIN_URL = '/login'
-let iconSucces = <Checkmark size='40px' color='green' />
-let iconError = <VscError className='icon-inside' color='red' size='40px' />
-let iconLoading = <UseAnimations animation={loading} size={50} />
+let iconSucces = <Checkmark size='30px' color='green' />
+let iconError = <VscError className='icon-inside' color='red' size='30px' />
+let iconLoading = <UseAnimations animation={loading} size={40} />
 const Login = () => {
   const userRef = useRef()
   const errRef = useRef()
@@ -24,6 +24,7 @@ const Login = () => {
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(undefined)
   const [message, setMessage] = useState('')
+  const [textColor, setTextColor] = useState('black')
   const [success, setSuccess] = useState(false)
   const nav = useNavigate()
   useEffect(() => {
@@ -34,6 +35,7 @@ const Login = () => {
     setCheckmark(false)
     setMessage('Loading')
     setIcon(iconLoading)
+    setTextColor('black')
   }, [user, pwd])
 
   const handleSubmit = async (e) => {
@@ -62,15 +64,19 @@ const Login = () => {
       console.log(err)
       if (!err?.response) {
         setMessage('No Server Response')
+        setTextColor('red')
         setIcon(iconError)
       } else if (err.response?.status === 400) {
         setMessage('Missing Username or Password')
+        setTextColor('red')
         setIcon(iconError)
       } else if (err.response?.status === 401) {
-        setMessage('Unauthorized')
+        setMessage('Invalid login or password')
+        setTextColor('red')
         setIcon(iconError)
       } else {
         setMessage('Login Failed')
+        setTextColor('red')
         setIcon(iconError)
       }
       errRef.current.focus()
@@ -118,6 +124,7 @@ const Login = () => {
                   />
                 </div>
                 <CheckMessage
+                  textColor={textColor}
                   visibility={checkmark}
                   icon={icon}
                   message={message}

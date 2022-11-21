@@ -9,21 +9,23 @@ import loading from 'react-useanimations/lib/loading'
 import CheckMessage from './CheckMessage/CheckMessage'
 const app = axios.create({
   baseURL: 'http://localhost:5000',
-  timeout: 6000,
+  timeout: 200,
 })
-let iconSucces = <Checkmark size='40px' color='green' />
-let iconError = <VscError className='icon-inside' color='red' size='40px' />
-let iconLoading = <UseAnimations animation={loading} size={50} />
+let iconSucces = <Checkmark size='25px' color='green' />
+let iconError = <VscError className='icon-inside' color='red' size='25px' />
+let iconLoading = <UseAnimations animation={loading} size={35} />
 const ContactForm = () => {
   const [status, setStatus] = useState('Send')
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
   const [message, setMessage] = useState('Loading...')
+  const [textColor, setTextColor] = useState('black')
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('Sending...')
     setIcon(iconLoading)
     setMessage('Sending..')
+    setTextColor('black')
     const { name, email, message } = e.target.elements
     let details = {
       name: name.value,
@@ -41,13 +43,16 @@ const ContactForm = () => {
       if (response.data.status !== 'ERROR') {
         setIcon(iconSucces)
         setMessage('Mesaj trimis cu succes')
+        setTextColor('black')
       } else {
         setIcon(iconError)
         setMessage('Oops, Eroare.Incearca din nou...')
+        setTextColor('red')
       }
     } catch (error) {
       setIcon(iconError)
       setMessage('Oops, Eroare.Incearca din nou...')
+      setTextColor('red')
     }
   }
 
@@ -91,7 +96,12 @@ const ContactForm = () => {
               setCheckmark(!checkmark)
             }}
           />
-          <CheckMessage visibility={checkmark} icon={icon} message={message} />
+          <CheckMessage
+            textColor={textColor}
+            visibility={checkmark}
+            icon={icon}
+            message={message}
+          />
         </div>
       </form>
     </div>
