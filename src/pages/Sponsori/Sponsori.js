@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Sponsor from './Sponsor/Sponsor'
 import './Sponsori.css'
+import axios from "../SignIn/api/axios"
 const sponsori_init = [
   {
     lot: '2022-2023',
@@ -120,9 +121,16 @@ const sponsori_init = [
   },
 ]
 const Sponsori = () => {
-  const [sponsori, setSponsori] = useState(sponsori_init)
+  const [sponsori, setSponsori] = useState([])
   useEffect(() => {
-    setSponsori(sponsori_init)
+    async function fetchData() {
+      
+      const response = await axios.get("/getsponsors");
+      console.log(response.data);
+      setSponsori(response.data)
+    }
+    fetchData();
+   
   }, [])
   return (
     <>
@@ -139,13 +147,14 @@ const Sponsori = () => {
           <h1>Lotul 2022-2023</h1>
           <div className='lot-container'>
             {sponsori
-              .filter((sponsor) => sponsor.lot.includes('2022-2023'))
+              .filter((sponsor) => sponsor.editia.includes('2022-2023'))
               .map((sponsor) => {
                 return (
                   <Sponsor
-                    URLsigla={sponsor.URLsigla}
-                    nume_complet={sponsor.nume_complet}
-                    URLsite={sponsor.URLsite}
+                    key={sponsor.id_sponsor}
+                    URLsigla={sponsor.linkImagine}
+                    nume_complet={sponsor.denumire}
+                    URLsite={sponsor.linkSite}
                     className='sponsor'
                   />
                 )
@@ -156,13 +165,14 @@ const Sponsori = () => {
           <h1>Lotul 2021-2022</h1>
           <div className='lot-container'>
             {sponsori
-              .filter((sponsor) => sponsor.lot.includes('2021-2022'))
+              .filter((sponsor) => sponsor.editia.includes('2021-2022'))
               .map((sponsor) => {
                 return (
                   <Sponsor
-                    URLsigla={sponsor.URLsigla}
-                    nume_complet={sponsor.nume_complet}
-                    URLsite={sponsor.URLsite}
+                  key={sponsor.id_sponsor}
+                    URLsigla={sponsor.linkImagine}
+                    nume_complet={sponsor.denumire}
+                    URLsite={sponsor.linkSite}
                     className='sponsor'
                   />
                 )
@@ -173,13 +183,14 @@ const Sponsori = () => {
           <h1>Lotul 2020-2021</h1>
           <div className='lot-container'>
             {sponsori
-              .filter((sponsor) => sponsor.lot.includes('2020-2021'))
+              .filter((sponsor) => sponsor.editia.includes('2020-2021'))
               .map((sponsor) => {
                 return (
                   <Sponsor
-                    URLsigla={sponsor.URLsigla}
-                    nume_complet={sponsor.nume_complet}
-                    URLsite={sponsor.URLsite}
+                  key={sponsor.id_sponsor}
+                    URLsigla={sponsor.linkImagine}
+                    nume_complet={sponsor.denumire}
+                    URLsite={sponsor.linkSite}
                     className='sponsor'
                   />
                 )
