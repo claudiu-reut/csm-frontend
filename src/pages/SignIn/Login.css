@@ -13,7 +13,7 @@
 
 .Auth-form1 {
   width: 80vh;
-  height: 400px;
+  height: 350px;
   max-width: 800px;
   max-height: 90vh;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
@@ -49,11 +49,8 @@ label {
 .link-primary:hover {
   cursor: pointer;
 }
-@media only screen and (max-width: 500px) {
-  .Auth-form-container {
-    height: 80vh;
-  }
-  .Auth-form {
+@media only screen and (max-width: 550px) {
+  .Auth-form1 {
     width: 350px;
   }
 }
