@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './Detalii.css'
 const Detalii = () => {
   return (
     <div

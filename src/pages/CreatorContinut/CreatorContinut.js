@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-
-function Admin() {
+import './CreatorContinut.css'
+function CreatorContinut() {
   useEffect(() => {}, [])
   return (
     <div
@@ -13,9 +13,9 @@ function Admin() {
         height: '90%',
       }}
     >
-      <h1>Admin</h1>
+      <h1>Creator continut</h1>
     </div>
   )
 }
 
-export default Admin
+export default CreatorContinut

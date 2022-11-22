@@ -6,7 +6,7 @@ import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
-import CheckMessage from './CheckMessage/CheckMessage'
+import CheckMessage from '../CheckMessage/CheckMessage'
 const app = axios.create({
   baseURL: 'http://localhost:5000',
   timeout: 6000,

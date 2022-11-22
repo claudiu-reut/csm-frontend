@@ -3,23 +3,34 @@ import { useState } from 'react'
 import './AddSponsor.css'
 import axios from 'axios'
 import { useEffect } from 'react'
+import { Checkmark } from 'react-checkmark'
+import { VscError } from 'react-icons/vsc'
+import UseAnimations from 'react-useanimations'
+import loading from 'react-useanimations/lib/loading'
+import CheckMessage from '../../CheckMessage/CheckMessage'
 const app = axios.create({
   baseURL: 'http://localhost:5000',
   timeout: 2000,
 })
+let iconSucces = <Checkmark size='30px' color='green' />
+let iconError = <VscError className='icon-inside' color='red' size='30px' />
+let iconLoading = <UseAnimations animation={loading} size={40} />
 function AddSponsor() {
   const [sponsori, setSponsori] = useState([])
   const [denumire, setDenumire] = useState('')
-  const [urlSite, setUrlSite] = useState('')
-  const [urlImg, setUrlImg] = useState('')
-  const [lot, setLot] = useState('')
-  const [checked1, setChecked1] = useState(false)
-  const [checked2, setChecked2] = useState(false)
-  const [checked3, setChecked3] = useState(false)
+  const [linkSite, setLinkSite] = useState('')
+  const [linkImagine, setLinkImg] = useState('')
+  const [editia, setEditia] = useState('')
+
+  //validate
+  const [checkmark, setCheckmark] = useState(false)
+  const [icon, setIcon] = useState(undefined)
+  const [message, setMessage] = useState('')
+  const [textColor, setTextColor] = useState('black')
+
   const getSponsors = async () => {
     try {
       const result = await app.get('/getsponsors')
-      console.log(result.data)
       setSponsori(result.data)
     } catch (error) {
       console.log(error)
@@ -28,13 +39,48 @@ function AddSponsor() {
   useEffect(() => {
     getSponsors()
   }, [])
-
-  const changeLot = (e) => {}
-  const handleAddSponsor = () => {}
+  useEffect(() => {
+    setCheckmark(false)
+    setMessage('')
+    setIcon(undefined)
+    setTextColor('black')
+  }, [denumire, linkImagine, linkSite, editia])
+  const handleAddSponsor = () => {
+    getSponsors()
+    const addSpon = async () => {
+      try {
+        if (sponsori.find((sponsor) => sponsor.denumire === denumire)) {
+          setMessage('Sponsor deja existent!')
+          setTextColor('red')
+          setIcon(iconError)
+        } else {
+          const response = await app.post('createsponsor', {
+            denumire,
+            linkSite,
+            linkImagine,
+            editia,
+          })
+          setMessage('Sponsor adaugat cu succes!')
+          setTextColor('black')
+          setIcon(iconSucces)
+        }
+      } catch (error) {
+        setMessage('No Server Response')
+        setTextColor('red')
+        setIcon(iconError)
+      }
+    }
+    setCheckmark(true)
+    setMessage('Loading...')
+    setTextColor('black')
+    setIcon(iconLoading)
+    addSpon()
+    getSponsors()
+  }
   return (
     <div className='Add-form-container'>
       <section>
-        <form onSubmit={handleAddSponsor} className='Add-form'>
+        <div className='Add-form'>
           <h1 className='Add-form-title'>Adauga Sponsor</h1>
           <div className='Add-form-content'>
             <div className='form-group mt-3'>
@@ -42,7 +88,6 @@ function AddSponsor() {
               <input
                 type='text'
                 id='denumire'
-                autoComplete='off'
                 className='form-control mt-1'
                 onChange={(e) => setDenumire(e.target.value)}
                 value={denumire}
@@ -56,9 +101,9 @@ function AddSponsor() {
                 id='img-url'
                 className='form-control mt-1'
                 onChange={(e) => {
-                  setUrlSite(e.target.value)
+                  setLinkSite(e.target.value)
                 }}
-                value={urlSite}
+                value={linkSite}
                 required
               />
             </div>
@@ -69,14 +114,27 @@ function AddSponsor() {
                 id='site-url'
                 className='form-control mt-1'
                 onChange={(e) => {
-                  setUrlImg(e.target.value)
+                  setLinkImg(e.target.value)
                 }}
-                value={urlImg}
+                value={linkImagine}
+                required
+              />
+            </div>
+            <div className='form-group mt-3'>
+              <label htmlFor='editia'>Editia:</label>
+              <input
+                type='text'
+                id='editia'
+                className='form-control mt-1'
+                onChange={(e) => {
+                  setEditia(e.target.value)
+                }}
+                value={editia}
                 required
               />
             </div>
 
-            <div className='form-group'>
+            {/* <div className='form-group'>
               <label htmlFor='checkbox-group'>Lotul:</label>
               <br />
               <div className='checkbox-group' id='checkbox-group'>
@@ -89,6 +147,7 @@ function AddSponsor() {
                     checked={checked1}
                     onChange={(e) => {
                       setChecked1(!checked1)
+                      changeLot(e)
                     }}
                   />
                   <label className='form-check-label' htmlFor='inlineCheckbox1'>
@@ -104,6 +163,7 @@ function AddSponsor() {
                     checked={checked2}
                     onChange={(e) => {
                       setChecked2(!checked2)
+                      changeLot(e)
                     }}
                   />
                   <label className='form-check-label' htmlFor='inlineCheckbox2'>
@@ -119,6 +179,7 @@ function AddSponsor() {
                     checked={checked3}
                     onChange={(e) => {
                       setChecked3(!checked3)
+                      changeLot(e)
                     }}
                   />
                   <label className='form-check-label' htmlFor='inlineCheckbox3'>
@@ -126,12 +187,20 @@ function AddSponsor() {
                   </label>
                 </div>
               </div>
-            </div>
+            </div> */}
+            <CheckMessage
+              textColor={textColor}
+              visibility={checkmark}
+              icon={icon}
+              message={message}
+            />
             <div className='d-grid gap-2 mt-3'>
-              <button className='btn btn-primary'>Adauga Sponsor</button>
+              <button className='btn btn-primary' onClick={handleAddSponsor}>
+                Adauga Sponsor
+              </button>
             </div>
           </div>
-        </form>
+        </div>
       </section>
     </div>
   )

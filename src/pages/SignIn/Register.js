@@ -6,7 +6,7 @@ import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
-import CheckMessage from '../Contact/CheckMessage/CheckMessage'
+import CheckMessage from '../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
 
 const LOGIN_URL = '/register'
@@ -15,7 +15,7 @@ let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
 
-export default function (props) {
+function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fname, setFname] = useState('')
@@ -215,3 +215,4 @@ export default function (props) {
     </div>
   )
 }
+export default Register

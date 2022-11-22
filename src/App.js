@@ -19,7 +19,7 @@ import AddSponsor from './pages/Sponsori/AddSponsor/AddSponsor'
 import Home from './pages/Home/Home'
 import Footer from './components/Footer'
 import Admin from './pages/Admin/Admin'
-
+import CreatorContinut from './pages/CreatorContinut/CreatorContinut'
 function App() {
   return (
     <Router>
@@ -37,6 +37,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/addsponsor' element={<AddSponsor />} />
         <Route path='/admin' element={<Admin />} />
+        <Route path='/creatorcontinut' element={<CreatorContinut />} />
       </Routes>
       <Footer />
     </Router>

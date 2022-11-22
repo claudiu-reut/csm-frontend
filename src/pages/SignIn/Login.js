@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, useContext } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
@@ -6,7 +6,7 @@ import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
-import CheckMessage from '../Contact/CheckMessage/CheckMessage'
+import CheckMessage from '../CheckMessage/CheckMessage'
 
 import axios from './api/axios'
 const LOGIN_URL = '/login'
@@ -52,15 +52,17 @@ const Login = () => {
       const accessToken = response?.data?.token
       const roles = response?.data?.role
       setAuth({ user, pwd, roles, accessToken })
-      //var tkn = String(accessToken)
-      //console.log(accessToken)
       localStorage.setItem('token', accessToken)
       setUser('')
       setPwd('')
       setSuccess(true)
 
       if ((response.status = 200)) {
-        nav('/admin')
+        if (roles === 'admin') {
+          nav('/admin')
+        } else {
+          nav('/creatorcontinut')
+        }
       }
     } catch (err) {
       console.log(err)
@@ -107,7 +109,7 @@ const Login = () => {
                     type='email'
                     id='username'
                     ref={userRef}
-                    autoComplete='off'
+                    autoComplete='on'
                     className='form-control mt-1'
                     onChange={(e) => setUser(e.target.value)}
                     value={user}
