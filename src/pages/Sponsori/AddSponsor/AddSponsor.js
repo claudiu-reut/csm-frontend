@@ -101,9 +101,9 @@ function AddSponsor() {
                 id='img-url'
                 className='form-control mt-1'
                 onChange={(e) => {
-                  setLinkSite(e.target.value)
+                  setLinkImg(e.target.value)
                 }}
-                value={linkSite}
+                value={linkImagine}
                 required
               />
             </div>
@@ -114,9 +114,9 @@ function AddSponsor() {
                 id='site-url'
                 className='form-control mt-1'
                 onChange={(e) => {
-                  setLinkImg(e.target.value)
+                  setLinkSite(e.target.value)
                 }}
-                value={linkImagine}
+                value={linkSite}
                 required
               />
             </div>
