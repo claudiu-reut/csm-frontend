@@ -18,6 +18,7 @@ import Register from './pages/SignIn/Register'
 import AddSponsor from './pages/Sponsori/AddSponsor/AddSponsor'
 import Home from './pages/Home/Home'
 import Footer from './components/Footer'
+import Admin from './pages/Admin/Admin'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/signin' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/addsponsor' element={<AddSponsor />} />
+        <Route path='/admin' element={<Admin />} />
       </Routes>
       <Footer />
     </Router>

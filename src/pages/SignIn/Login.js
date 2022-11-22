@@ -49,16 +49,18 @@ const Login = () => {
         withCredentials: true,
       })
       console.log(JSON.stringify(response?.data))
-      const accessToken = response?.data?.user
+      const accessToken = response?.data?.token
       const roles = response?.data?.role
       setAuth({ user, pwd, roles, accessToken })
+      //var tkn = String(accessToken)
+      //console.log(accessToken)
       localStorage.setItem('token', accessToken)
       setUser('')
       setPwd('')
       setSuccess(true)
 
       if ((response.status = 200)) {
-        nav('/acasa')
+        nav('/admin')
       }
     } catch (err) {
       console.log(err)
