@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect,  useContext} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
-
+import AuthContext from "./context/AuthProvider";
 import axios from './api/axios'
 const LOGIN_URL = '/login'
 let iconSucces = <Checkmark size='30px' color='green' />
@@ -16,10 +16,10 @@ let iconLoading = <UseAnimations animation={loading} size={40} />
 const Login = () => {
   const userRef = useRef()
   const errRef = useRef()
-  const [auth, setAuth] = useState({})
+  //const [auth, setAuth] = useState({})
   const [user, setUser] = useState('')
   const [pwd, setPwd] = useState('')
-
+  const { setAuth } = useContext(AuthContext);
   //validate
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(undefined)
