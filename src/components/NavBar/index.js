@@ -82,7 +82,14 @@ const Navbar = ({ toggle }) => {
             />
             <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
               <button class='dropdown-item'>Action</button>
-              <button class='dropdown-item'>Another action</button>
+              <button
+                class='dropdown-item'
+                onClick={() => {
+                  nav('/juvenil/cadet')
+                }}
+              >
+                Cadet
+              </button>
               <button class='dropdown-item'>Another action</button>
               <button class='dropdown-item'>Another action</button>
               <button class='dropdown-item'>Another action</button>
