@@ -59,17 +59,17 @@ const Navbar = ({ toggle }) => {
         <NavLink to='/noutati' activestyle='true'>
           Noutati
         </NavLink>
-        <NavLink to='/juvenil' activestyle='true'>
-          <div
-            class='dropdown'
-            style={{ display: user !== '' ? 'block' : 'none' }}
-            onMouseEnter={() => {
-              setOpenDropDownJuv(true)
-            }}
-            onMouseLeave={() => {
-              setOpenDropDownJuv(false)
-            }}
-          >
+        <NavLink
+          to='/juvenil'
+          activestyle='true'
+          onMouseEnter={() => {
+            setOpenDropDownJuv(true)
+          }}
+          onMouseLeave={() => {
+            setOpenDropDownJuv(false)
+          }}
+        >
+          <div class='dropdown'>
             Volei Juvenil
             <input
               style={{ display: 'none' }}
