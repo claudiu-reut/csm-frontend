@@ -11,6 +11,9 @@ import Calendar from './pages/Calendar/Calendar'
 import ContactForm from './pages/Contact/ContactForm'
 import Detalii from './pages/Detalii/Detalii'
 import Juvenil from './pages/Juvenil/Juvenil'
+import Junior from './pages/Juvenil/Junior'
+import Cadet from './pages/Juvenil/Cadet'
+import Sperante from './pages/Juvenil/Sperante'
 import Noutati from './pages/Noutati/Noutati'
 import Sponsori from './pages/Sponsori/Sponsori'
 import Login from './pages/SignIn/Login'
@@ -31,6 +34,9 @@ function App() {
         <Route path='/contact' element={<ContactForm />} />
         <Route path='/detalii' element={<Detalii />} />
         <Route path='/juvenil' element={<Juvenil />} />
+        <Route path='/sperante' element={<Sperante />} />
+        <Route path='/cadet' element={<Cadet />} />
+        <Route path='/junior' element={<Junior />} />
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
