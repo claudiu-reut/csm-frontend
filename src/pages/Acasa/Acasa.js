@@ -16,7 +16,7 @@ const Acasa = () => {
     console.log(token)
     try {
       console.log(decodeJwt(token))
-      setUser(decodeJwt(token).email)
+      setUser(decodeJwt(token).name)
     } catch (err) {
       console.log(err)
     }
