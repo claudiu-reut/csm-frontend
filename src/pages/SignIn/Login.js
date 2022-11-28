@@ -85,6 +85,7 @@ const Login = () => {
       }
       errRef.current.focus()
     }
+    window.location.reload(false)
   }
 
   return (

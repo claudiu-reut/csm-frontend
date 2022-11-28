@@ -1,0 +1,21 @@
+.profile {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+.profile p {
+  margin: 0;
+  margin-left: 0.5rem;
+}
+.profile:hover {
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+}
+#chk-dropdown:checked ~ .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+}
