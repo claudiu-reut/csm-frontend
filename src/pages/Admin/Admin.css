@@ -1,0 +1,12 @@
+.mainDiv{
+    display: 'block';
+    justify-content: 'center';
+    align-items: 'center';
+    height: '90%';
+  }
+ .edit{
+color: rgb(0, 136, 255);
+ }
+ .delete{
+    color:red;
+ }

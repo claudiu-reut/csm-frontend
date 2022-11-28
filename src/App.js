@@ -23,6 +23,10 @@ import Home from './pages/Home/Home'
 import Footer from './components/Footer'
 import Admin from './pages/Admin/Admin'
 import CreatorContinut from './pages/CreatorContinut/CreatorContinut'
+import DeleteUser from "./pages/Admin/DeleteUser"
+import DeleteSponsor from "./pages/Admin/DeleteSponsor"
+import EditSponsor from "./pages/Admin/EditSponsor"
+import EditUser from "./pages/Admin/EditUser"
 function App() {
   return (
     <Router>
@@ -44,6 +48,10 @@ function App() {
         <Route path='/addsponsor' element={<AddSponsor />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/creatorcontinut' element={<CreatorContinut />} />
+        <Route path="/users/delete/:id" element={<DeleteUser/>} />
+        <Route path="/sponsors/delete/:id" element={<DeleteSponsor/>} />
+        <Route path="/sponsors/:id" element={<EditSponsor/>} />
+        <Route path="/users/:id" element={<EditUser/>} />
       </Routes>
       <Footer />
     </Router>
