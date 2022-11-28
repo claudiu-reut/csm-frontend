@@ -1,5 +1,5 @@
 .dropdown {
-  padding: 0.2rem;
+  padding: 0.5rem;
 }
 .profile {
   color: white;
@@ -21,4 +21,13 @@
 #chk-dropdown:checked ~ .dropdown-menu {
   display: flex;
   flex-direction: column;
+}
+.dropdown-item {
+  transition: all 0.5s;
+  background-color: transparent;
+}
+.dropdown-item:hover {
+  padding-left: 1.5rem;
+  color: #2287fa;
+  background-color: transparent;
 }
