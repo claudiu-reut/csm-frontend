@@ -17,7 +17,6 @@ import {
 const Navbar = ({ toggle }) => {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
   const [openDropDownJuv, setOpenDropDownJuv] = useState(false)
-
   const token = localStorage.getItem('token')
   const [user, setUser] = useState('')
   const nav = useNavigate()
@@ -83,6 +82,9 @@ const Navbar = ({ toggle }) => {
             />
             <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
               <button class='dropdown-item'>Action</button>
+              <button class='dropdown-item'>Another action</button>
+              <button class='dropdown-item'>Another action</button>
+              <button class='dropdown-item'>Another action</button>
               <button class='dropdown-item'>Another action</button>
             </div>
           </div>
