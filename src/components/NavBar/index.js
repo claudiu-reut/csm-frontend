@@ -131,7 +131,14 @@ const Navbar = ({ toggle }) => {
             }}
           />
           <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-            <button class='dropdown-item'>Action</button>
+            <button
+              class='dropdown-item'
+              onClick={() => {
+                nav('/admin')
+              }}
+            >
+              Administration
+            </button>
             <button class='dropdown-item'>Another action</button>
             <button
               class='dropdown-item'
