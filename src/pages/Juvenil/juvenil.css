@@ -1,0 +1,14 @@
+.main-container{
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color: red;
+   
+}
+
+
+.container{
+    border-style: solid;
+    border-color: blue;
+    align-items: center;
+}
