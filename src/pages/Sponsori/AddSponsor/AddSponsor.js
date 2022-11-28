@@ -8,7 +8,7 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
-import axios from "../../SignIn/api/axios"
+import axios from '../../SignIn/api/axios'
 let iconSucces = <Checkmark size='30px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='30px' />
 let iconLoading = <UseAnimations animation={loading} size={40} />
@@ -77,7 +77,7 @@ function AddSponsor() {
   return (
     <div className='Add-form-container'>
       <section>
-        <div className='Add-form'>
+        <form className='Add-form'>
           <h1 className='Add-form-title'>Adauga Sponsor</h1>
           <div className='Add-form-content'>
             <div className='form-group mt-3'>
@@ -127,7 +127,7 @@ function AddSponsor() {
                   setEditia(e.target.value)
                 }}
                 value={editia}
-                required
+                required={true}
               />
             </div>
 
@@ -197,7 +197,7 @@ function AddSponsor() {
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </section>
     </div>
   )

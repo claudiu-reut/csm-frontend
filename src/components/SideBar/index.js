@@ -48,8 +48,11 @@ function SideBar({ isOpen, toggle }) {
       <div
         class='dropdown-sidebar'
         style={{ display: user !== '' ? 'block' : 'none' }}
-        onClick={() => {
-          setOpenDropDownSignIn(!openDropDownSignIn)
+        onMouseEnter={() => {
+          setOpenDropDownSignIn(true)
+        }}
+        onMouseLeave={() => {
+          setOpenDropDownSignIn(false)
         }}
       >
         <div className='profile'>
@@ -72,9 +75,14 @@ function SideBar({ isOpen, toggle }) {
           aria-labelledby='dropdownMenuLink'
           onClick={toggle}
         >
-          <button class='dropdown-item'>Action</button>
-          <button class='dropdown-item'>Action</button>
-          <button class='dropdown-item'>Action</button>
+          <button
+            class='dropdown-item'
+            onClick={() => {
+              nav('/admin')
+            }}
+          >
+            Administration
+          </button>
           <button class='dropdown-item'>Action</button>
           <button class='dropdown-item'>Another action</button>
           <button

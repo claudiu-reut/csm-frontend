@@ -29,7 +29,6 @@ const Navbar = ({ toggle }) => {
     const func = async () => {
       try {
         await setUser(decodeJwt(token).name)
-        console.log(user)
       } catch (err) {
         console.log(err)
       }
@@ -42,8 +41,7 @@ const Navbar = ({ toggle }) => {
         <img
           src={require('./images/csm-logo.png')}
           alt='Logo'
-          const
-          style={{ maxWidth: '80px', paddingTop: '2rem' }}
+          style={{ width: '80px', paddingTop: '2rem' }}
         />
       </NavLink>
       <Bars onClick={toggle} />

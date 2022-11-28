@@ -20,12 +20,9 @@ function Admin() {
   }, [])
   return (
     <div className='mainDiv'>
-      <div>
+      <div className='div-table'>
         <h1>Users</h1>
-        <Link to='/register' class='btn btn-primary'>
-          Add User
-        </Link>
-        <br></br>
+        <br />
         <table class='table table-striped'>
           <thead>
             <tr>
@@ -63,50 +60,59 @@ function Admin() {
             ))}
           </tbody>
         </table>
+        <Link to='/register' class='btn btn-primary btn-add'>
+          Add User
+        </Link>
       </div>
-      <h1>Sponsors</h1>
-      <Link to='/addsponsor' class='btn btn-primary'>
-        Add Sponsor
-      </Link>
-      <br></br>
-      <table class='table table-striped'>
-        <thead>
-          <tr>
-            <th scope='col' className='hidde-on-overflow'>
-              ID
-            </th>
-            <th scope='col'>Denumire</th>
-            <th scope='col' className='hidde-on-overflow'>
-              Link Site
-            </th>
-            <th scope='col'>Editia</th>
-            <th scope='col'>Actiune</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sponsors.map((sponsor) => (
-            <tr key={sponsor.id_sponsor}>
-              <td className='hidde-on-overflow'>{sponsor.id_sponsor}</td>
-              <td>{sponsor.denumire}</td>
-              <td className='hidde-on-overflow'>{sponsor.linkSite}</td>
-              <td>{sponsor.editia}</td>
-
-              <td className='problematic'>
-                <Link to={`/sponsors/${sponsor.id_sponsor}`} className='edit'>
-                  <AiOutlineEdit size={20} />
-                </Link>
-                <Link
-                  to={`/sponsors/delete/${sponsor.id_sponsor}`}
-                  className='delete'
-                >
-                  <MdDeleteForever size={20} className='icon' />
-                </Link>
-              </td>
+      <div className='div-table'>
+        <h1>Sponsors</h1>
+        <br />
+        <table class='table table-striped'>
+          <thead>
+            <tr>
+              <th scope='col' className='hidde-on-overflow'>
+                ID
+              </th>
+              <th scope='col'>Denumire</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Link Site
+              </th>
+              <th scope='col'>Editia</th>
+              <th scope='col'>Actiune</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div></div>
+          </thead>
+          <tbody>
+            {sponsors.map((sponsor) => (
+              <tr key={sponsor.id_sponsor}>
+                <td className='hidde-on-overflow'>{sponsor.id_sponsor}</td>
+                <td>{sponsor.denumire}</td>
+                <td className='hidde-on-overflow'>{sponsor.linkSite}</td>
+                <td>{sponsor.editia}</td>
+
+                <td>
+                  <span className='problematic'>
+                    <Link
+                      to={`/sponsors/${sponsor.id_sponsor}`}
+                      className='edit'
+                    >
+                      <AiOutlineEdit size={20} />
+                    </Link>
+                    <Link
+                      to={`/sponsors/delete/${sponsor.id_sponsor}`}
+                      className='delete'
+                    >
+                      <MdDeleteForever size={20} className='icon' />
+                    </Link>
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <Link to='/addsponsor' class='btn btn-primary btn-add'>
+          Add Sponsor
+        </Link>
+      </div>
     </div>
   )
 }
