@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect,  useContext} from 'react'
+import { useRef, useState, useEffect, useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
-import AuthContext from "./context/AuthProvider";
+import AuthContext from './context/AuthProvider'
 import axios from './api/axios'
 const LOGIN_URL = '/login'
 let iconSucces = <Checkmark size='30px' color='green' />
@@ -19,7 +19,7 @@ const Login = () => {
   //const [auth, setAuth] = useState({})
   const [user, setUser] = useState('')
   const [pwd, setPwd] = useState('')
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useContext(AuthContext)
   //validate
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(undefined)
@@ -51,7 +51,7 @@ const Login = () => {
       console.log(JSON.stringify(response?.data))
       const accessToken = response?.data?.token
       const roles = response?.data?.role
-      setAuth({ user, pwd, roles, accessToken })
+      //setAuth({ user, pwd, roles, accessToken })
       localStorage.setItem('token', accessToken)
       setUser('')
       setPwd('')

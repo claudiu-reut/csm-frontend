@@ -8,7 +8,7 @@ const Calendar = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '90%',
+          height: '90vh',
         }}
       >
         <h1>Calendar</h1>
