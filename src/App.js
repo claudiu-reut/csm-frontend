@@ -27,6 +27,8 @@ import DeleteUser from "./pages/Admin/DeleteUser"
 import DeleteSponsor from "./pages/Admin/DeleteSponsor"
 import EditSponsor from "./pages/Admin/EditSponsor"
 import EditUser from "./pages/Admin/EditUser"
+import ProtectedRoutes from './components/ProtectedRoutes'
+import AdminRoutes from './components/AdminRoutes'
 function App() {
   return (
     <Router>
@@ -44,14 +46,20 @@ function App() {
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/addsponsor' element={<AddSponsor />} />
-        <Route path='/admin' element={<Admin />} />
-        <Route path='/creatorcontinut' element={<CreatorContinut />} />
-        <Route path="/users/delete/:id" element={<DeleteUser/>} />
-        <Route path="/sponsors/delete/:id" element={<DeleteSponsor/>} />
-        <Route path="/sponsors/:id" element={<EditSponsor/>} />
-        <Route path="/users/:id" element={<EditUser/>} />
+
+        <Route element={<ProtectedRoutes/>}>
+          <Route element={<AdminRoutes/>}>
+          <Route path='/register' element={<Register />} />
+          <Route path='/addsponsor' element={<AddSponsor />} />
+          <Route path='/admin' element={<Admin />} />
+          <Route path="/users/delete/:id" element={<DeleteUser/>} />
+          <Route path="/sponsors/delete/:id" element={<DeleteSponsor/>} />
+          <Route path="/sponsors/:id" element={<EditSponsor/>} />
+          <Route path="/users/:id" element={<EditUser/>} />
+          </Route>
+          <Route path='/creatorcontinut' element={<CreatorContinut />} />
+        </Route>
+
       </Routes>
       <Footer />
     </Router>
