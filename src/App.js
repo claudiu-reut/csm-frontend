@@ -29,6 +29,7 @@ import EditSponsor from "./pages/Admin/EditSponsor"
 import EditUser from "./pages/Admin/EditUser"
 import ProtectedRoutes from './components/ProtectedRoutes'
 import AdminRoutes from './components/AdminRoutes'
+import NotFound from "./pages/NotFound/NotFound"
 function App() {
   return (
     <Router>
@@ -46,7 +47,7 @@ function App() {
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
-
+        <Route path="*" element={<NotFound />} />
         <Route element={<ProtectedRoutes/>}>
           <Route element={<AdminRoutes/>}>
           <Route path='/register' element={<Register />} />
