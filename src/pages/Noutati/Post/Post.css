@@ -1,0 +1,74 @@
+.post {
+  width: 450px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 25px 1px #ccc;
+  border-radius: 7px;
+  transition: all 0.2s ease-in-out;
+}
+.post:hover {
+  box-shadow: 15px 15px 25px 5px #ccc;
+  transition: all 0.2s;
+}
+.post-info {
+  width: 100%;
+  display: flex;
+}
+.post-share:hover {
+  color: blue;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.post-info div {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+.post-info div p {
+  margin: 0;
+  padding: 0;
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+}
+.post-tags p:hover {
+  color: blue;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.post-tags {
+  width: 100%;
+  display: flex;
+}
+.post-tags p {
+  margin-right: 1rem;
+}
+.post-title h2 {
+  font-style: bold;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.post-title h2:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.post-description p {
+  font-size: 0.9rem;
+}
+.post-img img {
+  width: 100%;
+  height: 230px;
+  border-radius: 7px;
+}
+.post-img {
+  width: 100%;
+  height: 230px;
+}
+@media screen and (max-width: 550px) {
+  .post {
+    width: 90%;
+  }
+}

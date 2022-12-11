@@ -1,0 +1,12 @@
+.noutati {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 90%;
+}
+@media screen and (max-width: 550px) {
+  .noutati {
+    flex-direction: column;
+  }
+}
