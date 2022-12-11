@@ -3,6 +3,7 @@ import './Post.css'
 import { BsClock } from 'react-icons/bs'
 import { BsShare } from 'react-icons/bs'
 function Post({ post }) {
+  const date =new Date(post.createdAt)
   function addZero(i) {
     if (i < 10) {
       i = '0' + i
@@ -29,15 +30,15 @@ function Post({ post }) {
         <div className='post-date'>
           <BsClock size={15} />
           <p>
-            {addZero(post.data.getDate()) +
+            {addZero(date.getDate()) +
               '-' +
-              addZero(post.data.getMonth() + 1) +
+              addZero(date.getMonth() + 1) +
               '-' +
-              post.data.getFullYear() +
+              date.getFullYear() +
               '     ' +
-              addZero(post.data.getHours()) +
+              addZero(date.getHours()) +
               ':' +
-              addZero(post.data.getMinutes())}
+              addZero(date.getMinutes())}
           </p>
         </div>
         <div className='post-share'>
