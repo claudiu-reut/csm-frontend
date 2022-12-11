@@ -56,7 +56,6 @@ const Login = () => {
       setUser('')
       setPwd('')
       setSuccess(true)
-
       if ((response.status = 200)) {
         if (roles === 'admin') {
           nav('/admin')
@@ -87,7 +86,6 @@ const Login = () => {
     }
     window.location.reload(false)
   }
-
   return (
     <>
       {success ? (
@@ -100,46 +98,44 @@ const Login = () => {
         </section>
       ) : (
         <div className='Auth-form-container'>
-          <section>
-            <form onSubmit={handleSubmit} className='Auth-form1'>
-              <h1 className='Auth-form-title'>Sign In</h1>
-              <div className='Auth-form-content'>
-                <div className='form-group mt-3'>
-                  <label htmlFor='username'>Email:</label>
-                  <input
-                    type='email'
-                    id='username'
-                    ref={userRef}
-                    autoComplete='on'
-                    className='form-control mt-1'
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
-                    required
-                  />
-                </div>
-                <div className='form-group mt-3'>
-                  <label htmlFor='password'>Password:</label>
-                  <input
-                    type='password'
-                    id='password'
-                    className='form-control mt-1'
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
-                    required
-                  />
-                </div>
-                <CheckMessage
-                  textColor={textColor}
-                  visibility={checkmark}
-                  icon={icon}
-                  message={message}
+          <form onSubmit={handleSubmit} className='Auth-form'>
+            <h1 className='Auth-form-title'>Sign In</h1>
+            <div className='Auth-form-content'>
+              <div className='form-group mt-3'>
+                <label htmlFor='username'>Email:</label>
+                <input
+                  type='email'
+                  id='username'
+                  ref={userRef}
+                  autoComplete='on'
+                  className='form-control mt-1'
+                  onChange={(e) => setUser(e.target.value)}
+                  value={user}
+                  required
                 />
-                <div className='d-grid gap-2 mt-3'>
-                  <button className='btn btn-primary'>Sign In</button>
-                </div>
               </div>
-            </form>
-          </section>
+              <div className='form-group mt-3'>
+                <label htmlFor='password'>Password:</label>
+                <input
+                  type='password'
+                  id='password'
+                  className='form-control mt-1'
+                  onChange={(e) => setPwd(e.target.value)}
+                  value={pwd}
+                  required
+                />
+              </div>
+              <div className='d-grid gap-2 mt-3'>
+                <button className='btn btn-primary'>Sign In</button>
+              </div>
+              <CheckMessage
+                textColor={textColor}
+                visibility={checkmark}
+                icon={icon}
+                message={message}
+              />
+            </div>
+          </form>
         </div>
       )}
     </>

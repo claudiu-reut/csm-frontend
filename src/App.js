@@ -23,13 +23,14 @@ import Home from './pages/Home/Home'
 import Footer from './components/Footer'
 import Admin from './pages/Admin/Admin'
 import CreatorContinut from './pages/CreatorContinut/CreatorContinut'
-import DeleteUser from "./pages/Admin/DeleteUser"
-import DeleteSponsor from "./pages/Admin/DeleteSponsor"
-import EditSponsor from "./pages/Admin/EditSponsor"
-import EditUser from "./pages/Admin/EditUser"
+import DeleteUser from './pages/Admin/DeleteUser'
+import DeleteSponsor from './pages/Admin/DeleteSponsor'
+import EditSponsor from './pages/Admin/EditSponsor'
+import EditUser from './pages/Admin/EditUser'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import AdminRoutes from './components/AdminRoutes'
-import NotFound from "./pages/NotFound/NotFound"
+import NotFound from './pages/NotFound/NotFound'
+import AddPost from './pages/Noutati/AddPost/AddPost'
 function App() {
   return (
     <Router>
@@ -47,20 +48,20 @@ function App() {
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
-        <Route path="*" element={<NotFound />} />
-        <Route element={<ProtectedRoutes/>}>
-          <Route element={<AdminRoutes/>}>
-          <Route path='/register' element={<Register />} />
-          <Route path='/addsponsor' element={<AddSponsor />} />
-          <Route path='/admin' element={<Admin />} />
-          <Route path="/users/delete/:id" element={<DeleteUser/>} />
-          <Route path="/sponsors/delete/:id" element={<DeleteSponsor/>} />
-          <Route path="/sponsors/:id" element={<EditSponsor/>} />
-          <Route path="/users/:id" element={<EditUser/>} />
+        <Route path='*' element={<NotFound />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route element={<AdminRoutes />}>
+            <Route path='/register' element={<Register />} />
+            <Route path='/addsponsor' element={<AddSponsor />} />
+            <Route path='/noutati/addpost' element={<AddPost />} />
+            <Route path='/admin' element={<Admin />} />
+            <Route path='/users/delete/:id' element={<DeleteUser />} />
+            <Route path='/sponsors/delete/:id' element={<DeleteSponsor />} />
+            <Route path='/sponsors/:id' element={<EditSponsor />} />
+            <Route path='/users/:id' element={<EditUser />} />
           </Route>
           <Route path='/creatorcontinut' element={<CreatorContinut />} />
         </Route>
-
       </Routes>
       <Footer />
     </Router>

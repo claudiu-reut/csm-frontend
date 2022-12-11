@@ -59,9 +59,9 @@ const ContactForm = () => {
   return (
     <div className='Contact-form-container'>
       <form onSubmit={handleSubmit} className='Contact-form'>
-        <div className='Contact-form-content form-content'>
+        <div className='Contact-form-content'>
           <h3 className='Contact-form-title'>Lasă-ne un mesaj</h3>
-          <div className='Contact-form-content'>
+          <div className='form-group mt-3'>
             <label htmlFor='name'>Name:</label>
             <input
               type='text'
@@ -70,7 +70,7 @@ const ContactForm = () => {
               className='form-control mt-1'
             />
           </div>
-          <div className='Contact-form-content'>
+          <div className='form-group mt-3'>
             <label htmlFor='email'>Email:</label>
             <input
               type='email'
@@ -79,9 +79,14 @@ const ContactForm = () => {
               className='form-control mt-1'
             />
           </div>
-          <div className='Contact-form-content'>
+          <div className='form-group mt-3'>
             <label htmlFor='message'>Message:</label>
-            <textarea id='message' required className='form-control mt-1' />
+            <textarea
+              id='message'
+              required
+              rows={5}
+              className='form-control mt-1'
+            />
           </div>
           <div className='d-grid gap-2 mt-3'>
             <button type='submit' className='btn btn-primary'>

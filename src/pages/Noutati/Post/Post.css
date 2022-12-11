@@ -18,21 +18,46 @@
   width: 100%;
   display: flex;
 }
-.post-share:hover {
-  color: blue;
+.icon-share:hover {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
-.post-info div {
+.icon-twiter:hover {
+  color: aqua;
+}
+.icon-facebook:hover {
+  color: blue;
+}
+.icon-instagram:hover {
+  color: #bc318f;
+}
+.icon-reddit:hover {
+  color: red;
+}
+.post-date {
+  flex: 3;
   display: flex;
   align-items: center;
-  margin-right: 1rem;
 }
-.post-info div p {
+.post-info p {
   margin: 0;
   padding: 0;
+}
+.post-date p {
+  margin-left: 0.5rem;
+}
+.post-share {
+  flex: 5;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.post-share p {
+  margin: 0 0.3rem;
+  padding: 0 0.5rem;
+}
+.icon-share {
   margin-left: 0.4rem;
-  font-size: 0.8rem;
 }
 .post-tags p:hover {
   color: blue;
@@ -46,6 +71,9 @@
 .post-tags p {
   margin-right: 1rem;
 }
+.post-title {
+  height: 3rem;
+}
 .post-title h2 {
   font-style: bold;
   font-size: 1rem;
@@ -54,6 +82,9 @@
 .post-title h2:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+.post-description {
+  height: 5rem;
 }
 .post-description p {
   font-size: 0.9rem;
@@ -70,5 +101,20 @@
 @media screen and (max-width: 550px) {
   .post {
     width: 90%;
+    height: 480px;
+  }
+  .post-share {
+    flex: 4;
+  }
+  .post-date {
+    flex: 5;
+  }
+  .post-title,
+  .post-description {
+    margin-bottom: 0.8rem;
+  }
+  .post-share p {
+    margin: 0 0.2rem;
+    padding: 0 0.3rem;
   }
 }

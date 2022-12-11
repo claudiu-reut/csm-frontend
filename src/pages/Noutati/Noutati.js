@@ -1,108 +1,32 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import './Noutati.css'
 import Post from './Post/Post'
-let date = new Date()
-const posts = [
-  {
-    id_postare: '1',
-    titlu: `
-Volei masculin. CSM Suceava, la un prim contact adevărat cu echipele de prim eșalon valoric`,
-    descriere: `Recent s-a disputat faza pe municipiu la volei feminin din cadrul Olimpiadei Naționale a Sportului Școlar. Echipa Liceului cu Program Sportiv din Suceava, pregătită de profesorul Vasile Moșuc, a reușit să câștige ambele partide disputate cu formațiile Colegiului Național „Ștefan cel Mare” și Liceului „Spiru Haret”.`,
-    tags: 'blabla blab bavav',
-    data: date,
-    linkExtern: '',
-    linkImg:
-      'https://img.svnews.ro/foto/2022/09/19/312004/17f9482fba2ccb3e4bb17f034.jpg',
-    user_id: '',
-    createdAt: date,
-    updatedAt: date,
-  },
-  {
-    id_postare: '2',
-    titlu:
-      'Echipa LPS Suceava s-a calificat la faza județeană a Olimpiadei Naționale a Sportului Școlar',
-    descriere: `Recent s-a disputat faza pe municipiu la volei feminin din cadrul Olimpiadei Naționale a Sportului Școlar. Echipa Liceului cu Program Sportiv din Suceava, pregătită de profesorul Vasile Moșuc, a reușit să câștige ambele partide disputate cu formațiile Colegiului Național „Ștefan cel Mare” și Liceului „Spiru Haret”.`,
-    tags: 'blabla blab bavav',
-    data: date,
-    linkExtern: '',
-    linkImg: 'https://media.monitorulsv.ro/poze/2020/02/05/596119big.jpg',
-    user_id: '',
-    createdAt: date,
-    updatedAt: date,
-  },
-  {
-    id_postare: '3',
-    titlu: `Echipa de volei fete a Colegiului Naţional “Ştefan cel Mare” Suceava, pe podium, la etapa zonală din cadrul Olimpiadei Naţionale a Sportului Şcolar`,
-    descriere: `Profesorul Adrian Cojocaru de la Colegiul Naţional “Ştefan cel Mare” Suceava a declarat pentru NewsBucovina că la etapa zonală de volei fete din cadrul Olimpiadei Naţionale a Sportului Şcolar, desfăşurată, sâmbătă şi duminică, la acest colegiu, au participat şase echipe, respectiv echipa de volei fete a Colegiului Naţional Pedagogic „Ştefan cel Mare” Bacău, echipa Colegiului Național „Mihai Eminescu” Botoșani, echipa Liceului Teoretic„Alexandru Ioan Cuza” Iași, echipa Liceului cu Program Sportiv Piatra Neamţ, echipa Colegiului Naţional „Ştefan cel Mare” Suceava şi echipa Liceului Teoretic „Emil Racoviță” Vaslui.`,
-    tags: `blalbab avava aa`,
-    data: date,
-    linkExtern: '',
-    linkImg:
-      'https://www.newsbucovina.ro/wp-content/uploads/2017/03/Volei-1-1024x683.jpg',
-    user_id: '',
-    createdAt: date,
-    updatedAt: date,
-  },
-  {
-    id_postare: '4',
-    titlu:
-      'Academia de Volei Tomis Constanța și CSM Suceava au promovat în Divizia A1 la volei masculin în urma turneului care s-a disputat la Zalău. ',
-    descriere: `Organizat în weekend, turneul de promovare de la Zalău s-a încheiat cu victoria formației Academia de Volei Tomis Constanța, care a strâns 7 puncte, după două victorii cu 3-0 obținute în fața formațiilor Volei Club Zalău și CS Oțelu Roșu și un eșec cu 2-3 suferit în fața celor de la CSM Suceava.Sucevenii au terminat pe locul secund, de asemenea promovabil, cu 6 puncte, obținute dintr-o victorie cu 3-0 cu Oțelu Roșu, una cu 3-2 reușită în fața jucătorilor din Constanța și un eșec cu 2-3 suferit în fața gazdelor de la Volei Club Zalău, care au revenit după ce moldovenii au condus cu 2-0 la seturi.`,
-    tags: 'blabla blab bavav',
-    data: date,
-    linkExtern: '',
-    linkImg: 'http://doarvolei.ro/wp-content/uploads/2022/04/csm-suceava.jpg',
-    user_id: '',
-    createdAt: date,
-    updatedAt: date,
-  },
-  {
-    id_postare: '5',
-    titlu:
-      'LPS Suceava și Kinder Suceava luptă pe teren propriu pentru calificarea la turneul final de volei – speranțe',
-    descriere: `Campionatul Național la volei programează sâmbătă turneele semifinale la Categoria Speranțe. Printre echipele angrenate în această fază a competiției se numără și LPS Suceava (masculin) și Kinder Suceava (feminin).
-
-Grupa de la LPS Suceava, pregătită de antrenorul Bogdan Macsim, se va bate, în Sala “Dumitru Bernicu” din Suceava, pentru cele două locuri calificabile la turneul final, cu CSM Ploiești și CSŞ Botoșani, urmând să conteze pe un lot de jucători din care fac parte: Alexandru Andrușcă, Ioan Verciuc, Luca Ghiuță, Marian Movileanu, Ilie Daniliuc, Valeriu Verciuc, Eduar Cudlici, Tudor Istrate, Vlad Pînzaru, Andrei Cojocar, Eduard Ananii și Matei Truscan.`,
-    tags: 'blabla blab bavav',
-    data: date,
-    linkExtern: '',
-    linkImg:
-      'https://www.gazetasv.ro/wp-content/uploads/2021/06/Volei-LPS-Suceava-777x437.jpg',
-    user_id: '',
-    createdAt: date,
-    updatedAt: date,
-  },
-  {
-    id_postare: '6',
-    titlu:
-      'CSM Suceava a promovat în prima divizie la volei masculin după 11 ani',
-    descriere: `CSM Suceava a revenit pe prima scenă a voleiului masculin românesc după 11 ani.
-
-Echipa antrenată de Tudor Orășanu a promovat în Divizia A din postura de ocupantă a locul 2 la turneul final ce a avut loc la sfârșitul săptămânii trecute la Zalău.
-
-Şase puncte a acumulat formația suceveană în cele trei meciuri disputate în Ardeal, după 3-0 cu CS Oțelu Roșu, 2-3 cu Volei Club Zalău și 3-2 cu Tomis Constanța.
-
-“Să ai cea mai tânără echipă de la baraj și să termini pe locul 2, după ce te-ai bătut, având bani puțini, cu două cluburi cu pretenții cum sunt Constanța și Zalău, chiar este o performanță, iar acești băieți merită felicitați. Acum să vedem dacă ne iubește cineva. Este timpul ca iubitorii voleiului sucevean să scoată pieptul în față și să ne ajute să putem participa în prima divizie, acolo unde n-am mai fost de 11 ani”, a declarat antrenorul sucevean Tudor Orășanu.
-
-CSM Suceava a promovat cu următorul lot de jucători: Marius Gontariu, Andrei Sasu, Alexandru Danilă, Alexandru Roman, Cozmin Boghean, Vlad Ştreangă, Victor Asmarandei, Andrei Curic, Denis Croitor, Sabin Hortopeanu, Cezar Ciubotariu și Ioan Verciuc, la care și-au mai adus contribuția veteranii Lucian Huțuleac și Robert Petraru.
-
-Termenul limită de înscriere a echipelor în viitorul sezon al Diviziei A la volei masculin este sfârșitul lunii mai. (Dănuț CHIDOVEȚ)`,
-    tags: 'blabla blab bavav',
-    data: date,
-    linkExtern: '',
-    linkImg:
-      'https://www.obiectivdesuceava.ro/wp-content/uploads/2022/04/Volei-CSM-Suceava-1.jpg',
-    user_id: '',
-    createdAt: date,
-    updatedAt: date,
-  },
-]
+import axios from '../SignIn/api/axios'
 const Noutati = () => {
+  const [postari, setPostari] = useState([])
+  const get_posts = async () => {
+    try {
+      let result = await axios.get('getposts')
+      if (result.status === 200) {
+        let sorted = result.data.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt)
+        })
+        setPostari(sorted)
+      } else {
+        console.log(result.data.err)
+      }
+    } catch (error) {}
+  }
+  useEffect(() => {
+    get_posts()
+  }, [])
   return (
     <>
       <div className='noutati'>
-        {posts.map((post) => {
-          return <Post post={post} />
+        {postari.map((post) => {
+          return <Post key={post.id_postare} post={post} />
         })}
       </div>
     </>

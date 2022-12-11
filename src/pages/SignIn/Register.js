@@ -194,12 +194,6 @@ function Register() {
                 setCheckmark(!checkmark)
               }}
             />
-            <CheckMessage
-              textColor={textColor}
-              visibility={checkmark}
-              icon={icon}
-              message={message}
-            />
           </div>
           <div className='d-grid gap-2 mt-3'>
             <button
@@ -210,6 +204,12 @@ function Register() {
               Submit
             </button>
           </div>
+          <CheckMessage
+            textColor={textColor}
+            visibility={checkmark}
+            icon={icon}
+            message={message}
+          />
         </div>
       </form>
     </div>

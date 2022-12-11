@@ -16,7 +16,6 @@ import {
 
 const Navbar = ({ toggle }) => {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
-  const [openDropDownJuv, setOpenDropDownJuv] = useState(false)
   const token = localStorage.getItem('token')
   const [user, setUser] = useState('')
   const nav = useNavigate()
@@ -56,43 +55,8 @@ const Navbar = ({ toggle }) => {
         <NavLink to='/noutati' activestyle='true'>
           Noutati
         </NavLink>
-        <NavLink
-          to='/juvenil'
-          activestyle='true'
-          onMouseEnter={() => {
-            setOpenDropDownJuv(true)
-          }}
-          onMouseLeave={() => {
-            setOpenDropDownJuv(false)
-          }}
-        >
-          <div class='dropdown'>
-            Volei Juvenil
-            <input
-              style={{ display: 'none' }}
-              type='checkbox'
-              name='chk-dropdown'
-              id='chk-dropdown'
-              checked={openDropDownJuv}
-              onChange={() => {
-                setOpenDropDownJuv(!openDropDownJuv)
-              }}
-            />
-            <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-              <button class='dropdown-item'>Action</button>
-              <button
-                class='dropdown-item'
-                onClick={() => {
-                  nav('/juvenil/cadet')
-                }}
-              >
-                Cadet
-              </button>
-              <button class='dropdown-item'>Another action</button>
-              <button class='dropdown-item'>Another action</button>
-              <button class='dropdown-item'>Another action</button>
-            </div>
-          </div>
+        <NavLink to='/juvenil' activestyle='true'>
+          Volei Juvenil
         </NavLink>
         <NavLink to='/sponsori' activestyle='true'>
           Sponsori
