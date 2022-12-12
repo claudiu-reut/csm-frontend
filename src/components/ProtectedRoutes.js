@@ -6,7 +6,7 @@ const useAuth = () => {
   try{
     var enc = new TextEncoder();
     const token = jwt_decode(localStorage.getItem('token'),enc.encode('secret123'))
-    console.log(token);
+
     const user ={loggedIn:false}
     if(token)
     {user.loggedIn=true}

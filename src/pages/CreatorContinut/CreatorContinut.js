@@ -10,18 +10,11 @@ function CreatorContinut() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [email, setEmail] = useState('');
-  async function getEmail (id){
-    const response2= await axios.get(`/getuser/${id}`)
-    const email=response2.email;
-    console.log(response2)
-    setEmail(email);
-  }
+  
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get('/getposts')
-      const response2= await axios.get('/getusers')
+      const response = await axios.get('/getpostsuser')
       setPosts(response.data);
-      setUsers(response2.data);
     }
     fetchData()
   }, [])
@@ -55,7 +48,7 @@ function CreatorContinut() {
                 <td className='hidde-on-overflow'>{post.titlu}</td>
                 <td className='hidde-on-overflow'>{post.tags}</td>
                 <td>{post.createdAt}</td>
-                <td>{console.log(getEmail(post.user_id)) }</td>
+                <td>{post.email}</td>
                 <td>
                   <Link to={`/posts/${post.id_postare}`} className='edit'>
                     <AiOutlineEdit size={20} />
