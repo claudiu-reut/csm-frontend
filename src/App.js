@@ -31,6 +31,8 @@ import ProtectedRoutes from './components/ProtectedRoutes'
 import AdminRoutes from './components/AdminRoutes'
 import NotFound from './pages/NotFound/NotFound'
 import AddPost from './pages/Noutati/AddPost/AddPost'
+import DeletePost from './pages/Noutati/DeletePost'
+import EditPost from './pages/Noutati/EditPost'
 function App() {
   return (
     <Router>
@@ -62,6 +64,8 @@ function App() {
           </Route>
           <Route path='/creatorcontinut' element={<CreatorContinut />} />
           <Route path='/noutati/addpost' element={<AddPost />} />
+          <Route path='/noutati/delete/:id' element={<DeletePost />} />
+          <Route path='/noutati/:id' element={<EditPost />} />
         </Route>
       </Routes>
       <Footer />

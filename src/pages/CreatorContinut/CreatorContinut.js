@@ -69,11 +69,11 @@ function CreatorContinut() {
                   <td>{data}</td>
                   <td>{post.email}</td>
                   <td>
-                    <Link to={`/posts/${post.id_postare}`} className='edit'>
+                    <Link to={`/noutati/${post.id_postare}`} className='edit'>
                       <AiOutlineEdit size={20} />
                     </Link>
                     <Link
-                      to={`/posts/delete/${post.id_postare}`}
+                      to={`/noutati/delete/${post.id_postare}`}
                       className='delete'
                     >
                       <MdDeleteForever size={20} />
