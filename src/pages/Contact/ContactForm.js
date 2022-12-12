@@ -57,8 +57,8 @@ const ContactForm = () => {
   }
 
   return (
-   <div className='Contact-form-container'>
-      <section>
+    <div className='Contact-form-container'>
+      <div className='contact-info'>
         <div className='Email'>
           <h3>Email address</h3>
           <p>csm.suceava@sport.gov.ro</p>
@@ -67,24 +67,23 @@ const ContactForm = () => {
           <h3>Contact us</h3>
           <li>0230 531 289</li>
           <li>0230 524 767</li>
-        
+        </div>
+        <div className='locatie'>
+          <h3>Location</h3>
+          <p>Bulevardul 1 Decembrie 1918, nr.7, Suceava, Romania</p>
+        </div>
+        <div className='map'>
+          <iframe
+            src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21509.79141653611!2d26.2218165!3d47.6314975!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fdd69a0678ff%3A0xc23be436f2c62390!2sBulevardul%201%20Decembrie%201918%207%2C%20Suceava!5e0!3m2!1sro!2sro!4v1670843248268!5m2!1sro!2sro'
+            width='100%'
+            height='300'
+            style={{ border: 0 }}
+            allowfullscreen=''
+            loading='lazy'
+            referrerpolicy='no-referrer-when-downgrade'
+          ></iframe>
+        </div>
       </div>
-      <div className='locatie'>
-        <h3>Location</h3>
-        <p>Bulevardul 1 Decembrie 1918, nr.7, Suceava, Romania</p>
-      </div><div className='map'>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21509.79141653611!2d26.2218165!3d47.6314975!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fdd69a0678ff%3A0xc23be436f2c62390!2sBulevardul%201%20Decembrie%201918%207%2C%20Suceava!5e0!3m2!1sro!2sro!4v1670843248268!5m2!1sro!2sro"
-          width="450"
-          height="300"
-          style={{ border: 0 }}
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-
-      </div>
-      </section>
       <form onSubmit={handleSubmit} className='Contact-form'>
         <div className='Contact-form-content'>
           <h3 className='Contact-form-title'>Lasă-ne un mesaj</h3>

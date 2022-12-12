@@ -2,27 +2,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  align-items: center;
+  justify-content: space-around;
   width: 95vw;
-  height: 95vh;
+  height: 95%;
   transition: all 0.4s ease-in-out;
 }
-
-h3{
-  margin-top: 1em;
-  font-size: 24px;
-  color: rgb(34, 34, 34);
-  font-weight: 800
+.contact-info {
+  width: 90vw;
+  max-width: 600px;
+  margin: 50px;
 }
-
 .Contact-form {
-  height: 80vh;
-  width: 80vw;
+  width: 90vw;
   max-width: 600px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding: 30px 20px 20px 20px;
   border-radius: 8px;
   background-color: white;
-  margin-left: 100px;
 }
 
 .Contact-form-content {
@@ -40,7 +37,12 @@ h3{
   color: rgb(34, 34, 34);
   font-weight: 800;
 }
-
+h3 {
+  margin-top: 1em;
+  font-size: 24px;
+  color: rgb(34, 34, 34);
+  font-weight: 800;
+}
 label {
   font-size: 14px;
   font-weight: 600;
@@ -61,12 +63,14 @@ label {
   font-size: 1.5rem;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 700px) {
   .Contact-form-container {
-    margin: 0 auto;
+    margin: 1rem auto;
+    flex-direction: column;
   }
+  .contact-info,
   .Contact-form {
-    width: 350px;
+    margin: 2rem auto;
   }
   .Contact-form-content {
     padding: 0;
