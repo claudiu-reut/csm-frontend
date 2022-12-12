@@ -70,7 +70,6 @@ function AddPost() {
       post.tags = tags
       post.data = new Date()
       post.user_id = userId
-      console.log(userId)
       if (postari.find((post) => post.titlu === titlu)) {
         setMessage('Postare deja existenta!')
         setTextColor('red')
@@ -107,8 +106,7 @@ function AddPost() {
         localStorage.getItem('token'),
         enc.encode('secret123')
       )
-      console.log(token)
-      setUserId(token.id_user)
+      setUserId(token.user_id)
     } catch (err) {
       console.log(err)
     }
