@@ -20,6 +20,9 @@ function Admin() {
   }, [])
   return (
     <div className='mainDiv'>
+       <Link to='/creatorcontinut' class='btn btn-primary btn-add'>
+          Creator Continut
+        </Link>
       <div className='div-table'>
         <h1>Users</h1>
         <br />

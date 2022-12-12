@@ -5,7 +5,7 @@ import { FiInstagram } from 'react-icons/fi'
 import { GrFacebook } from 'react-icons/gr'
 import { BsTwitter } from 'react-icons/bs'
 import React, { useEffect, useState } from 'react'
-
+import { FacebookShareButton, TwitterShareButton, InstapaperShareButton,RedditShareButton } from "react-share";
 function Post({ post }) {
   let date = new Date(post.createdAt)
   const [title, setTitle] = useState('')
@@ -61,16 +61,48 @@ function Post({ post }) {
         </div>
         <div className='post-share'>
           <p className='icon-share icon-twiter icon-s'>
-            <BsTwitter size={25} />
+          <TwitterShareButton
+        title={"test"}
+        url={"https://www.csm-suceava.ro/"}
+        hashtags={["hashtag1", "hashtag2"]}
+      >
+       <BsTwitter size={25} />
+      </TwitterShareButton> 
           </p>
           <p className='icon-share icon-facebook'>
-            <GrFacebook size={25} />
+      <FacebookShareButton
+        
+        hashtag={"#hashtag"}
+        description={"aiueo"}
+        url={"https://www.csm-suceava.ro/"}
+        className="Demo__some-network__share-button"
+      >
+       <GrFacebook size={25} /> 
+      </FacebookShareButton>
           </p>
           <p className='icon-share icon-instagram'>
-            <FiInstagram size={25} />
+          <InstapaperShareButton
+        
+        hashtag={"#hashtag"}
+        description={"aiueo"}
+        url={"https://www.csm-suceava.ro/"}
+        className="Demo__some-network__share-button"
+      >
+       <FiInstagram size={25} />
+      </InstapaperShareButton>
+            
           </p>
           <p className='icon-share icon-reddit'>
-            <BsReddit size={25} />
+          <RedditShareButton
+        
+        hashtag={"#hashtag"}
+        description={"aiueo"}
+        url={"https://www.csm-suceava.ro/"}
+        className="Demo__some-network__share-button"
+      >
+       <BsReddit size={25} />
+      </RedditShareButton>
+            
           </p>
         </div>
       </div>
