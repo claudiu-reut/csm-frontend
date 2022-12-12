@@ -49,11 +49,11 @@ function App() {
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
         <Route path='*' element={<NotFound />} />
+
         <Route element={<ProtectedRoutes />}>
           <Route element={<AdminRoutes />}>
             <Route path='/register' element={<Register />} />
             <Route path='/addsponsor' element={<AddSponsor />} />
-            <Route path='/noutati/addpost' element={<AddPost />} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/users/delete/:id' element={<DeleteUser />} />
             <Route path='/sponsors/delete/:id' element={<DeleteSponsor />} />
@@ -61,6 +61,7 @@ function App() {
             <Route path='/users/:id' element={<EditUser />} />
           </Route>
           <Route path='/creatorcontinut' element={<CreatorContinut />} />
+          <Route path='/noutati/addpost' element={<AddPost />} />
         </Route>
       </Routes>
       <Footer />

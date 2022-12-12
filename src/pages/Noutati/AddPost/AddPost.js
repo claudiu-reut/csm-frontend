@@ -8,6 +8,7 @@ import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
 import axios from '../../SignIn/api/axios'
+import jwt_decode from 'jwt-decode'
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
@@ -17,6 +18,8 @@ function AddPost() {
   const [tags, setTags] = useState('')
   const [linkImagine, setLinkImg] = useState('')
   const [descriere, setDescriere] = useState('')
+  const [userId, setUserId] = useState()
+
   //confirmation
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
@@ -66,7 +69,8 @@ function AddPost() {
       post.linkExtern = ''
       post.tags = tags
       post.data = new Date()
-      post.user_id = '1'
+      post.user_id = userId
+      console.log(userId)
       if (postari.find((post) => post.titlu === titlu)) {
         setMessage('Postare deja existenta!')
         setTextColor('red')
@@ -97,6 +101,17 @@ function AddPost() {
     setCheckmark(false)
   }, [titlu, tags, linkImagine, descriere])
   useEffect(() => {
+    try {
+      var enc = new TextEncoder()
+      const token = jwt_decode(
+        localStorage.getItem('token'),
+        enc.encode('secret123')
+      )
+      console.log(token)
+      setUserId(token.id_user)
+    } catch (err) {
+      console.log(err)
+    }
     get_posts()
   }, [])
   return (
