@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Register.css'
-import axios from './api/axios'
+import axios from '../api/axios'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'

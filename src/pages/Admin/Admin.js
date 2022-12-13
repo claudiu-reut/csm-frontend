@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { MdDeleteForever } from 'react-icons/md'
 import { AiOutlineEdit } from 'react-icons/ai'
 import './Admin.css'
-import axios from '../SignIn/api/axios'
+import axios from '../api/axios'
 function Admin() {
   const [users, setUsers] = useState([])
   const [sponsors, setSponsors] = useState([])
@@ -20,17 +20,17 @@ function Admin() {
   }, [])
   return (
     <div className='mainDiv'>
-       <Link to='/creatorcontinut' class='btn btn-primary btn-add'>
-          Creator Continut
-        </Link>
+      <Link to='/creatorcontinut' class='btn btn-primary btn-add'>
+        Creator Continut
+      </Link>
       <div className='div-table'>
-        <h1>Users</h1>
+        <h1>Useri</h1>
         <br />
         <table class='table table-striped'>
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
-                ID
+                Nr.
               </th>
               <th scope='col' className='hidde-on-overflow'>
                 Nume
@@ -44,9 +44,9 @@ function Admin() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((user, index) => (
               <tr key={user.id_user}>
-                <td className='hidde-on-overflow'>{user.id_user}</td>
+                <td className='hidde-on-overflow'>{index + 1}</td>
                 <td className='hidde-on-overflow'>{user.firstName}</td>
                 <td className='hidde-on-overflow'>{user.lastName}</td>
                 <td>{user.email}</td>
@@ -64,17 +64,17 @@ function Admin() {
           </tbody>
         </table>
         <Link to='/register' class='btn btn-primary btn-add'>
-          Add User
+          Adauga User
         </Link>
       </div>
       <div className='div-table'>
-        <h1>Sponsors</h1>
+        <h1>Sponsori</h1>
         <br />
         <table class='table table-striped'>
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
-                ID
+                Nr.
               </th>
               <th scope='col'>Denumire</th>
               <th scope='col' className='hidde-on-overflow'>
@@ -85,9 +85,9 @@ function Admin() {
             </tr>
           </thead>
           <tbody>
-            {sponsors.map((sponsor) => (
+            {sponsors.map((sponsor, index) => (
               <tr key={sponsor.id_sponsor}>
-                <td className='hidde-on-overflow'>{sponsor.id_sponsor}</td>
+                <td className='hidde-on-overflow'>{index + 1}</td>
                 <td>{sponsor.denumire}</td>
                 <td className='hidde-on-overflow'>{sponsor.linkSite}</td>
                 <td>{sponsor.editia}</td>
@@ -113,7 +113,7 @@ function Admin() {
           </tbody>
         </table>
         <Link to='/addsponsor' class='btn btn-primary btn-add'>
-          Add Sponsor
+          Adauga Sponsor
         </Link>
       </div>
     </div>

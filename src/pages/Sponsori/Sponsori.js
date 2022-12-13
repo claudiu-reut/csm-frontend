@@ -3,19 +3,17 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Sponsor from './Sponsor/Sponsor'
 import './Sponsori.css'
-import axios from "../SignIn/api/axios"
+import axios from '../api/axios'
 
 const Sponsori = () => {
   const [sponsori, setSponsori] = useState([])
   useEffect(() => {
     async function fetchData() {
-      
-      const response = await axios.get("/getsponsors");
-      console.log(response.data);
+      const response = await axios.get('/getsponsors')
+      console.log(response.data)
       setSponsori(response.data)
     }
-    fetchData();
-   
+    fetchData()
   }, [])
   return (
     <>
@@ -54,7 +52,7 @@ const Sponsori = () => {
               .map((sponsor) => {
                 return (
                   <Sponsor
-                  key={sponsor.id_sponsor}
+                    key={sponsor.id_sponsor}
                     URLsigla={sponsor.linkImagine}
                     nume_complet={sponsor.denumire}
                     URLsite={sponsor.linkSite}
@@ -72,7 +70,7 @@ const Sponsori = () => {
               .map((sponsor) => {
                 return (
                   <Sponsor
-                  key={sponsor.id_sponsor}
+                    key={sponsor.id_sponsor}
                     URLsigla={sponsor.linkImagine}
                     nume_complet={sponsor.denumire}
                     URLsite={sponsor.linkSite}

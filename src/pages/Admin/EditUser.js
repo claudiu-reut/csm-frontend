@@ -1,21 +1,21 @@
 import React, { useState, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../SignIn/Register.css'
-import axios from '../SignIn/api/axios'
+import axios from '../api/axios'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
-import {useParams} from "react-router-dom";
+import { useParams } from 'react-router-dom'
 
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
 
 function Register() {
-const match = useParams();
+  const match = useParams()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
@@ -23,7 +23,7 @@ const match = useParams();
   const [lname, setLname] = useState('')
   const [role, setRole] = useState('')
   const errRef = useRef()
-  const [user,setUser] = useState({});
+  const [user, setUser] = useState({})
   //confirm
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
@@ -31,23 +31,20 @@ const match = useParams();
   const [textColor, setTextColor] = useState('black')
   const [valid, setValid] = useState(true)
   useEffect(() => {
-
     const getUser = async () => {
-    console.log(match.id);
-     const response = await axios.get(`/getuser/${match.id}`)
-      console.log(response);
-      const user=response.data;
-      setEmail(user.email);
-      setFname(user.firstName);
-      setLname(user.lastName);
-      setPassword(user.password);
-      setConfirm(user.password);
-      setRole(user.role);
+      console.log(match.id)
+      const response = await axios.get(`/getuser/${match.id}`)
+      console.log(response)
+      const user = response.data
+      setEmail(user.email)
+      setFname(user.firstName)
+      setLname(user.lastName)
+      setPassword(user.password)
+      setConfirm(user.password)
+      setRole(user.role)
     }
-    getUser();
-    
-
-  }, []);
+    getUser()
+  }, [])
 
   function checkPass() {
     var pass = document.getElementById('password')
@@ -129,8 +126,7 @@ const match = useParams();
       <form className='Auth-form'>
         <div className='Auth-form-content'>
           <h3 className='Auth-form-title'>Edit User</h3>
-          <div className='text-center'>
-          </div>
+          <div className='text-center'></div>
           <div className='form-group mt-3'>
             <label>First Name</label>
             <input
@@ -138,7 +134,7 @@ const match = useParams();
               className='form-control mt-1'
               placeholder='First Name'
               required
-              value ={fname}
+              value={fname}
               onChange={(e) => setFname(e.target.value)}
             />
           </div>
@@ -149,7 +145,7 @@ const match = useParams();
               className='form-control mt-1'
               placeholder='Last Name'
               required
-              value ={lname}
+              value={lname}
               onChange={(e) => setLname(e.target.value)}
             />
           </div>
@@ -160,7 +156,7 @@ const match = useParams();
               className='form-control mt-1'
               placeholder='Email Address'
               required
-              value ={email}
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -172,7 +168,7 @@ const match = useParams();
               className='form-control mt-1'
               placeholder='Password'
               required
-              value ={password}
+              value={password}
               id='password'
               onChange={(e) => setPassword(e.target.value)}
               onInput={checkPass}
@@ -190,7 +186,7 @@ const match = useParams();
               onInput={checkPass}
               onChange={(e) => setConfirm(e.target.value)}
               message={message}
-              value ={confirm}
+              value={confirm}
             />
             <label>Role</label>
             <select
@@ -198,7 +194,7 @@ const match = useParams();
               aria-label='Default select example'
               onChange={(e) => setRole(e.target.value)}
               required
-              value ={role}
+              value={role}
             >
               <option selected disabled>
                 Select a role

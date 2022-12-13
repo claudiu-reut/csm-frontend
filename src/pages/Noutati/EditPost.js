@@ -7,20 +7,19 @@ import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
-import axios from "../SignIn/api/axios"
+import axios from '../api/axios'
 import jwt_decode from 'jwt-decode'
 import { useParams } from 'react-router-dom'
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
 function AddPost() {
-  const [postari, setPostari] = useState([])
   const [titlu, setTitlu] = useState('')
   const [tags, setTags] = useState('')
   const [linkImagine, setLinkImg] = useState('')
   const [descriere, setDescriere] = useState('')
   const [userId, setUserId] = useState()
-  const match = useParams();
+  const match = useParams()
   //confirmation
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
@@ -36,16 +35,6 @@ function AddPost() {
       return false
     }
     return true
-  }
-  const get_posts = async () => {
-    try {
-      let result = await axios.get('getposts')
-      if (result.status === 200) {
-        setPostari(result.data)
-      } else {
-        console.log(result.data.err)
-      }
-    } catch (error) {}
   }
   const handleAddPost = async () => {
     let title_field = document.getElementById('title-post')
@@ -71,31 +60,39 @@ function AddPost() {
       post.tags = tags
       post.data = new Date()
       post.user_id = userId
-      
-        try {
-          let result = await axios.put(`/editpost/${match.id}`, post)
-          if (result.status === 200) {
-            setMessage('Postare editata cu succes')
-            setIcon(iconSucces)
-            setTextColor('black')
-          } else {
-            setMessage(result.data.err)
-            setIcon(iconError)
-            setTextColor('red')
-          }
-        } catch (error) {
-          console.log(error)
-          setMessage('Error.Try again later')
+
+      try {
+        let result = await axios.put(`/editpost/${match.id}`, post)
+        if (result.status === 200) {
+          setMessage('Postare editata cu succes')
+          setIcon(iconSucces)
+          setTextColor('black')
+        } else {
+          setMessage(result.data.err)
           setIcon(iconError)
           setTextColor('red')
         }
+      } catch (error) {
+        console.log(error)
+        setMessage('Error.Try again later')
+        setIcon(iconError)
+        setTextColor('red')
       }
-      get_posts()
     }
-  
+  }
   useEffect(() => {
     setCheckmark(false)
   }, [titlu, tags, linkImagine, descriere])
+  const getPost = async () => {
+    console.log(match.id)
+    const response = await axios.get(`/getpost/${match.id}`)
+    console.log(response)
+    const post = response.data
+    setDescriere(post.descriere)
+    setTags(post.tags)
+    setTitlu(post.titlu)
+    setLinkImg(post.linkImg)
+  }
   useEffect(() => {
     try {
       var enc = new TextEncoder()
@@ -107,19 +104,7 @@ function AddPost() {
     } catch (err) {
       console.log(err)
     }
-    const getPost= async () => {
-        console.log(match.id);
-         const response = await axios.get(`/getpost/${match.id}`)
-          console.log(response);
-          const post=response.data;
-          setDescriere(post.descriere);
-          setTags(post.tags);
-          setTitlu(post.titlu);
-          setLinkImg(post.linkImg);
-          
-        }
-        getPost();
-    get_posts()
+    getPost()
   }, [])
   return (
     <div className='Add-form-container'>

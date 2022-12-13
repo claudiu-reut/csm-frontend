@@ -7,7 +7,7 @@ import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
-import axios from '../../SignIn/api/axios'
+import axios from '../../api/axios'
 import jwt_decode from 'jwt-decode'
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />

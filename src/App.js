@@ -33,6 +33,7 @@ import NotFound from './pages/NotFound/NotFound'
 import AddPost from './pages/Noutati/AddPost/AddPost'
 import DeletePost from './pages/Noutati/DeletePost'
 import EditPost from './pages/Noutati/EditPost'
+import SinglePost from './pages/Noutati/SinglePost/SinglePost'
 function App() {
   return (
     <Router>
@@ -48,6 +49,7 @@ function App() {
         <Route path='/juvenil/cadet' element={<Cadet />} />
         <Route path='/juvenil/junior' element={<Junior />} />
         <Route path='/noutati' element={<Noutati />} />
+        <Route path='/noutati/:id' element={<SinglePost />} />
         <Route path='/sponsori' element={<Sponsori />} />
         <Route path='/signin' element={<Login />} />
         <Route path='*' element={<NotFound />} />
@@ -65,7 +67,7 @@ function App() {
           <Route path='/creatorcontinut' element={<CreatorContinut />} />
           <Route path='/noutati/addpost' element={<AddPost />} />
           <Route path='/noutati/delete/:id' element={<DeletePost />} />
-          <Route path='/noutati/:id' element={<EditPost />} />
+          <Route path='/noutati/edit/:id' element={<EditPost />} />
         </Route>
       </Routes>
       <Footer />

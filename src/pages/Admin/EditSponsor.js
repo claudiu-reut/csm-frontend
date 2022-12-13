@@ -8,7 +8,7 @@ import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
 import { useParams } from 'react-router-dom'
-import axios from "../SignIn/api/axios"
+import axios from '../api/axios'
 
 let iconSucces = <Checkmark size='30px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='30px' />
@@ -19,7 +19,7 @@ function EditSponsor() {
   const [linkSite, setLinkSite] = useState('')
   const [linkImagine, setLinkImg] = useState('')
   const [editia, setEditia] = useState('')
-  const match=useParams();
+  const match = useParams()
   //validate
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(undefined)
@@ -29,12 +29,12 @@ function EditSponsor() {
   const getSponsors = async () => {
     try {
       const result = await axios.get(`/getsponsor/${match.id}`)
-      const sponsor=result.data;
+      const sponsor = result.data
       setSponsori(sponsor)
-      setDenumire(sponsor.denumire);
-      setEditia(sponsor.editia);
-      setLinkImg(sponsor.linkImagine);
-      setLinkSite(sponsor.linkSite);
+      setDenumire(sponsor.denumire)
+      setEditia(sponsor.editia)
+      setLinkImg(sponsor.linkImagine)
+      setLinkSite(sponsor.linkSite)
     } catch (error) {
       console.log(error)
     }
@@ -47,17 +47,15 @@ function EditSponsor() {
     getSponsors()
     const addSpon = async () => {
       try {
-        
-          const response = await axios.put(`/editsponsor/${match.id}`, {
-            denumire,
-            linkSite,
-            linkImagine,
-            editia,
-          })
-          setMessage('Sponsor editat cu succes!')
-          setTextColor('black')
-          setIcon(iconSucces)
-        
+        const response = await axios.put(`/editsponsor/${match.id}`, {
+          denumire,
+          linkSite,
+          linkImagine,
+          editia,
+        })
+        setMessage('Sponsor editat cu succes!')
+        setTextColor('black')
+        setIcon(iconSucces)
       } catch (error) {
         setMessage('No Server Response')
         setTextColor('red')

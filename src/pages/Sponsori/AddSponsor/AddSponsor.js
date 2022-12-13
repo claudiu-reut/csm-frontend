@@ -7,7 +7,7 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
-import axios from '../../SignIn/api/axios'
+import axios from '../../api/axios'
 let iconSucces = <Checkmark size='30px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='30px' />
 let iconLoading = <UseAnimations animation={loading} size={40} />

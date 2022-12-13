@@ -69,7 +69,7 @@
   display: flex;
 }
 .post-tags p {
-  margin-right: 1rem;
+  margin: 0 0.5rem;
 }
 .post-title {
   height: 3rem;

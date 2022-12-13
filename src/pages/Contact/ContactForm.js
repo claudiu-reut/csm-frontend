@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './ContactForm.css'
-import axios from 'axios'
+import axios from '../api/axios'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
-const app = axios.create({
-  baseURL: 'http://localhost:5000',
-  timeout: 6000,
-})
+
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
@@ -35,7 +32,7 @@ const ContactForm = () => {
     setStatus('Send')
     setCheckmark(true)
     try {
-      let response = await app.post('/contact', {
+      let response = await axios.post('/contact', {
         name: details.name,
         email: details.email,
         message: details.message,

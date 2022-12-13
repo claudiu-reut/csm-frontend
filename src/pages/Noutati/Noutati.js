@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import './Noutati.css'
 import Post from './Post/Post'
-import axios from '../SignIn/api/axios'
+import axios from '../api/axios'
 const Noutati = () => {
   const [postari, setPostari] = useState([])
   const get_posts = async () => {
