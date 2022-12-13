@@ -14,8 +14,10 @@ import {
   InstapaperShareButton,
   RedditShareButton,
 } from 'react-share'
+import OtherPost from './OtherPost/OtherPost'
 function SinglePost() {
   const match = useParams()
+  const [posts, setPosts] = useState([])
   const [tags, setTags] = useState('')
   const [post, setPost] = useState({})
   const getPost = async () => {
@@ -27,10 +29,39 @@ function SinglePost() {
       console.log(error)
     }
   }
+  const get_posts = async () => {
+    try {
+      let result = await axios.get('getposts')
+      if (result.status === 200) {
+        let sorted = result.data.sort(function (a, b) {
+          return new Date(b.createdAt) - new Date(a.createdAt)
+        })
+        setPosts(sorted)
+      } else {
+        console.log(result.data.err)
+      }
+    } catch (error) {}
+  }
   useEffect(() => {
+    window.scrollTo(0, 0)
     getPost()
-  }, [])
+    get_posts()
+  }, [match.id])
 
+  let counter = 0
+  let otherPostsArray = posts.map((postare, index) => {
+    if (index === 0) {
+      return (
+        <div className='see-also'>
+          <h2>Alte Stiri...</h2>
+        </div>
+      )
+    }
+    if (counter < 4 && post.id_postare !== postare.id_postare) {
+      counter += 1
+      return <OtherPost post={postare} />
+    }
+  })
   const get_date_from_str = (str) => {
     function addZero(i) {
       if (i < 10) {
@@ -59,7 +90,7 @@ function SinglePost() {
         </div>
         <div className='post-tags'>
           <span>Taguri:</span>
-          {tags.split(' ').map((tag, index) => {
+          {tags.split(',').map((tag, index) => {
             return <p key={index}>#{tag}</p>
           })}
         </div>
@@ -118,7 +149,7 @@ function SinglePost() {
         </div>
         <div className='single-post-share'></div>
       </div>
-      <div className='other-posts'></div>
+      <div className='other-posts'>{otherPostsArray}</div>
     </div>
   )
 }

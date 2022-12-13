@@ -63,7 +63,7 @@ function AddPost() {
       setTextColor('black')
       let post = {}
       post.titlu = titlu
-      post.tags = tags
+      post.tags = tags.replace(' ', '')
       post.linkImg = linkImagine
       post.descriere = descriere
       post.linkExtern = ''

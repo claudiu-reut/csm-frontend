@@ -13,7 +13,6 @@ import {
 } from 'react-share'
 import { useNavigate } from 'react-router-dom'
 function Post({ post }) {
-  let date = new Date(post.createdAt)
   let navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -49,16 +48,34 @@ function Post({ post }) {
       addZero(date.getMinutes())
     )
   }
+  const handleTagClick = (tag) => {
+    console.log(tag)
+  }
+  const get_min_tags = (tags) => {
+    // tags = tags.replace(/ /g, '')
+    if (tags.length > 47) {
+      tags = tags.slice(0, 47) + '...'
+    }
+    let result = tags.split(',').map((tag, index) => {
+      return (
+        <p
+          key={index}
+          onClick={() => {
+            handleTagClick(tag)
+          }}
+        >
+          #{tag}
+        </p>
+      )
+    })
+    return result
+  }
   return (
     <div className='post'>
       <div className='post-img'>
         <img src={post.linkImg} alt='post-img' />
       </div>
-      <div className='post-tags'>
-        {post.tags.split(' ').map((tag, index) => {
-          return <p key={index}>#{tag}</p>
-        })}
-      </div>
+      <div className='post-tags'>{get_min_tags(post.tags)}</div>
       <div
         className='post-title'
         onClick={() => {

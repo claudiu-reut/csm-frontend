@@ -1,0 +1,49 @@
+.other-post {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+}
+.other-post:hover {
+  cursor: pointer;
+}
+.other-post-img {
+  width: 100%;
+}
+.other-post-img img {
+  width: 100%;
+  border-radius: 8px;
+}
+.other-post-title {
+  padding: 0.2rem 0.5rem;
+}
+.other-post-title h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0;
+}
+.other-post-title h2:hover {
+  color: rgb(80, 80, 254);
+  text-decoration: underline;
+}
+.other-post-description {
+  padding: 0 0.5rem;
+}
+.other-post-description p {
+  margin: 0;
+}
+@media (min-width: 756px) {
+  .other-post-description {
+    display: none;
+  }
+  .other-post-title h2 {
+    font-size: 0.8rem;
+  }
+  .other-post {
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+  }
+}

@@ -1,9 +1,10 @@
 .single-post-container {
   display: flex;
   align-items: flex-start;
-  width: 98vw;
+  width: 96vw;
   margin: 2rem auto;
   align-items: flex-start;
+  position: relative;
 }
 .single-post {
   display: flex;
@@ -54,10 +55,23 @@
   margin-top: 1rem;
 }
 .other-posts {
-  width: 90vw;
-  height: 100vh;
-  max-width: 370px;
-  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  width: 95vw;
+  max-width: 320px;
+  position: sticky;
+  right: 1rem;
+  top: 80px;
+}
+.see-also {
+  width: 100%;
+  display: flex;
+  margin-left: 2rem;
+}
+.see-also h2 {
+  font-size: 1.4rem;
 }
 @media (max-width: 756px) {
   .single-post-container {
@@ -71,7 +85,10 @@
     margin: 0 0.5rem;
   }
   .other-posts {
-    width: 100%;
     max-width: 500px;
+    height: 100%;
+  }
+  .see-also h2 {
+    font-size: 2rem;
   }
 }
