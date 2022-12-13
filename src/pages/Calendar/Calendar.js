@@ -1,17 +1,15 @@
 import React from 'react'
-import axios from '../SignIn/api/axios'
+import axios from '../api/axios'
 import { useEffect, useState } from 'react'
 const Calendar = () => {
-const [teams,setTeams]=useState([])
+  const [teams, setTeams] = useState([])
   useEffect(() => {
     async function fetchData() {
-      
-      const response = await axios.get("/getteams");
-      console.log(response.data);
+      const response = await axios.get('/getteams')
+      console.log(response.data)
       setTeams(response.data)
     }
-    fetchData();
-   
+    fetchData()
   }, [])
 
   return (
