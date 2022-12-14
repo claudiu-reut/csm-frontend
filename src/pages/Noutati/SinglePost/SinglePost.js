@@ -84,6 +84,9 @@ function SinglePost() {
   }
   return (
     <div className='single-post-container'>
+      <div className='singlepost-ads'>
+        <span>Ads</span>
+      </div>
       <div className='single-post'>
         <div className='single-post-title'>
           <h1>{post.titlu}</h1>

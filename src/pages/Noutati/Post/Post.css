@@ -95,10 +95,13 @@
 }
 .post-img img {
   width: 100%;
-  height: 230px;
+  max-height: 230px;
   border-radius: 7px;
 }
 .post-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 230px;
 }

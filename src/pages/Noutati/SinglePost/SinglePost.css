@@ -14,6 +14,25 @@
   min-width: 500px;
   margin: 0 1rem;
 }
+.singlepost-ads {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  width: 95vw;
+  max-width: 200px;
+  min-width: 100px;
+  min-height: 80vh;
+  position: sticky;
+  left: 1rem;
+  top: 100px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+.singlepost-ads span {
+  text-align: center;
+  font-size: 2rem;
+}
 .single-post-tags {
   margin: 0.5rem auto;
 }
@@ -59,7 +78,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 1rem;
-  width: 95vw;
+  width: 90vw;
   max-width: 320px;
   position: sticky;
   right: 1rem;
@@ -73,22 +92,32 @@
 .see-also h2 {
   font-size: 1.4rem;
 }
-@media (max-width: 756px) {
+@media (max-width: 780px) {
   .single-post-container {
     flex-direction: column;
     align-items: center;
   }
   .single-post {
     min-width: 300px;
+    margin-top: 1rem;
+  }
+  .singlepost-ads {
+    position: relative;
+    min-height: 150px;
+    max-width: 600px;
+    left: 0;
+    top: 0;
   }
   .icon-share {
     margin: 0 0.5rem;
   }
   .other-posts {
-    max-width: 500px;
-    height: 100%;
+    position: relative;
+    right: 0;
+    top: 0;
+    max-width: 600px;
   }
   .see-also h2 {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
 }
