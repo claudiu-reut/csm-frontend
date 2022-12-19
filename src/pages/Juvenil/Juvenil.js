@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './Juvenil.css'
+import './juvenil.css'
 
 const Juvenil = () => {
   return (
@@ -18,7 +18,7 @@ const Juvenil = () => {
           </div>
         </Link>
 
-        <Link to='/juvenil/cadet'>
+        <Link to='/juvenil/junior'>
           <div class='container-lot'>
             <div className='image-div'>
               <img
@@ -30,7 +30,7 @@ const Juvenil = () => {
           </div>
         </Link>
 
-        <Link to='/juvenil/cadet'>
+        <Link to='/juvenil/sperante'>
           <div class='container-lot'>
             <div className='image-div'>
               <img
