@@ -75,13 +75,13 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className="container" >
       <h2 className='header'>Detalii club</h2>
         <div className="slider">
-      <Slider {...settings}>
+      <Slider {...settings} onClick={nav('/detalii/istorie')}>
           {
             images.map((img, index)=>(
-              <div className={index === slideIndex ? 'slide slide-active': 'slide'} key={index} onClick={nav('/istorie')}>
+              <div className={index === slideIndex ? 'slide slide-active': 'slide'} key={index} >
                 <img src={img} alt="" />
               </div>
             ))
