@@ -12,7 +12,7 @@ import {
   RedditShareButton,
 } from 'react-share'
 import { useNavigate } from 'react-router-dom'
-function Post({ post }) {
+function Post({ post, filter_by_tag }) {
   let navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -48,9 +48,6 @@ function Post({ post }) {
       addZero(date.getMinutes())
     )
   }
-  const handleTagClick = (tag) => {
-    console.log(tag)
-  }
   const get_min_tags = (tags) => {
     // tags = tags.replace(/ /g, '')
     if (tags.length > 47) {
@@ -61,7 +58,7 @@ function Post({ post }) {
         <p
           key={index}
           onClick={() => {
-            handleTagClick(tag)
+            filter_by_tag(tag)
           }}
         >
           #{tag}

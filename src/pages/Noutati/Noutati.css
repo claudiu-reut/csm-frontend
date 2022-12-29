@@ -1,12 +1,47 @@
+.noutati-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 90vh;
+  position: relative;
+}
+.noutati-toolbar {
+  width: 100%;
+  height: 60px;
+  box-shadow: 2px 2px 25px 3px #ccc;
+  margin: 0.5rem 1rem;
+  top: 80px;
+  left: 0;
+  position: sticky;
+  background-color: white;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.noutati-toolbar-item {
+  display: flex;
+  align-items: center;
+  max-width: 8rem;
+  margin: 0 0.5rem;
+}
+.noutati-toolbar-item label {
+  width: 6rem;
+  margin-right: 0.5rem;
+}
 .noutati {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  height: 90%;
 }
+
 @media screen and (max-width: 550px) {
   .noutati {
     flex-direction: column;
+  }
+  .noutati-toolbar-item {
+    max-width: 6rem;
   }
 }

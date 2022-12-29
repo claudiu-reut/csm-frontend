@@ -47,12 +47,15 @@ function SinglePost() {
     getPost()
     get_posts()
   }, [match.id])
+  useEffect(() => {
+    ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+  }, [])
 
   let counter = 0
   let otherPostsArray = posts.map((postare, index) => {
     if (index === 0) {
       return (
-        <div className='see-also'>
+        <div className='see-also' key={postare.id_postare}>
           <h2>Alte Stiri...</h2>
         </div>
       )
@@ -86,6 +89,14 @@ function SinglePost() {
     <div className='single-post-container'>
       <div className='singlepost-ads'>
         <span>Ads</span>
+        <ins
+          className='adsbygoogle'
+          style={{ display: 'block', width: '100%', height: '100%' }}
+          data-ad-client='pub-6121769535334597'
+          data-ad-slot='2567266440'
+          data-ad-format='auto'
+          data-full-width-responsive='true'
+        ></ins>
       </div>
       <div className='single-post'>
         <div className='single-post-title'>

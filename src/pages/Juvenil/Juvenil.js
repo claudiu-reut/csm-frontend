@@ -18,7 +18,7 @@ const Juvenil = () => {
           </div>
         </Link>
 
-        <Link to='/juvenil/cadet'>
+        <Link to='/juvenil/junior'>
           <div class='container-lot'>
             <div className='image-div'>
               <img
@@ -30,7 +30,7 @@ const Juvenil = () => {
           </div>
         </Link>
 
-        <Link to='/juvenil/cadet'>
+        <Link to='/juvenil/sperante'>
           <div class='container-lot'>
             <div className='image-div'>
               <img
