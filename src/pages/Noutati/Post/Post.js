@@ -42,7 +42,7 @@ function Post({ post, filter_by_tag }) {
       addZero(date.getMonth() + 1) +
       '-' +
       date.getFullYear() +
-      '     ' +
+      '   |   ' +
       addZero(date.getHours()) +
       ':' +
       addZero(date.getMinutes())

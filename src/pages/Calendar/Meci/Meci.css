@@ -1,0 +1,198 @@
+.match * {
+  margin: 0;
+  padding: 0;
+}
+.match {
+  display: flex;
+  width: 40rem;
+  border: 2px solid #ccc;
+  border-image: linear-gradient(
+      20deg,
+      rgba(33, 142, 251, 0.808),
+      rgba(230, 229, 229, 0.832)
+    )
+    1;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 1px 1px 25px 1px #ccc;
+}
+.win {
+  border-image: linear-gradient(45deg, rgb(80, 253, 77), #ccc) 1;
+}
+.Lost {
+  border-image: linear-gradient(45deg, red, #ccc) 1;
+}
+.match-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+.match-top-item {
+  display: flex;
+  align-items: center;
+}
+.match-top-item p {
+  margin-left: 0.4rem;
+  font-size: 1rem;
+}
+.match-top-center {
+  width: 18rem;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.match-top-center p {
+  font-size: 1.3rem;
+}
+
+.match-info-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.match-gender {
+  display: flex;
+  align-items: center;
+}
+.match-gender img {
+  width: 30px;
+}
+.match-info-container p {
+  font-size: 1.3rem;
+  margin: 0 0.3rem;
+}
+.teams {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.team * {
+  margin: 0;
+  padding: 0;
+}
+.team {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+.first-team {
+  justify-content: flex-end;
+}
+.second-team {
+  justify-content: flex-start;
+}
+.team * {
+  margin: 0;
+  padding: 0;
+}
+.team img {
+  max-width: 100px;
+  margin: 0 1rem;
+}
+.team-name {
+  font-size: 1.6rem;
+}
+.score span {
+  display: flex;
+  align-items: center;
+}
+.score span p {
+  font-size: 2rem;
+}
+.score-item {
+  background-color: rgba(241, 241, 241, 0.724);
+  border-radius: 8px;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  margin: 0 0.3rem;
+}
+
+.sets-scores {
+  width: 100%;
+  height: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sets-scores span {
+  display: flex;
+  margin: 0 0.5rem;
+}
+@media (max-width: 756px) {
+  .match {
+    width: 95%;
+    margin: 0.5rem;
+  }
+  .team img {
+    max-width: 70px;
+    margin: 0 0.4rem;
+  }
+  .team-name {
+    font-size: 1.2rem;
+  }
+  .match-top-item p {
+    margin-left: 0.2rem;
+    font-size: 0.8rem;
+  }
+  .match-top-center {
+    justify-content: center;
+  }
+  .match-top-center p {
+    font-size: 1.1rem;
+  }
+  .match-info-container p {
+    font-size: 1.1rem;
+  }
+  .score-item {
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    margin: 0 0.3rem;
+    border-radius: 5px;
+  }
+  .score span p {
+    font-size: 1.35rem;
+  }
+}
+@media (max-width: 500px) {
+  .match {
+    width: 95%;
+    margin: 0.3rem;
+  }
+  .team img {
+    max-width: 50px;
+    margin: 0 0.3rem;
+  }
+  .team-name {
+    font-size: 1.1rem;
+  }
+  .match-top-item p {
+    margin-left: 0.2rem;
+    font-size: 0.7rem;
+  }
+  .match-top-center p {
+    font-size: 0.9rem;
+  }
+  .match-info-container p {
+    font-size: 0.9rem;
+  }
+  .score-item {
+    width: 1.9rem;
+    height: 1.9rem;
+    margin: 0 0.3rem;
+    border-radius: 4px;
+  }
+  .score span p {
+    font-size: 1.15rem;
+  }
+}
