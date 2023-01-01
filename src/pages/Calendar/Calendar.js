@@ -1,9 +1,12 @@
 import React from 'react'
 import axios from '../api/axios'
+import '@mobiscroll/react/dist/css/mobiscroll.min.css'
+import { Datepicker, Page, setOptions } from '@mobiscroll/react'
 import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
 import './Calendar.css'
 import { GrPowerReset } from 'react-icons/gr'
+let dateForMatch = new Date('2022-01-15T15:53:00').toString()
 const meciuri_init = [
   {
     id: '1',
@@ -21,6 +24,7 @@ const meciuri_init = [
       logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
     },
     sets: '',
+    createdAt: dateForMatch,
   },
   {
     id: '2',
@@ -38,6 +42,7 @@ const meciuri_init = [
       logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
     },
     sets: '',
+    createdAt: dateForMatch,
   },
   {
     id: '3',
@@ -55,6 +60,7 @@ const meciuri_init = [
       logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
     },
     sets: '25-20 27-29 25-18 25-20',
+    createdAt: dateForMatch,
   },
   {
     id: '4',
@@ -72,6 +78,7 @@ const meciuri_init = [
       logo: 'https://upload.wikimedia.org/wikipedia/en/a/a8/CVM_Tomis_Constan%C5%A3a_logo.jpg',
     },
     sets: '25-13 25-17 25-21',
+    createdAt: dateForMatch,
   },
   {
     id: '8',
@@ -89,6 +96,7 @@ const meciuri_init = [
       logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
     },
     sets: '25-14 26-28 21-25 24-26',
+    createdAt: dateForMatch,
   },
   {
     id: '5',
@@ -106,6 +114,7 @@ const meciuri_init = [
       logo: 'https://www.stiintaexplorari.ro/images/sigla-expl.png',
     },
     sets: '25-20 25-23 15-25 18-25 25-19',
+    createdAt: dateForMatch,
   },
   {
     id: '6',
@@ -123,6 +132,7 @@ const meciuri_init = [
       logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
     },
     sets: '25-17 27-25 16-25 25-13',
+    createdAt: dateForMatch,
   },
   {
     id: '7',
@@ -140,10 +150,16 @@ const meciuri_init = [
       logo: 'https://upload.wikimedia.org/wikipedia/en/2/25/CS_Arcada_Gala%C8%9Bi_logo.png',
     },
     sets: '25-17 21-25 25-19 25-22',
+    createdAt: dateForMatch,
   },
 ]
+setOptions({
+  theme: 'windows',
+  themeVariant: 'light',
+})
 const Calendar = () => {
   const [teams, setTeams] = useState([])
+  const [startDate, setStartDate] = useState(new Date())
   const [matches, setMatches] = useState(meciuri_init)
   const [matchesOrigin, setMatchesOrigin] = useState(meciuri_init)
   const [locations, setLocations] = useState([])
@@ -153,7 +169,44 @@ const Calendar = () => {
   const [championshipFilter, setChampionshipFilter] = useState('')
   const [divisionFilter, setDivisionFilter] = useState('')
   const [genderFilter, setGenderFilter] = useState('')
+  const [responsiveDrop] = React.useState([
+    {
+      xsmall: {
+        display: 'top',
+      },
+      small: {
+        display: 'anchored',
+      },
+      custom: {
+        // Custom breakpoint
+        breakpoint: 800,
+        display: 'anchored',
+        touchUi: false,
+      },
+    },
+  ])
 
+  const [responsiveCal] = React.useState([
+    {
+      xsmall: {
+        controls: ['date'],
+        display: 'bottom',
+        touchUi: true,
+      },
+      small: {
+        controls: ['date'],
+        display: 'anchored',
+        touchUi: true,
+      },
+      custom: {
+        // Custom breakpoint
+        breakpoint: 800,
+        controls: ['calendar'],
+        display: 'anchored',
+        touchUi: false,
+      },
+    },
+  ])
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
@@ -192,7 +245,8 @@ const Calendar = () => {
     genderFilter,
     locationFilter,
     championshipFilter,
-    divisionFilter
+    divisionFilter,
+    date = ''
   ) => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
@@ -209,6 +263,16 @@ const Calendar = () => {
     if (genderFilter !== '') {
       result = result.filter((match) => match.gender === genderFilter)
     }
+    if (date !== '') {
+      result = result.filter((match) => {
+        const matchDate = new Date(match.createdAt)
+        return (
+          matchDate.getFullYear() === date.getFullYear() &&
+          matchDate.getMonth() === date.getMonth() &&
+          matchDate.getDate() === date.getDate()
+        )
+      })
+    }
     setMatches(result)
     window.scrollTo(0, 0)
   }
@@ -217,26 +281,31 @@ const Calendar = () => {
       <div className='calendar-container'>
         <div className='matches-toolbar'>
           <div className='matches-toolbar-item'>
-            <label htmlFor='select-filter-matches-gender'>Gen</label>
+            <label htmlFor='select-filter-matches-championship'>Turneu</label>
             <select
-              value={genderFilter}
-              id='select-filter-matches-gender'
+              value={championshipFilter}
+              id='select-filter-matches-championship'
               defaultValue={''}
               class='form-select'
               aria-label='Default select example'
               onChange={(e) => {
-                setGenderFilter(e.target.value)
+                setChampionshipFilter(e.target.value)
                 filter_matches(
-                  e.target.value,
+                  genderFilter,
                   locationFilter,
-                  championshipFilter,
+                  e.target.value,
                   divisionFilter
                 )
               }}
             >
               <option value=''>All</option>
-              <option value='Masculin'>Masculin</option>
-              <option value='Femenin'>Femenin</option>
+              {championships.map((championship, index) => {
+                return (
+                  <option key={index} value={championship}>
+                    {championship}
+                  </option>
+                )
+              })}
             </select>
           </div>
           <div className='matches-toolbar-item'>
@@ -262,34 +331,6 @@ const Calendar = () => {
                 return (
                   <option key={index} value={location}>
                     {location}
-                  </option>
-                )
-              })}
-            </select>
-          </div>
-          <div className='matches-toolbar-item'>
-            <label htmlFor='select-filter-matches-championship'>Turneu</label>
-            <select
-              value={championshipFilter}
-              id='select-filter-matches-championship'
-              defaultValue={''}
-              class='form-select'
-              aria-label='Default select example'
-              onChange={(e) => {
-                setChampionshipFilter(e.target.value)
-                filter_matches(
-                  genderFilter,
-                  locationFilter,
-                  e.target.value,
-                  divisionFilter
-                )
-              }}
-            >
-              <option value=''>All</option>
-              {championships.map((championship, index) => {
-                return (
-                  <option key={index} value={championship}>
-                    {championship}
                   </option>
                 )
               })}
@@ -323,6 +364,54 @@ const Calendar = () => {
               })}
             </select>
           </div>
+          <div className='matches-toolbar-item'>
+            <label htmlFor='select-filter-matches-gender'>Gen</label>
+            <select
+              value={genderFilter}
+              id='select-filter-matches-gender'
+              defaultValue={''}
+              class='form-select'
+              aria-label='Default select example'
+              onChange={(e) => {
+                setGenderFilter(e.target.value)
+                filter_matches(
+                  e.target.value,
+                  locationFilter,
+                  championshipFilter,
+                  divisionFilter
+                )
+              }}
+            >
+              <option value=''>All</option>
+              <option value='Masculin'>Masculin</option>
+              <option value='Femenin'>Femenin</option>
+            </select>
+          </div>
+          <div className='matches-toolbar-item'>
+            <label htmlFor='select-filter-matches-date'>Data</label>
+            <Datepicker
+              className='select-filter-matches-date'
+              controls={['date']}
+              touchUi={false}
+              responsive={responsiveCal}
+              inputProps={{
+                placeholder: 'Please Select...',
+              }}
+              value={startDate}
+              const
+              onChange={(ev) => {
+                setStartDate(ev.value)
+                filter_matches(
+                  genderFilter,
+                  locationFilter,
+                  championshipFilter,
+                  divisionFilter,
+                  ev.value
+                )
+              }}
+              returnFormat='jsdate'
+            />
+          </div>
           <div
             className='matches-reset'
             onClick={() => {
@@ -330,10 +419,11 @@ const Calendar = () => {
               setDivisionFilter('')
               setChampionshipFilter('')
               setGenderFilter('')
+              setStartDate(new Date())
               setMatches(matchesOrigin)
             }}
           >
-            <GrPowerReset size={20} id='matches-reset' />
+            <GrPowerReset size={20} />
             <span>Reset</span>
           </div>
         </div>

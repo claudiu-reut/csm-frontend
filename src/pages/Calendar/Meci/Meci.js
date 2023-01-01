@@ -2,8 +2,12 @@ import React from 'react'
 import './Meci.css'
 import { GoLocation } from 'react-icons/go'
 import { TfiCup } from 'react-icons/tfi'
+import { FaRegHandshake } from 'react-icons/fa'
 import { MdDateRange } from 'react-icons/md'
 import { useEffect } from 'react'
+import { useState } from 'react'
+const logoAmical = <FaRegHandshake size={25} color={'gold'} />
+const logoTurneu = <TfiCup size={22} color={'gold'} />
 function Meci({ match }) {
   const get_date_from_str = (str) => {
     function addZero(i) {
@@ -25,21 +29,30 @@ function Meci({ match }) {
       addZero(date.getMinutes())
     )
   }
-  useEffect(() => {}, [])
-  match.createdAt = new Date()
+  const [cupLogo, setCupLogo] = useState(logoTurneu)
+  useEffect(() => {
+    if (match.championship === 'Amical') {
+      setCupLogo(logoAmical)
+    }
+  }, [])
+
   return (
     <div className='match'>
       <div className='match-top'>
         <span className='match-top-item'>
-          <GoLocation size={20} color={'blue'} />
+          <span className='match-top-item-logo'>
+            <GoLocation size={21} color={'blue'} />
+          </span>
           <p className='match-location'>{match.location}</p>
         </span>
         <span className='match-top-item match-top-center'>
-          <TfiCup size={20} color={'gold'} />
+          <span className='match-top-item-logo'>{cupLogo}</span>
           <p className='match-championship'>{match.championship}</p>
         </span>
         <span className='match-top-item'>
-          <MdDateRange size={20} color={'red'} />
+          <span className='match-top-item-logo'>
+            <MdDateRange size={22} color={'red'} />
+          </span>
           <p className='match-date'>
             {get_date_from_str(match.createdAt.toString())}
           </p>

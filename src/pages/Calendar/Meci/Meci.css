@@ -40,12 +40,11 @@
   font-size: 1rem;
 }
 .match-top-center {
-  width: 18rem;
   display: flex;
-  justify-self: center;
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin-left: 3rem;
 }
 .match-top-center p {
   font-size: 1.3rem;
@@ -182,6 +181,10 @@
   }
   .match-top-center p {
     font-size: 0.9rem;
+  }
+  .match-top-center {
+    margin-left: 1rem;
+    max-width: 15rem;
   }
   .match-info-container p {
     font-size: 0.9rem;
