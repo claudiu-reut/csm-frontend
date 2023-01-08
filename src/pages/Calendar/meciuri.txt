@@ -1,6 +1,5 @@
  [
   {
-
     "locatia": "Bucuresti",
     "campionat": 'Liga Nationala',
     divizia: 'Divizia A1',

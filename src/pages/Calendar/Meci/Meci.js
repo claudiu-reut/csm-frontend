@@ -31,9 +31,11 @@ function Meci({ match }) {
   }
   const [cupLogo, setCupLogo] = useState(logoTurneu)
   useEffect(() => {
-    console.log('meciuri')
     if (match.campionat === 'Amical') {
       setCupLogo(logoAmical)
+    }
+    if (match.sets === null) {
+      match.sets = ''
     }
   }, [])
 
@@ -117,6 +119,38 @@ function Meci({ match }) {
           />
           <h4 className='team-name'>{match.nume2}</h4>
         </div>
+      </div>
+      <div className='sets-scores'>
+        {match.sets.split(' ').map((set, index) => {
+          if (set === '') {
+            return <span key={index}></span>
+          }
+          let firstTeamSet = set.split('-')[0]
+          let secondTeamSet = set.split('-')[1]
+          let firstTeamBool = firstTeamSet > secondTeamSet
+          let secondTeamBool = firstTeamSet < secondTeamSet
+          return (
+            <span key={index}>
+              <p
+                style={{
+                  color: firstTeamBool ? 'red' : 'black',
+                  fontWeight: firstTeamBool ? 'bold' : 'normal',
+                }}
+              >
+                {firstTeamSet}
+              </p>
+              <p>-</p>
+              <p
+                style={{
+                  color: secondTeamBool ? 'red' : 'black',
+                  fontWeight: secondTeamBool ? 'bold' : 'normal',
+                }}
+              >
+                {secondTeamSet}
+              </p>
+            </span>
+          )
+        })}
       </div>
     </div>
   )

@@ -2,6 +2,8 @@ import React from 'react'
 import axios from '../api/axios'
 import '@mobiscroll/react/dist/css/mobiscroll.min.css'
 import { Datepicker, Page, setOptions } from '@mobiscroll/react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
 import './Calendar.css'
@@ -210,8 +212,8 @@ const Calendar = () => {
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
-      if (!locations.includes(matches[i].location)) {
-        locations.push(matches[i].location)
+      if (!locations.includes(matches[i].locatia)) {
+        locations.push(matches[i].locatia)
       }
     }
     setLocations(locations)
@@ -228,8 +230,8 @@ const Calendar = () => {
   const get_all_divisions = () => {
     let divisions = []
     for (let i = 0; i < matches.length; i++) {
-      if (!divisions.includes(matches[i].division)) {
-        divisions.push(matches[i].division)
+      if (!divisions.includes(matches[i].divizia)) {
+        divisions.push(matches[i].divizia)
       }
     }
     setDivisions(divisions)
@@ -249,10 +251,12 @@ const Calendar = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
     get_matches()
+  }, [])
+  useEffect(() => {
     get_all_locations()
     get_all_championships()
     get_all_divisions()
-  }, [])
+  }, [matchesOrigin])
 
   const filter_matches = (
     genderFilter,
@@ -266,13 +270,13 @@ const Calendar = () => {
       result = result.filter((match) => match.campionat === championshipFilter)
     }
     if (divisionFilter !== '') {
-      result = result.filter((match) => match.division === divisionFilter)
+      result = result.filter((match) => match.divizia === divisionFilter)
     }
     if (locationFilter !== '') {
-      result = result.filter((match) => match.location === locationFilter)
+      result = result.filter((match) => match.locatia === locationFilter)
     }
     if (genderFilter !== '') {
-      result = result.filter((match) => match.gender === genderFilter)
+      result = result.filter((match) => match.gen === genderFilter)
     }
     if (date !== '') {
       result = result.filter((match) => {
@@ -394,33 +398,27 @@ const Calendar = () => {
               }}
             >
               <option value=''>All</option>
-              <option value='Masculin'>Masculin</option>
-              <option value='Femenin'>Femenin</option>
+              <option value='masculin'>Masculin</option>
+              <option value='femenin'>Femenin</option>
             </select>
           </div>
           <div className='matches-toolbar-item'>
             <label htmlFor='select-filter-matches-date'>Data</label>
-            <Datepicker
+            <DatePicker
+              id='select-filter-matches-date'
               className='select-filter-matches-date'
-              controls={['date']}
-              touchUi={false}
-              responsive={responsiveCal}
-              inputProps={{
-                placeholder: 'Please Select...',
-              }}
-              value={startDate}
-              const
-              onChange={(ev) => {
-                setStartDate(ev.value)
+              selected={startDate}
+              onChange={(date) => {
+                setStartDate(date)
                 filter_matches(
                   genderFilter,
                   locationFilter,
                   championshipFilter,
                   divisionFilter,
-                  ev.value
+                  date
                 )
               }}
-              returnFormat='jsdate'
+              dateFormat='dd/MM/yyyy'
             />
           </div>
           <div
@@ -440,7 +438,7 @@ const Calendar = () => {
         </div>
         <div className='matches'>
           {matches.map((match) => {
-            return <Meci match={match} key={match.id} />
+            return <Meci match={match} key={match.id_meci} />
           })}
         </div>
       </div>
