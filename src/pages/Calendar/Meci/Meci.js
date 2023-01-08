@@ -45,7 +45,7 @@ function Meci({ match }) {
           <span className='match-top-item-logo'>
             <GoLocation size={21} color={'blue'} />
           </span>
-          <p className='match-location'>{match.locatia}</p>
+          <p className='match-location'>{match.location}</p>
         </span>
         <span className='match-top-item match-top-center'>
           <span className='match-top-item-logo'>{cupLogo}</span>
@@ -60,10 +60,10 @@ function Meci({ match }) {
       </div>
       <div className='match-info-container'>
         <span className='match-division'>
-          <p>{match.divizia},</p>
+          <p>{match.division},</p>
         </span>
         <span className='match-gender'>
-          <p>{match.gen}</p>
+          <p>{match.gender}</p>
         </span>
       </div>
       <div className='teams'>
@@ -81,32 +81,32 @@ function Meci({ match }) {
               className='score-item'
               style={{
                 color:
-                  match.rezultat.split(':')[0] > match.rezultat.split(':')[1]
+                  match.score.split(':')[0] > match.score.split(':')[1]
                     ? 'red'
                     : 'black',
                 fontWeight:
-                  match.rezultat.split(':')[0] > match.rezultat.split(':')[1]
+                  match.score.split(':')[0] > match.score.split(':')[1]
                     ? 'bold'
                     : 'normal',
               }}
             >
-              {match.rezultat.split(':')[0]}
+              {match.score.split(':')[0]}
             </p>
             <p>:</p>
             <p
               className='score-item'
               style={{
                 color:
-                  match.rezultat.split(':')[0] < match.rezultat.split(':')[1]
+                  match.score.split(':')[0] < match.score.split(':')[1]
                     ? 'red'
                     : 'black',
                 fontWeight:
-                  match.rezultat.split(':')[0] < match.rezultat.split(':')[1]
+                  match.score.split(':')[0] < match.score.split(':')[1]
                     ? 'bold'
                     : 'normal',
               }}
             >
-              {match.rezultat.split(':')[1]}
+              {match.score.split(':')[1]}
             </p>
           </span>
         </div>
