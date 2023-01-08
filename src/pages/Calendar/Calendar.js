@@ -156,8 +156,8 @@ const meciuri_init = [
 const Calendar = () => {
   const [teams, setTeams] = useState([])
   const [startDate, setStartDate] = useState('')
-  const [matches, setMatches] = useState(meciuri_init)
-  const [matchesOrigin, setMatchesOrigin] = useState(meciuri_init)
+  const [matches, setMatches] = useState([])
+  const [matchesOrigin, setMatchesOrigin] = useState([])
   const [locations, setLocations] = useState([])
   const [championships, setChampionships] = useState([])
   const [divisions, setDivisions] = useState([])
@@ -178,8 +178,8 @@ const Calendar = () => {
   const get_all_championships = () => {
     let championships = []
     for (let i = 0; i < matches.length; i++) {
-      if (!championships.includes(matches[i].championat)) {
-        championships.push(matches[i].championat)
+      if (!championships.includes(matches[i].campionat)) {
+        championships.push(matches[i].campionat)
       }
     }
     setChampionships(championships)
@@ -198,7 +198,8 @@ const Calendar = () => {
       let result = await axios.get('getmatchlogos')
       if (result.status === 200) {
         setMatches(result.data)
-        console.log(result.data);
+        setMatchesOrigin(result.data)
+        console.log(result.data)
       } else {
         console.log(result.data.err)
       }
@@ -206,12 +207,10 @@ const Calendar = () => {
   }
   useEffect(() => {
     window.scrollTo(0, 0)
-    console.log("meciuri");
-    get_matches();
+    get_matches()
     get_all_locations()
     get_all_championships()
     get_all_divisions()
-    
   }, [])
 
   const filter_matches = (
@@ -223,9 +222,7 @@ const Calendar = () => {
   ) => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
-      result = result.filter(
-        (match) => match.championat === championshipFilter
-      )
+      result = result.filter((match) => match.campionat === championshipFilter)
     }
     if (divisionFilter !== '') {
       result = result.filter((match) => match.divizia === divisionFilter)
@@ -238,7 +235,7 @@ const Calendar = () => {
     }
     if (date !== '') {
       result = result.filter((match) => {
-        const matchDate = new Date(match.createdAt)
+        const matchDate = new Date(match.data)
         return (
           matchDate.getFullYear() === date.getFullYear() &&
           matchDate.getMonth() === date.getMonth() &&

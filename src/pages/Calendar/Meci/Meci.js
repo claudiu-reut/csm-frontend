@@ -17,6 +17,7 @@ function Meci({ match }) {
       return i
     }
     let date = new Date(str)
+    console.log(str)
     return (
       addZero(date.getDate()) +
       '-' +
@@ -31,6 +32,7 @@ function Meci({ match }) {
   }
   const [cupLogo, setCupLogo] = useState(logoTurneu)
   useEffect(() => {
+    console.log('meciuri')
     if (match.championat === 'Amical') {
       setCupLogo(logoAmical)
     }
@@ -47,15 +49,13 @@ function Meci({ match }) {
         </span>
         <span className='match-top-item match-top-center'>
           <span className='match-top-item-logo'>{cupLogo}</span>
-          <p className='match-championship'>{match.championat}</p>
+          <p className='match-championship'>{match.campionat}</p>
         </span>
         <span className='match-top-item'>
           <span className='match-top-item-logo'>
             <MdDateRange size={22} color={'red'} />
           </span>
-          <p className='match-date'>
-            {get_date_from_str(match.createdAt.toString())}
-          </p>
+          <p className='match-date'>{get_date_from_str(match.data)}</p>
         </span>
       </div>
       <div className='match-info-container'>
@@ -69,7 +69,11 @@ function Meci({ match }) {
       <div className='teams'>
         <div className='first-team team'>
           <h4 className='team-name'>{match.nume1}</h4>
-          <img src="{URL.createObjectURL(match.img1)} "alt='' className='team-logo' />
+          <img
+            src='{URL.createObjectURL(match.img1)} '
+            alt=''
+            className='team-logo'
+          />
         </div>
         <div className='score'>
           <span>
@@ -107,11 +111,14 @@ function Meci({ match }) {
           </span>
         </div>
         <div className='second-team team'>
-          <img src="{URL.createObjectURL(match.img2)}" alt='' className='team-logo' />
+          <img
+            src='{URL.createObjectURL(match.img2)}'
+            alt=''
+            className='team-logo'
+          />
           <h4 className='team-name'>{match.nume2}</h4>
         </div>
       </div>
-     
     </div>
   )
 }
