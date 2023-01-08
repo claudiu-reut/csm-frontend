@@ -169,8 +169,8 @@ const Calendar = () => {
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
-      if (!locations.includes(matches[i].location)) {
-        locations.push(matches[i].location)
+      if (!locations.includes(matches[i].locatia)) {
+        locations.push(matches[i].locatia)
       }
     }
     setLocations(locations)
@@ -178,8 +178,8 @@ const Calendar = () => {
   const get_all_championships = () => {
     let championships = []
     for (let i = 0; i < matches.length; i++) {
-      if (!championships.includes(matches[i].championship)) {
-        championships.push(matches[i].championship)
+      if (!championships.includes(matches[i].championat)) {
+        championships.push(matches[i].championat)
       }
     }
     setChampionships(championships)
@@ -187,17 +187,31 @@ const Calendar = () => {
   const get_all_divisions = () => {
     let divisions = []
     for (let i = 0; i < matches.length; i++) {
-      if (!divisions.includes(matches[i].division)) {
-        divisions.push(matches[i].division)
+      if (!divisions.includes(matches[i].divizia)) {
+        divisions.push(matches[i].divizia)
       }
     }
     setDivisions(divisions)
   }
+  const get_matches = async () => {
+    try {
+      let result = await axios.get('getmatchlogos')
+      if (result.status === 200) {
+        setMatches(result.data)
+        console.log(result.data);
+      } else {
+        console.log(result.data.err)
+      }
+    } catch (error) {}
+  }
   useEffect(() => {
     window.scrollTo(0, 0)
+    console.log("meciuri");
+    get_matches();
     get_all_locations()
     get_all_championships()
     get_all_divisions()
+    
   }, [])
 
   const filter_matches = (
@@ -210,17 +224,17 @@ const Calendar = () => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
       result = result.filter(
-        (match) => match.championship === championshipFilter
+        (match) => match.championat === championshipFilter
       )
     }
     if (divisionFilter !== '') {
-      result = result.filter((match) => match.division === divisionFilter)
+      result = result.filter((match) => match.divizia === divisionFilter)
     }
     if (locationFilter !== '') {
-      result = result.filter((match) => match.location === locationFilter)
+      result = result.filter((match) => match.locatia === locationFilter)
     }
     if (genderFilter !== '') {
-      result = result.filter((match) => match.gender === genderFilter)
+      result = result.filter((match) => match.gen === genderFilter)
     }
     if (date !== '') {
       result = result.filter((match) => {
@@ -381,7 +395,7 @@ const Calendar = () => {
         </div>
         <div className='matches'>
           {matches.map((match) => {
-            return <Meci match={match} key={match.id} />
+            return <Meci match={match} key={match.id_meci} />
           })}
         </div>
       </div>
