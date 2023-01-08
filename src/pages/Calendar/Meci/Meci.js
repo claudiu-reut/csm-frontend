@@ -17,7 +17,6 @@ function Meci({ match }) {
       return i
     }
     let date = new Date(str)
-    console.log(str)
     return (
       addZero(date.getDate()) +
       '-' +
@@ -33,7 +32,7 @@ function Meci({ match }) {
   const [cupLogo, setCupLogo] = useState(logoTurneu)
   useEffect(() => {
     console.log('meciuri')
-    if (match.championat === 'Amical') {
+    if (match.campionat === 'Amical') {
       setCupLogo(logoAmical)
     }
   }, [])
@@ -45,7 +44,7 @@ function Meci({ match }) {
           <span className='match-top-item-logo'>
             <GoLocation size={21} color={'blue'} />
           </span>
-          <p className='match-location'>{match.location}</p>
+          <p className='match-location'>{match.locatia}</p>
         </span>
         <span className='match-top-item match-top-center'>
           <span className='match-top-item-logo'>{cupLogo}</span>
@@ -60,10 +59,10 @@ function Meci({ match }) {
       </div>
       <div className='match-info-container'>
         <span className='match-division'>
-          <p>{match.division},</p>
+          <p>{match.divizia},</p>
         </span>
         <span className='match-gender'>
-          <p>{match.gender}</p>
+          <p>{match.gen}</p>
         </span>
       </div>
       <div className='teams'>
@@ -81,32 +80,32 @@ function Meci({ match }) {
               className='score-item'
               style={{
                 color:
-                  match.score.split(':')[0] > match.score.split(':')[1]
+                  match.rezultat.split(':')[0] > match.rezultat.split(':')[1]
                     ? 'red'
                     : 'black',
                 fontWeight:
-                  match.score.split(':')[0] > match.score.split(':')[1]
+                  match.rezultat.split(':')[0] > match.rezultat.split(':')[1]
                     ? 'bold'
                     : 'normal',
               }}
             >
-              {match.score.split(':')[0]}
+              {match.rezultat.split(':')[0]}
             </p>
             <p>:</p>
             <p
               className='score-item'
               style={{
                 color:
-                  match.score.split(':')[0] < match.score.split(':')[1]
+                  match.rezultat.split(':')[0] < match.rezultat.split(':')[1]
                     ? 'red'
                     : 'black',
                 fontWeight:
-                  match.score.split(':')[0] < match.score.split(':')[1]
+                  match.rezultat.split(':')[0] < match.rezultat.split(':')[1]
                     ? 'bold'
                     : 'normal',
               }}
             >
-              {match.score.split(':')[1]}
+              {match.rezultat.split(':')[1]}
             </p>
           </span>
         </div>
