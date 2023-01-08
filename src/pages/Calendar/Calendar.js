@@ -1,7 +1,5 @@
 import React from 'react'
 import axios from '../api/axios'
-import '@mobiscroll/react/dist/css/mobiscroll.min.css'
-import { Datepicker, Page, setOptions } from '@mobiscroll/react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useEffect, useState } from 'react'
@@ -155,10 +153,6 @@ const meciuri_init = [
     createdAt: dateForMatch,
   },
 ]
-setOptions({
-  theme: 'windows',
-  themeVariant: 'light',
-})
 const Calendar = () => {
   const [teams, setTeams] = useState([])
   const [startDate, setStartDate] = useState('')
@@ -171,44 +165,8 @@ const Calendar = () => {
   const [championshipFilter, setChampionshipFilter] = useState('')
   const [divisionFilter, setDivisionFilter] = useState('')
   const [genderFilter, setGenderFilter] = useState('')
-  const [responsiveDrop] = React.useState([
-    {
-      xsmall: {
-        display: 'top',
-      },
-      small: {
-        display: 'anchored',
-      },
-      custom: {
-        // Custom breakpoint
-        breakpoint: 800,
-        display: 'anchored',
-        touchUi: false,
-      },
-    },
-  ])
-
-  const [responsiveCal] = React.useState([
-    {
-      xsmall: {
-        controls: ['date'],
-        display: 'bottom',
-        touchUi: true,
-      },
-      small: {
-        controls: ['date'],
-        display: 'anchored',
-        touchUi: true,
-      },
-      custom: {
-        // Custom breakpoint
-        breakpoint: 800,
-        controls: ['calendar'],
-        display: 'anchored',
-        touchUi: false,
-      },
-    },
-  ])
+  const [, updateState] = React.useState()
+  const forceUpdate = React.useCallback(() => updateState({}), [])
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
@@ -248,6 +206,14 @@ const Calendar = () => {
       }
     } catch (error) {}
   }
+  const order_by_date = () => {
+    let sorted = matches.sort(function (a, b) {
+      let result = new Date(b.data) - new Date(a.data)
+      return result
+    })
+    setMatches(sorted)
+    forceUpdate()
+  }
   useEffect(() => {
     window.scrollTo(0, 0)
     get_matches()
@@ -256,6 +222,7 @@ const Calendar = () => {
     get_all_locations()
     get_all_championships()
     get_all_divisions()
+    order_by_date()
   }, [matchesOrigin])
 
   const filter_matches = (
@@ -399,7 +366,7 @@ const Calendar = () => {
             >
               <option value=''>All</option>
               <option value='masculin'>Masculin</option>
-              <option value='femenin'>Femenin</option>
+              <option value='feminin'>Feminin</option>
             </select>
           </div>
           <div className='matches-toolbar-item'>
@@ -419,6 +386,7 @@ const Calendar = () => {
                 )
               }}
               dateFormat='dd/MM/yyyy'
+              placeholderText='--/--/----'
             />
           </div>
           <div
@@ -428,7 +396,7 @@ const Calendar = () => {
               setDivisionFilter('')
               setChampionshipFilter('')
               setGenderFilter('')
-              setStartDate(new Date())
+              setStartDate('')
               setMatches(matchesOrigin)
             }}
           >
