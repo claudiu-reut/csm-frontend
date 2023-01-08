@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from '../api/axios'
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
+import '@mobiscroll/react/dist/css/mobiscroll.min.css'
+import { Datepicker, Page, setOptions } from '@mobiscroll/react'
 import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
 import './Calendar.css'
@@ -153,9 +153,13 @@ const meciuri_init = [
     createdAt: dateForMatch,
   },
 ]
+setOptions({
+  theme: 'windows',
+  themeVariant: 'light',
+})
 const Calendar = () => {
   const [teams, setTeams] = useState([])
-  const [startDate, setStartDate] = useState('')
+  const [startDate, setStartDate] = useState(new Date())
   const [matches, setMatches] = useState(meciuri_init)
   const [matchesOrigin, setMatchesOrigin] = useState(meciuri_init)
   const [locations, setLocations] = useState([])
@@ -165,12 +169,49 @@ const Calendar = () => {
   const [championshipFilter, setChampionshipFilter] = useState('')
   const [divisionFilter, setDivisionFilter] = useState('')
   const [genderFilter, setGenderFilter] = useState('')
+  const [responsiveDrop] = React.useState([
+    {
+      xsmall: {
+        display: 'top',
+      },
+      small: {
+        display: 'anchored',
+      },
+      custom: {
+        // Custom breakpoint
+        breakpoint: 800,
+        display: 'anchored',
+        touchUi: false,
+      },
+    },
+  ])
 
+  const [responsiveCal] = React.useState([
+    {
+      xsmall: {
+        controls: ['date'],
+        display: 'bottom',
+        touchUi: true,
+      },
+      small: {
+        controls: ['date'],
+        display: 'anchored',
+        touchUi: true,
+      },
+      custom: {
+        // Custom breakpoint
+        breakpoint: 800,
+        controls: ['calendar'],
+        display: 'anchored',
+        touchUi: false,
+      },
+    },
+  ])
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
-      if (!locations.includes(matches[i].locatia)) {
-        locations.push(matches[i].locatia)
+      if (!locations.includes(matches[i].location)) {
+        locations.push(matches[i].location)
       }
     }
     setLocations(locations)
@@ -178,8 +219,8 @@ const Calendar = () => {
   const get_all_championships = () => {
     let championships = []
     for (let i = 0; i < matches.length; i++) {
-      if (!championships.includes(matches[i].championat)) {
-        championships.push(matches[i].championat)
+      if (!championships.includes(matches[i].championship)) {
+        championships.push(matches[i].championship)
       }
     }
     setChampionships(championships)
@@ -187,31 +228,17 @@ const Calendar = () => {
   const get_all_divisions = () => {
     let divisions = []
     for (let i = 0; i < matches.length; i++) {
-      if (!divisions.includes(matches[i].divizia)) {
-        divisions.push(matches[i].divizia)
+      if (!divisions.includes(matches[i].division)) {
+        divisions.push(matches[i].division)
       }
     }
     setDivisions(divisions)
   }
-  const get_matches = async () => {
-    try {
-      let result = await axios.get('getmatchlogos')
-      if (result.status === 200) {
-        setMatches(result.data)
-        console.log(result.data);
-      } else {
-        console.log(result.data.err)
-      }
-    } catch (error) {}
-  }
   useEffect(() => {
     window.scrollTo(0, 0)
-    console.log("meciuri");
-    get_matches();
     get_all_locations()
     get_all_championships()
     get_all_divisions()
-    
   }, [])
 
   const filter_matches = (
@@ -224,17 +251,17 @@ const Calendar = () => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
       result = result.filter(
-        (match) => match.championat === championshipFilter
+        (match) => match.championship === championshipFilter
       )
     }
     if (divisionFilter !== '') {
-      result = result.filter((match) => match.divizia === divisionFilter)
+      result = result.filter((match) => match.division === divisionFilter)
     }
     if (locationFilter !== '') {
-      result = result.filter((match) => match.locatia === locationFilter)
+      result = result.filter((match) => match.location === locationFilter)
     }
     if (genderFilter !== '') {
-      result = result.filter((match) => match.gen === genderFilter)
+      result = result.filter((match) => match.gender === genderFilter)
     }
     if (date !== '') {
       result = result.filter((match) => {
@@ -360,22 +387,29 @@ const Calendar = () => {
               <option value='Femenin'>Femenin</option>
             </select>
           </div>
-          <div className='matches-toolbar-item filter-matches-date'>
+          <div className='matches-toolbar-item'>
             <label htmlFor='select-filter-matches-date'>Data</label>
-            <DatePicker
+            <Datepicker
               className='select-filter-matches-date'
-              placeHolder={'Please Select...'}
-              selected={startDate}
-              onChange={(date) => {
-                setStartDate(date)
+              controls={['date']}
+              touchUi={false}
+              responsive={responsiveCal}
+              inputProps={{
+                placeholder: 'Please Select...',
+              }}
+              value={startDate}
+              const
+              onChange={(ev) => {
+                setStartDate(ev.value)
                 filter_matches(
                   genderFilter,
                   locationFilter,
                   championshipFilter,
                   divisionFilter,
-                  date
+                  ev.value
                 )
               }}
+              returnFormat='jsdate'
             />
           </div>
           <div
@@ -385,7 +419,7 @@ const Calendar = () => {
               setDivisionFilter('')
               setChampionshipFilter('')
               setGenderFilter('')
-              setStartDate('')
+              setStartDate(new Date())
               setMatches(matchesOrigin)
             }}
           >
@@ -395,7 +429,7 @@ const Calendar = () => {
         </div>
         <div className='matches'>
           {matches.map((match) => {
-            return <Meci match={match} key={match.id_meci} />
+            return <Meci match={match} key={match.id} />
           })}
         </div>
       </div>
