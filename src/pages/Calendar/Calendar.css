@@ -33,6 +33,10 @@
   max-width: 12rem;
   margin: 0 2rem;
 }
+.select-filter-matches-date {
+  max-width: 8rem;
+  margin: 0.25rem 0rem;
+}
 .matches-toolbar-item label {
   max-width: 100%;
   margin-right: 0.5rem;
@@ -59,6 +63,7 @@
   margin: 0;
   margin-bottom: 0.2rem;
 }
+
 @media (max-width: 756px) {
   .matches-toolbar {
     justify-content: space-around;
@@ -69,6 +74,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+  .select-filter-matches-date {
+    max-width: 4rem;
   }
   .matches-toolbar-item label {
     margin: 0;
@@ -81,10 +89,14 @@
     flex-direction: row;
   }
 }
+
 @media (max-width: 500px) {
   .matches-toolbar-item {
     max-width: 4.5rem;
     margin: 0 0.2rem;
+  }
+  .select-filter-matches-date {
+    max-width: 3rem;
   }
   .matches-reset span {
     display: none;

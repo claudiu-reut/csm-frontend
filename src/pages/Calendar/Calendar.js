@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from '../api/axios'
-import '@mobiscroll/react/dist/css/mobiscroll.min.css'
-import { Datepicker, Page, setOptions } from '@mobiscroll/react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
 import './Calendar.css'
@@ -153,13 +153,9 @@ const meciuri_init = [
     createdAt: dateForMatch,
   },
 ]
-setOptions({
-  theme: 'windows',
-  themeVariant: 'light',
-})
 const Calendar = () => {
   const [teams, setTeams] = useState([])
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState('')
   const [matches, setMatches] = useState(meciuri_init)
   const [matchesOrigin, setMatchesOrigin] = useState(meciuri_init)
   const [locations, setLocations] = useState([])
@@ -169,44 +165,7 @@ const Calendar = () => {
   const [championshipFilter, setChampionshipFilter] = useState('')
   const [divisionFilter, setDivisionFilter] = useState('')
   const [genderFilter, setGenderFilter] = useState('')
-  const [responsiveDrop] = React.useState([
-    {
-      xsmall: {
-        display: 'top',
-      },
-      small: {
-        display: 'anchored',
-      },
-      custom: {
-        // Custom breakpoint
-        breakpoint: 800,
-        display: 'anchored',
-        touchUi: false,
-      },
-    },
-  ])
 
-  const [responsiveCal] = React.useState([
-    {
-      xsmall: {
-        controls: ['date'],
-        display: 'bottom',
-        touchUi: true,
-      },
-      small: {
-        controls: ['date'],
-        display: 'anchored',
-        touchUi: true,
-      },
-      custom: {
-        // Custom breakpoint
-        breakpoint: 800,
-        controls: ['calendar'],
-        display: 'anchored',
-        touchUi: false,
-      },
-    },
-  ])
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
@@ -387,29 +346,22 @@ const Calendar = () => {
               <option value='Femenin'>Femenin</option>
             </select>
           </div>
-          <div className='matches-toolbar-item'>
+          <div className='matches-toolbar-item filter-matches-date'>
             <label htmlFor='select-filter-matches-date'>Data</label>
-            <Datepicker
+            <DatePicker
               className='select-filter-matches-date'
-              controls={['date']}
-              touchUi={false}
-              responsive={responsiveCal}
-              inputProps={{
-                placeholder: 'Please Select...',
-              }}
-              value={startDate}
-              const
-              onChange={(ev) => {
-                setStartDate(ev.value)
+              placeHolder={'Please Select...'}
+              selected={startDate}
+              onChange={(date) => {
+                setStartDate(date)
                 filter_matches(
                   genderFilter,
                   locationFilter,
                   championshipFilter,
                   divisionFilter,
-                  ev.value
+                  date
                 )
               }}
-              returnFormat='jsdate'
             />
           </div>
           <div
@@ -419,7 +371,7 @@ const Calendar = () => {
               setDivisionFilter('')
               setChampionshipFilter('')
               setGenderFilter('')
-              setStartDate(new Date())
+              setStartDate('')
               setMatches(matchesOrigin)
             }}
           >
