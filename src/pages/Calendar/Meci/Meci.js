@@ -6,9 +6,20 @@ import { FaRegHandshake } from 'react-icons/fa'
 import { MdDateRange } from 'react-icons/md'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import axios from "../../api/axios"
+
+
 const logoAmical = <FaRegHandshake size={25} color={'gold'} />
 const logoTurneu = <TfiCup size={22} color={'gold'} />
 function Meci({ match }) {
+  const [logo1,setLogo1]=useState('');
+  const [logo2,setLogo2]=useState('');
+  const getLogos = async () => {
+    const response1 = await axios.get(`/getteamlogo/${match.id_echipa1}`)
+    const response2 = await axios.get(`/getteamlogo/${match.id_echipa2}`)
+    setLogo1(response1.data)
+    setLogo2(response2.data)
+  }
   const get_date_from_str = (str) => {
     function addZero(i) {
       if (i < 10) {
@@ -32,6 +43,7 @@ function Meci({ match }) {
   const [cupLogo, setCupLogo] = useState(logoTurneu)
   const [sets, setSets] = useState('')
   useEffect(() => {
+    getLogos();
     if (match.sets !== null) {
       setSets(match.sets)
     }
@@ -72,7 +84,7 @@ function Meci({ match }) {
         <div className='first-team team'>
           <h4 className='team-name'>{match.nume1}</h4>
           <img
-            src='{URL.createObjectURL(match.img1)} '
+            src={`data:image/jpeg;base64,${logo1}`}
             alt=''
             className='team-logo'
           />
@@ -114,7 +126,7 @@ function Meci({ match }) {
         </div>
         <div className='second-team team'>
           <img
-            src='{URL.createObjectURL(match.img2)}'
+           src={`data:image/jpeg;base64,${logo2}`}
             alt=''
             className='team-logo'
           />
