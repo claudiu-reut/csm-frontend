@@ -26,8 +26,34 @@ function AddMeci() {
   const [id_echipa2, setIdEchipa2] = useState('')
   const errRef = useRef()
   const [teams,setTeams]=useState([])
+  function handleDate(){
+    var givenDate=Date.parse(document.getElementById("data").value);
+    var rez1 = document.getElementById('rez1')
+    var rez2 = document.getElementById('rez2')
+    givenDate = new Date(givenDate).setHours(0,0,0,0);
+    var todaysDate = new Date().setHours(0, 0, 0, 0); 
+    if (givenDate >= todaysDate)
+    {
+      rez1.disabled=true;
+      rez2.disabled=true;
+      setRezultat("-:-");
+    }
+    setData(givenDate);
+  }
+  function handleRezultat() {
+    var rez1 = document.getElementById('rez1')
+    var rez2 = document.getElementById('rez2')
+    console.log(rez1.value+":"+rez2.value);
+    var str1=rez1.value;
+    var str2=rez2.value;
+    if(str1==="")
+    str1="-";
+    if(str2==="")
+    str2="-";
+    setRezultat(str1+":"+str2);
 
-
+   
+  }
   //confirm
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
@@ -146,15 +172,31 @@ function AddMeci() {
             />
           </div>
          
-          <div className='form-group mt-3'>
+          <div className='form-group '>
             <label>Rezultat</label>
+            <br></br>
+            <div className='scor'>
             <input
-              type='text'
-              className='form-control '
-              placeholder='Rezultat'
+              type='number'
+              className='form-control rezultat'
+              placeholder='-'
               required
-              onChange={(e) => setRezultat(e.target.value)}
+              id="rez1"
+              onChange={handleRezultat}
+              min="0"
+              defaultValue="-"
+            /><h3 className="puncte">:</h3>
+            <input
+              type='number'
+              className='form-control rezultat '
+              placeholder='-'
+              required
+              id="rez2"
+              onChange={handleRezultat}
+              defaultValue="-"
+              min="0"
             />
+            </div>
           </div>
           <div className='form-group mt-3'>
             <label>Gen</label>
@@ -187,7 +229,7 @@ function AddMeci() {
           <div className='form-group mt-3'>
             <label>Data</label>
             <br></br>
-            <input type="date" onChange={(e) => setData(e.target.value)}/>
+            <input type="date" onChange={handleDate} id="data"/>
           </div>
           <div className='form-group mt-3'>
             <label>Echipa 1</label>
