@@ -17,6 +17,9 @@
   width: 100%;
   border-radius: 8px;
 }
+.other-post-img img:hover {
+  filter: brightness(85%);
+}
 .other-post-title {
   padding: 0.2rem 0.5rem;
 }

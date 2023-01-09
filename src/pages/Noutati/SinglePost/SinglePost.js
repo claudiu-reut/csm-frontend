@@ -16,13 +16,13 @@ import {
 } from 'react-share'
 import OtherPost from './OtherPost/OtherPost'
 function SinglePost() {
-  const match = useParams()
+  const params = useParams()
   const [posts, setPosts] = useState([])
   const [tags, setTags] = useState('')
   const [post, setPost] = useState({})
   const getPost = async () => {
     try {
-      const response = await axios.get(`/getpost/${match.id}`)
+      const response = await axios.get(`/getpost/${params.id}`)
       setPost(response.data)
       setTags(response.data.tags)
     } catch (error) {
@@ -46,7 +46,7 @@ function SinglePost() {
     window.scrollTo(0, 0)
     getPost()
     get_posts()
-  }, [match.id])
+  }, [params.id])
   useEffect(() => {
     ;(window.adsbygoogle = window.adsbygoogle || []).push({})
   }, [])
@@ -157,11 +157,9 @@ function SinglePost() {
         <div className='single-post-image'>
           <img src={post.linkImg} alt='imagine post' />
         </div>
-
         <div className='single-post-description'>
           <p>{post.descriere}</p>
         </div>
-        <div className='single-post-share'></div>
       </div>
       <div className='other-posts'>{otherPostsArray}</div>
     </div>

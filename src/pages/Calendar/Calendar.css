@@ -64,7 +64,7 @@
   margin-bottom: 0.2rem;
 }
 
-@media (max-width: 756px) {
+@media (max-width: 990px) {
   .matches-toolbar {
     justify-content: space-around;
   }

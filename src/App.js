@@ -40,6 +40,7 @@ import AddPost from './pages/Noutati/AddPost/AddPost'
 import DeletePost from './pages/Noutati/DeletePost'
 import EditPost from './pages/Noutati/EditPost'
 import SinglePost from './pages/Noutati/SinglePost/SinglePost'
+import SingleMatch from './pages/Calendar/SingleMatch/SingleMatch'
 function App() {
   return (
     <Router>
@@ -48,12 +49,13 @@ function App() {
         <Route path='/acasa' element={<Acasa />} />
         <Route path='/' element={<Navigate to='/acasa' />} />
         <Route path='/calendar' element={<Calendar />} />
+        <Route path='/calendar/:id' element={<SingleMatch />} />
         <Route path='/contact' element={<ContactForm />} />
         <Route path='/detalii' element={<Detalii />} />
         <Route path='/detalii/istorie' element={<Istorie />} />
         <Route path='/detalii/trofee' element={<Trofee />} />
         <Route path='/detalii/viziune' element={<Viziune />} />
-        <Route path='/detalii/personal' element={<Personal/>} />
+        <Route path='/detalii/personal' element={<Personal />} />
         <Route path='/detalii/personal/jucatori' element={<Jucator />} />
         <Route path='/detalii/personal/antrenori' element={<Antrenor />} />
         <Route path='/juvenil' element={<Juvenil />} />
