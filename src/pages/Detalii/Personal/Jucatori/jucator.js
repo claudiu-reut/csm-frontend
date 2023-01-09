@@ -23,9 +23,10 @@ const Jucator = () => {
             <MDBCardTitle className='text-center'>Player Name </MDBCardTitle>
             <MDBCardText>
               <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
+                <li>Nationalitate:Brazilia</li>
+                <li>Post:Libero</li>
+                <li>Data Nasterii:15 Octombrie 1975</li>
+                <li>Inaltime:1.84m</li>
               </ul>
             </MDBCardText>
           </MDBCardBody>
