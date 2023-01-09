@@ -11,12 +11,7 @@ import Calendar from './pages/Calendar/Calendar'
 import ContactForm from './pages/Contact/ContactForm'
 import Detalii from './pages/Detalii/Detalii'
 import Juvenil from './pages/Juvenil/Juvenil'
-import Istorie from './pages/Detalii/Istorie/Istorie'
-import Trofee from './pages/Detalii/Trofee/Trofee'
-import Viziune from './pages/Detalii/Viziune/Viziune'
-import Personal from './pages/Detalii/Personal/Personal'
-import Antrenor from './pages/Detalii/Personal/Antrenori/Antrenor'
-import Jucator from './pages/Detalii/Personal/Jucatori/Jucator'
+
 import Junior from './pages/Juvenil/Junior/Junior'
 import Cadet from './pages/Juvenil/Cadet/Cadet'
 import Sperante from './pages/Juvenil/Sperante/Sperante'
@@ -52,12 +47,6 @@ function App() {
         <Route path='/calendar/:id' element={<SingleMatch />} />
         <Route path='/contact' element={<ContactForm />} />
         <Route path='/detalii' element={<Detalii />} />
-        <Route path='/detalii/istorie' element={<Istorie />} />
-        <Route path='/detalii/trofee' element={<Trofee />} />
-        <Route path='/detalii/viziune' element={<Viziune />} />
-        <Route path='/detalii/personal' element={<Personal />} />
-        <Route path='/detalii/personal/jucatori' element={<Jucator />} />
-        <Route path='/detalii/personal/antrenori' element={<Antrenor />} />
         <Route path='/juvenil' element={<Juvenil />} />
         <Route path='/juvenil/sperante' element={<Sperante />} />
         <Route path='/juvenil/cadet' element={<Cadet />} />
