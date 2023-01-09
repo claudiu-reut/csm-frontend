@@ -81,7 +81,7 @@ const Noutati = () => {
       <div className='noutati-container'>
         <div className='noutati-toolbar'>
           <div className='noutati-toolbar-item'>
-            <label htmlFor='select-order-noutati'>Order by</label>
+            <label htmlFor='select-order-noutati'>Ordoneaza dupa</label>
             <select
               value={selectedSortValue}
               id='select-order-noutati'
@@ -99,7 +99,7 @@ const Noutati = () => {
             </select>
           </div>
           <div className='noutati-toolbar-item'>
-            <label htmlFor='select-filter-noutati'>Filter by Tag</label>
+            <label htmlFor='select-filter-noutati'>Filtreaza dupa</label>
             <select
               value={selectedTag}
               id='select-filter-noutati'

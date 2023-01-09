@@ -60,6 +60,9 @@
   display: flex;
   align-items: center;
 }
+.match-gender p {
+  text-transform: capitalize;
+}
 .match-gender img {
   width: 30px;
 }
@@ -99,6 +102,7 @@
 .team-name {
   font-size: 1.6rem;
 }
+
 .score span {
   display: flex;
   align-items: center;

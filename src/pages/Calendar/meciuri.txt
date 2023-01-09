@@ -1,0 +1,64 @@
+{
+"locatia":"Zalău",
+"campionat":"Liga Nationala",
+"divizia":"Divizia A1",
+"gen":"masculin",
+"rezultat":"1:3",
+"id_echipa1":8,
+"id_echipa2":4,
+"data":"2022-12-11 13:20",
+"description":"confruntare shaolin",
+"sets":"25-14 26-28 21-25 24-26"
+}
+,
+{
+"locatia":"Galati",
+"campionat":"Liga Nationala",
+"divizia":"Divizia A1",
+"gen":"masculin",
+"rezultat":"3:1",
+"id_echipa1":9,
+"id_echipa2":4,
+"data":"2022-12-15 9:30",
+"description":"confruntare shaolin",
+"sets":"25-17 27-25 16-25 25-13"
+}
+,
+{
+"locatia":"Bucuresti",
+"campionat":"Liga Nationala",
+"divizia":"Divizia A1",
+"gen":"masculin",
+"rezultat":"3:0",
+"id_echipa1":10,
+"id_echipa2":4,
+"data":"2022-12-8 12:00",
+"description":"confruntare shaolin",
+"sets":"25-11 29-27 25-14"
+}
+,
+{
+"locatia":"Suceava",
+"campionat":"Amical",
+"divizia":"Juniori",
+"gen":"feminin",
+"rezultat":"-:-",
+"id_echipa1":4,
+"id_echipa2":7,
+"data":"2022-12-18 13:00",
+"description":"confruntare shaolin",
+"sets":""
+}
+,
+ {
+"locatia":"Cluj-Napoca",
+"campionat":"Amical",
+"divizia":"Divizia A1",
+"gen":"masculin",
+"rezultat":"-:-",
+"id_echipa1":6,
+"id_echipa2":4,
+"data":"2023-01-16 10:00",
+"description":"confruntare shaolin",
+"sets":""
+}

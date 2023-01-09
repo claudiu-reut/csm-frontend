@@ -156,8 +156,8 @@ const meciuri_init = [
 const Calendar = () => {
   const [teams, setTeams] = useState([])
   const [startDate, setStartDate] = useState('')
-  const [matches, setMatches] = useState(meciuri_init)
-  const [matchesOrigin, setMatchesOrigin] = useState(meciuri_init)
+  const [matches, setMatches] = useState([])
+  const [matchesOrigin, setMatchesOrigin] = useState([])
   const [locations, setLocations] = useState([])
   const [championships, setChampionships] = useState([])
   const [divisions, setDivisions] = useState([])
@@ -165,12 +165,13 @@ const Calendar = () => {
   const [championshipFilter, setChampionshipFilter] = useState('')
   const [divisionFilter, setDivisionFilter] = useState('')
   const [genderFilter, setGenderFilter] = useState('')
-
+  const [, updateState] = React.useState()
+  const forceUpdate = React.useCallback(() => updateState({}), [])
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
-      if (!locations.includes(matches[i].location)) {
-        locations.push(matches[i].location)
+      if (!locations.includes(matches[i].locatia)) {
+        locations.push(matches[i].locatia)
       }
     }
     setLocations(locations)
@@ -178,8 +179,8 @@ const Calendar = () => {
   const get_all_championships = () => {
     let championships = []
     for (let i = 0; i < matches.length; i++) {
-      if (!championships.includes(matches[i].championship)) {
-        championships.push(matches[i].championship)
+      if (!championships.includes(matches[i].campionat)) {
+        championships.push(matches[i].campionat)
       }
     }
     setChampionships(championships)
@@ -187,18 +188,42 @@ const Calendar = () => {
   const get_all_divisions = () => {
     let divisions = []
     for (let i = 0; i < matches.length; i++) {
-      if (!divisions.includes(matches[i].division)) {
-        divisions.push(matches[i].division)
+      if (!divisions.includes(matches[i].divizia)) {
+        divisions.push(matches[i].divizia)
       }
     }
     setDivisions(divisions)
   }
+  const get_matches = async () => {
+    try {
+      let result = await axios.get('getmatchlogos')
+      if (result.status === 200) {
+        setMatches(result.data)
+        setMatchesOrigin(result.data)
+        console.log(result.data)
+      } else {
+        console.log(result.data.err)
+      }
+    } catch (error) {}
+  }
+  const order_by_date = () => {
+    let sorted = matches.sort(function (a, b) {
+      let result = new Date(b.data) - new Date(a.data)
+      return result
+    })
+    setMatches(sorted)
+    forceUpdate()
+  }
   useEffect(() => {
     window.scrollTo(0, 0)
+    get_matches()
+  }, [])
+  useEffect(() => {
     get_all_locations()
     get_all_championships()
     get_all_divisions()
-  }, [])
+    order_by_date()
+  }, [matchesOrigin])
 
   const filter_matches = (
     genderFilter,
@@ -209,22 +234,20 @@ const Calendar = () => {
   ) => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
-      result = result.filter(
-        (match) => match.championship === championshipFilter
-      )
+      result = result.filter((match) => match.campionat === championshipFilter)
     }
     if (divisionFilter !== '') {
-      result = result.filter((match) => match.division === divisionFilter)
+      result = result.filter((match) => match.divizia === divisionFilter)
     }
     if (locationFilter !== '') {
-      result = result.filter((match) => match.location === locationFilter)
+      result = result.filter((match) => match.locatia === locationFilter)
     }
     if (genderFilter !== '') {
-      result = result.filter((match) => match.gender === genderFilter)
+      result = result.filter((match) => match.gen === genderFilter)
     }
     if (date !== '') {
       result = result.filter((match) => {
-        const matchDate = new Date(match.createdAt)
+        const matchDate = new Date(match.data)
         return (
           matchDate.getFullYear() === date.getFullYear() &&
           matchDate.getMonth() === date.getMonth() &&
@@ -342,15 +365,15 @@ const Calendar = () => {
               }}
             >
               <option value=''>All</option>
-              <option value='Masculin'>Masculin</option>
-              <option value='Femenin'>Femenin</option>
+              <option value='masculin'>Masculin</option>
+              <option value='feminin'>Feminin</option>
             </select>
           </div>
-          <div className='matches-toolbar-item filter-matches-date'>
+          <div className='matches-toolbar-item'>
             <label htmlFor='select-filter-matches-date'>Data</label>
             <DatePicker
+              id='select-filter-matches-date'
               className='select-filter-matches-date'
-              placeHolder={'Please Select...'}
               selected={startDate}
               onChange={(date) => {
                 setStartDate(date)
@@ -362,6 +385,8 @@ const Calendar = () => {
                   date
                 )
               }}
+              dateFormat='dd/MM/yyyy'
+              placeholderText='--/--/----'
             />
           </div>
           <div
@@ -381,7 +406,7 @@ const Calendar = () => {
         </div>
         <div className='matches'>
           {matches.map((match) => {
-            return <Meci match={match} key={match.id} />
+            return <Meci match={match} key={match.id_meci} />
           })}
         </div>
       </div>

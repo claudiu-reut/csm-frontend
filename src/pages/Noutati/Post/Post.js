@@ -4,6 +4,7 @@ import { BsReddit } from 'react-icons/bs'
 import { FiInstagram } from 'react-icons/fi'
 import { GrFacebook } from 'react-icons/gr'
 import { BsTwitter } from 'react-icons/bs'
+import { FaTags } from 'react-icons/fa'
 import React, { useEffect, useState } from 'react'
 import {
   FacebookShareButton,
@@ -72,7 +73,10 @@ function Post({ post, filter_by_tag }) {
       <div className='post-img'>
         <img src={post.linkImg} alt='post-img' />
       </div>
-      <div className='post-tags'>{get_min_tags(post.tags)}</div>
+      <div className='post-tags'>
+        <FaTags size={15} />
+        {get_min_tags(post.tags)}
+      </div>
       <div
         className='post-title'
         onClick={() => {
