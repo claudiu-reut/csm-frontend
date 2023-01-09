@@ -41,6 +41,8 @@ import DeletePost from './pages/Noutati/DeletePost'
 import EditPost from './pages/Noutati/EditPost'
 import SinglePost from './pages/Noutati/SinglePost/SinglePost'
 import SingleMatch from './pages/Calendar/SingleMatch/SingleMatch'
+import AddTeam from './pages/Teams/AddTeam'
+import AddMeci from './pages/Calendar/Meci/AddMeci'
 function App() {
   return (
     <Router>
@@ -82,6 +84,8 @@ function App() {
           <Route path='/noutati/addpost' element={<AddPost />} />
           <Route path='/noutati/delete/:id' element={<DeletePost />} />
           <Route path='/noutati/edit/:id' element={<EditPost />} />
+          <Route path='/teams/addteam' element={<AddTeam />} />
+          <Route path='/calendar/addmatch' element={<AddMeci />} />
         </Route>
       </Routes>
       <Footer />
