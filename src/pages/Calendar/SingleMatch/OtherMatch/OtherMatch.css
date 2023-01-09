@@ -15,7 +15,6 @@
 }
 .other-match:hover {
   cursor: pointer;
-  border: 2px solid #ccc;
   border-image: linear-gradient(
       20deg,
       rgba(33, 142, 251, 0.808),

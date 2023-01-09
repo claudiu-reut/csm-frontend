@@ -7,12 +7,14 @@ import { MdDateRange } from 'react-icons/md'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import axios from '../../api/axios'
+import { useNavigate } from 'react-router-dom'
 
 const logoAmical = <FaRegHandshake size={25} color={'gold'} />
 const logoTurneu = <TfiCup size={22} color={'gold'} />
 function Meci({ match }) {
   const [logo1, setLogo1] = useState('')
   const [logo2, setLogo2] = useState('')
+  let navigate = useNavigate()
   const getLogos = async () => {
     const response1 = await axios.get(`/getteamlogo/${match.id_echipa1}`)
     const response2 = await axios.get(`/getteamlogo/${match.id_echipa2}`)
@@ -52,7 +54,12 @@ function Meci({ match }) {
   }, [])
 
   return (
-    <div className='match'>
+    <div
+      className='match'
+      onClick={() => {
+        navigate(`/calendar/${match.id_meci}`)
+      }}
+    >
       <div className='match-top'>
         <span className='match-top-item'>
           <span className='match-top-item-logo'>

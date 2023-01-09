@@ -14,8 +14,6 @@ let demo_match = {
   divizia: 'Divizia A1',
   gen: 'masculin',
   id_meci: 10,
-  img1: '',
-  img2: '',
   id_echipa1: 6,
   id_echipa2: 4,
   locatia: 'Cluj-Napoca',
@@ -31,8 +29,12 @@ function SingleMatch() {
   const [match, setMatch] = useState(demo_match)
   const [matches, setMatches] = useState([])
   const [matchesOrigin, setMatchesOrigin] = useState([])
-  const [logo1, setLogo1] = useState('')
-  const [logo2, setLogo2] = useState('')
+  const [logo1, setLogo1] = useState(
+    'https://w7.pngwing.com/pngs/751/463/png-transparent-beach-volleyball-sport-volleyball-sport-logo-monochrome.png'
+  )
+  const [logo2, setLogo2] = useState(
+    'https://w7.pngwing.com/pngs/751/463/png-transparent-beach-volleyball-sport-volleyball-sport-logo-monochrome.png'
+  )
   const [cupLogo, setCupLogo] = useState(logoTurneu)
   const [sets, setSets] = useState('')
   const [, updateState] = React.useState()
@@ -64,7 +66,7 @@ function SingleMatch() {
   }
   const getMatch = async () => {
     try {
-      const response = await axios.get(`/getmatch/${params.id}`)
+      const response = await axios.get(`/getmatchlogos/${params.id}`)
       setMatch(response.data)
     } catch (error) {
       console.log(error)
@@ -91,24 +93,30 @@ function SingleMatch() {
     )
   }
   useEffect(() => {
+    order_by_date()
+  }, [matchesOrigin])
+
+  useEffect(() => {
     window.scrollTo(0, 0)
+    getMatch()
     get_matches()
-    getLogos()
+  }, [params])
+  useEffect(() => {
     if (match.sets !== null) {
       setSets(match.sets)
     }
     if (match.campionat === 'Amical') {
       setCupLogo(logoAmical)
+    } else {
+      setCupLogo(logoTurneu)
     }
-  }, [])
-  useEffect(() => {
-    //order_by_date()
-  }, [matchesOrigin])
+    getLogos()
+  }, [match])
   let counter = 0
   let otherMatchesArray = matches.map((meci_curent) => {
-    if (counter < 4 && match.id_meci !== meci_curent.id_postare) {
+    if (counter < 4 && match.id_meci !== meci_curent.id_meci) {
       counter += 1
-      return <OtherMatch match={meci_curent} />
+      return <OtherMatch match={meci_curent} key={meci_curent.id_meci} />
     }
   })
   return (

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './OtherMatch.css'
 import axios from '../../../api/axios'
 function OtherMatch({ match }) {
   const [logo1, setLogo1] = useState('')
   const [logo2, setLogo2] = useState('')
+  let navigate = useNavigate()
   const getLogos = async () => {
     const response1 = await axios.get(`/getteamlogo/${match.id_echipa1}`)
     const response2 = await axios.get(`/getteamlogo/${match.id_echipa2}`)
@@ -34,7 +36,12 @@ function OtherMatch({ match }) {
     getLogos()
   }, [])
   return (
-    <div className='other-match'>
+    <div
+      className='other-match'
+      onClick={() => {
+        navigate(`/calendar/${match.id_meci}`)
+      }}
+    >
       <div className='other-match-top'>
         <p>{match.campionat}</p>
         <p>-</p>
