@@ -200,7 +200,7 @@ const Calendar = () => {
       if (result.status === 200) {
         setMatches(result.data)
         setMatchesOrigin(result.data)
-        console.log(result.data)
+        
       } else {
         console.log(result.data.err)
       }
