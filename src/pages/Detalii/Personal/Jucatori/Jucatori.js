@@ -1,14 +1,5 @@
 import React from 'react'
 import Jucator from './Jucator'
-import {
-    MDBCard,
-    MDBCardImage,
-    MDBCardBody,
-    MDBCardTitle,
-    MDBCardText,
-    MDBRow,
-    MDBCol
-  } from 'mdb-react-ui-kit';
 function Jucatori() {
     const jucatori_init=[
         {
@@ -38,9 +29,7 @@ function Jucatori() {
     ]
   return (
     <div >
-    <MDBRow className=' row-cols-md-5' >
-        <MDBCol>
-    <div class="card">
+    
       {jucatori_init
         .map((jucator) => {
           return (
@@ -53,11 +42,8 @@ function Jucatori() {
             inaltime={jucator.inaltime}
             />
           )
-        })}
+        })} 
     </div>
-    </MDBCol>
-    </MDBRow>
-  </div>
   )
 }
 
