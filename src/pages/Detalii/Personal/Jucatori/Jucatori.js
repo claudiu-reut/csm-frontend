@@ -1,5 +1,6 @@
 import React from 'react'
 import Jucator from './Jucator'
+import './Jucatori.css'
 function Jucatori() {
     const jucatori_init=[
         {
@@ -28,8 +29,7 @@ function Jucatori() {
         }
     ]
   return (
-    <div >
-    
+    <div className='cards'>
       {jucatori_init
         .map((jucator) => {
           return (

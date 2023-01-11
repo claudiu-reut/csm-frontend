@@ -5,7 +5,7 @@ function Jucator({img,numeComplet,dataNasterii,nationalitate,post,inaltime}){
     
         <div className='card'>
           <img
-            src={img} 
+            src={require('./images/sergio.png')} 
             alt='...'
             position='top'></img>
           <div className='card-body'>
