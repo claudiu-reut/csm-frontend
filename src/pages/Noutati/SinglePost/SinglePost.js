@@ -53,13 +53,6 @@ function SinglePost() {
 
   let counter = 0
   let otherPostsArray = posts.map((postare, index) => {
-    if (index === 0) {
-      return (
-        <div className='see-also' key={postare.id_postare}>
-          <h2>Alte Stiri...</h2>
-        </div>
-      )
-    }
     if (counter < 4 && post.id_postare !== postare.id_postare) {
       counter += 1
       return <OtherPost post={postare} />
@@ -161,7 +154,12 @@ function SinglePost() {
           <p>{post.descriere}</p>
         </div>
       </div>
-      <div className='other-posts'>{otherPostsArray}</div>
+      <div className='other-posts'>
+        <div className='see-also'>
+          <h2>Alte Stiri...</h2>
+        </div>
+        {otherPostsArray}
+      </div>
     </div>
   )
 }
