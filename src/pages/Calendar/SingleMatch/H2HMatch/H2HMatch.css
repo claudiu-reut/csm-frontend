@@ -1,0 +1,74 @@
+.h2h-match * {
+  margin: 0;
+  padding: 0;
+}
+.h2h-match {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(217, 217, 217, 0.88);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-top: 0.7rem;
+}
+.h2h-match:hover {
+  cursor: pointer;
+  border-color: rgb(157, 157, 157);
+}
+.h2h-match-date {
+  display: flex;
+  align-items: center;
+}
+.h2h-match-date p {
+  font-size: 0.8rem;
+  margin-left: 0.3rem;
+  margin-top: 0.2rem;
+}
+.h2h-match-championship {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  width: 8rem;
+}
+.h2h-match-championship p {
+  font-size: 0.9rem;
+  margin-left: 0.3rem;
+}
+.h2h-match-teams {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.h2h-match-team {
+  display: flex;
+  align-items: center;
+}
+.h2h-match-team-logo {
+  max-width: 25px;
+  margin-right: 0.2rem;
+}
+.h2h-match-first-team {
+  margin-bottom: 0.3rem;
+}
+.h2h-match-score {
+  margin-left: 0.4rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.h2h-match-score-first-item {
+  margin-bottom: 0.6rem;
+  margin-top: -0.5rem;
+}
+@media (max-width: 500px) {
+  .h2h-match-championship {
+    width: 5rem;
+  }
+  .h2h-match {
+    padding-left: 0.2rem;
+  }
+}

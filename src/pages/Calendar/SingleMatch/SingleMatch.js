@@ -7,6 +7,7 @@ import { MdDateRange } from 'react-icons/md'
 import './SingleMatch.css'
 import axios from '../../api/axios'
 import OtherMatch from './OtherMatch/OtherMatch'
+import H2HMatch from './H2HMatch/H2HMatch'
 let demo_match = {
   campionat: 'Liga Nationala',
   data: '2022-12-15T07:30:00.000Z',
@@ -118,6 +119,15 @@ function SingleMatch() {
       counter += 1
       return <OtherMatch match={meci_curent} key={meci_curent.id_meci} />
     }
+  })
+  let h2hmatches = matches.filter((meci_curent) => {
+    return (
+      (meci_curent.id_meci !== match.id_meci &&
+        meci_curent.id_echipa1 === match.id_echipa1 &&
+        meci_curent.id_echipa2 === match.id_echipa2) ||
+      (meci_curent.id_echipa1 === match.id_echipa2 &&
+        meci_curent.id_echipa2 === match.id_echipa1)
+    )
   })
   return (
     <div className='single-match-container'>
@@ -245,7 +255,10 @@ function SingleMatch() {
           })}
         </div>
         <div className='single-match-h2h'>
-          <h4>H2H</h4>
+          <h4>Head-To-Head</h4>
+          {h2hmatches.map((meci) => {
+            return <H2HMatch match={meci} key={meci.id_meci} />
+          })}
         </div>
       </div>
       <div className='other-matches'>
