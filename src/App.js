@@ -15,7 +15,7 @@ import Personal from './pages/Detalii/Personal/Personal'
 import Istorie from './pages/Detalii/Istorie/Istorie'
 import Viziune from './pages/Detalii/Viziune/Viziune'
 import Trofee from './pages/Detalii/Trofee/Trofee'
-import Jucator from './pages/Detalii/Personal/Jucatori/Jucator'
+import Jucatori from './pages/Detalii/Personal/Jucatori/Jucatori'
 import Antrenor from './pages/Detalii/Personal/Antrenori/Antrenor'
 import Junior from './pages/Juvenil/Junior/Junior'
 import Cadet from './pages/Juvenil/Cadet/Cadet'
@@ -57,7 +57,7 @@ function App() {
         <Route path='/detalii/viziune' element={<Viziune />} />
         <Route path='/detalii/trofee' element={<Trofee />} />
         <Route path='/detalii/personal' element={<Antrenor />} />
-        <Route path='/detalii/personal/jucatori' element={<Jucator />} />
+        <Route path='/detalii/personal/jucatori' element={<Jucatori />} />
         <Route path='/juvenil' element={<Juvenil />} />
         <Route path='/juvenil/sperante' element={<Sperante />} />
         <Route path='/juvenil/cadet' element={<Cadet />} />

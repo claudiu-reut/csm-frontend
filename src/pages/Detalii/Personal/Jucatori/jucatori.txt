@@ -1,0 +1,10 @@
+const jucatori_init=[
+    {
+        img='./images/sergio',
+        numeComplet="Sergio",
+        dataNasterii="17 Octombrie 2002"
+        nationalitate="Brazilia"
+        post="Libero"
+        inaltime="1.85m"
+    }
+]
