@@ -1,4 +1,14 @@
 .cards{
     display: flex;
     justify-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width:768px)
+{
+.cards{
+    flex-direction: column;
+    width: 90%;
+}
 }

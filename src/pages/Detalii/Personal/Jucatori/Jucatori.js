@@ -26,6 +26,46 @@ function Jucatori() {
             nationalitate:"Romaniaa",
             post:"Libero",
             inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            dataNasterii:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            dataNasterii:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            dataNasterii:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            dataNasterii:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            dataNasterii:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
         }
     ]
   return (

@@ -4,18 +4,19 @@ function Jucator({img,numeComplet,dataNasterii,nationalitate,post,inaltime}){
   return (
     
         <div className='card'>
+          <div className='img-card'>
           <img
             src={require('./images/sergio.png')} 
             alt='...'
-            position='top'></img>
+            position='top'></img></div>
           <div className='card-body'>
             <h5 className='card-title'>{numeComplet}</h5>
             <p className='card-text'></p>
               <ul className='List'>
-                <li>Nationalitate:{nationalitate}</li>
-                <li>Post:{post}</li>
-                <li>Data Nasterii:{dataNasterii}</li>
-                <li>Inaltime:{inaltime}</li>
+                <li><b>Nationalitate:</b>{nationalitate}</li>
+                <li><b>Post:</b>{post}</li>
+                <li><b>Data Nasterii:</b>{dataNasterii}</li>
+                <li><b>Inaltime:</b>{inaltime}</li>
               </ul>
           </div>
         </div>
