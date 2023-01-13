@@ -1,6 +1,12 @@
 import React from 'react'
 import './Jucator.css'
-function Jucator({img,numeComplet,dataNasterii,nationalitate,post,inaltime}){
+function Jucator({img,numeComplet,varsta,nationalitate,post,inaltime}){
+
+  function calcAge(varsta) {
+    var birthday = +new Date(varsta);
+    return ~~((Date.now() - birthday) / (31557600000));
+  }
+
   return (
     
         <div className='card'>
@@ -15,7 +21,7 @@ function Jucator({img,numeComplet,dataNasterii,nationalitate,post,inaltime}){
               <ul className='List'>
                 <li><b>Nationalitate:</b>{nationalitate}</li>
                 <li><b>Post:</b>{post}</li>
-                <li><b>Data Nasterii:</b>{dataNasterii}</li>
+                <li><b>Data Nasterii:</b>{calcAge(varsta)}</li>
                 <li><b>Inaltime:</b>{inaltime}</li>
               </ul>
           </div>
