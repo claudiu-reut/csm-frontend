@@ -63,7 +63,9 @@
   margin: 0;
   margin-bottom: 0.2rem;
 }
-
+.option-capitalise {
+  text-transform: capitalize;
+}
 @media (max-width: 990px) {
   .matches-toolbar {
     justify-content: space-around;

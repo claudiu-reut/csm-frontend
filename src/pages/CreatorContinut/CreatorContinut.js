@@ -8,14 +8,14 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import axios from '../api/axios'
 function CreatorContinut() {
   const [posts, setPosts] = useState([])
-  const [teams,setTeams] = useState([])
-  const [matches,setMatches]=useState([])
+  const [teams, setTeams] = useState([])
+  const [matches, setMatches] = useState([])
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get('/getpostsuser')
-      const res = await axios.get("/getsimpleteams");
-      const mts = await axios.get('/getmatchlogos');
-      setMatches(mts.data);
+      const res = await axios.get('/getsimpleteams')
+      const mts = await axios.get('/getmatchlogos')
+      setMatches(mts.data)
       setPosts(response.data)
       setTeams(res.data)
     }
@@ -59,7 +59,6 @@ function CreatorContinut() {
               </th>
               <th scope='col'>Data</th>
               <th scope='col'>Autor</th>
-              
             </tr>
           </thead>
           <tbody>
@@ -133,12 +132,9 @@ function CreatorContinut() {
                   <td>{nume}</td>
                   <td className='hidde-on-overflow'>{team.oras}</td>
                   <td>{team.tara}</td>
-                  
+
                   <td>
-                    <Link
-                      to={`/teams/edit/${team.id_echipa}`}
-                      className='edit'
-                    >
+                    <Link to={`/teams/edit/${team.id_echipa}`} className='edit'>
                       <AiOutlineEdit size={20} />
                     </Link>
                     <Link
@@ -156,7 +152,8 @@ function CreatorContinut() {
         <Link to='/teams/addteam' class='btn btn-primary btn-add'>
           Adauga echipa
         </Link>
-        <div className='div-table'>
+      </div>
+      <div className='div-table'>
         <h1>Meciuri</h1>
         <br />
         <table class='table table-striped'>
@@ -165,37 +162,47 @@ function CreatorContinut() {
               <th scope='col' className='hidde-on-overflow'>
                 Nr.
               </th>
-              <th scope='col'>Campionat</th>
+              <th scope='col'>Data</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Campionat
+              </th>
               <th scope='col' className='hidde-on-overflow'>
                 Locatia
               </th>
-              <th scope='col' className='hidde-on-overflow'>Rezultat</th>
-              <th scope='col' className='hidde-on-overflow'>Gen</th>
-              <th scope='col' className='hidde-on-overflow'>Sets</th>
-              <th scope='col' className='hidde-on-overflow'>Divizia</th>
-              <th scope='col' className='hidde-on-overflow'>Data</th>
-              <th scope='col' className='hidde-on-overflow'>Prima Echipa</th>
-              <th scope='col' className='hidde-on-overflow'>A doua echipa</th>
-              <th scope='col' className='hidde-on-overflow'>Descriere</th>
+
+              <th scope='col' className='hidde-on-overflow'>
+                Gen
+              </th>
+              <th scope='col' className='hidde-on-overflow'>
+                Sets
+              </th>
+              <th scope='col' className='hidde-on-overflow'>
+                Divizia
+              </th>
+              <th scope='col'>Echipa 1</th>
+              <th scope='col'>Echipa 2</th>
+              <th scope='col'>Scor</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Descriere
+              </th>
               <th scope='col'>Actiune</th>
             </tr>
           </thead>
           <tbody>
             {matches.map((match, index) => {
-             
               return (
                 <tr key={match.id_meci}>
                   <td className='hidde-on-overflow'>{index + 1}</td>
-                  <td>{match.campionat}</td>
+                  <td>{get_date_from_str(match.data)}</td>
+                  <td className='hidde-on-overflow'>{match.campionat}</td>
                   <td className='hidde-on-overflow'>{match.locatia}</td>
-                  <td>{match.rezultat}</td>
-                  <td>{match.gen}</td>
-                  <td>{match.sets}</td>
-                  <td>{match.divizia}</td>
-                  <td>{match.data}</td>
+                  <td className='hidde-on-overflow'>{match.gen}</td>
+                  <td className='hidde-on-overflow td-sets'>{match.sets}</td>
+                  <td className='hidde-on-overflow'>{match.divizia}</td>
                   <td>{match.nume1}</td>
                   <td>{match.nume2}</td>
-                  <td>{match.description}</td>
+                  <td>{match.rezultat}</td>
+                  <td className='hidde-on-overflow'>{match.description}</td>
                   <td>
                     <Link
                       to={`/calendar/edit/${match.id_meci}`}
@@ -218,7 +225,6 @@ function CreatorContinut() {
         <Link to='/calendar/addmatch' class='btn btn-primary btn-add'>
           Adauga meci
         </Link>
-      </div>
       </div>
     </div>
   )

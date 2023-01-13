@@ -6,155 +6,8 @@ import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
 import './Calendar.css'
 import { GrPowerReset } from 'react-icons/gr'
-let dateForMatch = new Date('2022-01-15T15:53:00').toString()
-const meciuri_init = [
-  {
-    id: '1',
-    location: 'Bucuresti',
-    championship: 'Liga Nationala',
-    division: 'Divizia A1',
-    gender: 'Masculin',
-    score: '-:-',
-    firstTeam: {
-      name: 'Steaua București',
-      logo: 'https://www.proballers.com/api/getTeamLogo?id=2070',
-    },
-    secondTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    sets: '',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '2',
-    location: 'Cluj-Napoca',
-    championship: 'Amical',
-    division: 'Divizia A1',
-    gender: 'Masculin',
-    score: '-:-',
-    firstTeam: {
-      name: 'U. Cluj',
-      logo: 'http://www.voleiromania.ro/images/echipe/mari/universitatea-cluj-2015-2016-218.jpg',
-    },
-    secondTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    sets: '',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '3',
-    location: 'Bucuresti',
-    championship: 'Liga Nationala',
-    division: 'Divizia A1',
-    gender: 'Masculin',
-    score: '3:1',
-    firstTeam: {
-      name: 'Dinamo Bucuresti',
-      logo: 'https://upload.wikimedia.org/wikipedia/ro/f/fd/C.S._Dinamo.png',
-    },
-    secondTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    sets: '25-20 27-29 25-18 25-20',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '4',
-    location: 'Suceava',
-    championship: 'Amical',
-    division: 'Juniori',
-    gender: 'Femenin',
-    score: '3:0',
-    firstTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    secondTeam: {
-      name: 'Tomis Constanta',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/a/a8/CVM_Tomis_Constan%C5%A3a_logo.jpg',
-    },
-    sets: '25-13 25-17 25-21',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '8',
-    location: 'Zalău',
-    championship: 'Amical',
-    division: 'Divizia A1',
-    gender: 'Masculin',
-    score: '1:3',
-    firstTeam: {
-      name: 'Zalău',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/6/62/VM_Zal%C4%83u_logo.jpg',
-    },
-    secondTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    sets: '25-14 26-28 21-25 24-26',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '5',
-    location: 'Suceava',
-    championship: 'Amical',
-    division: 'Divizia A1',
-    gender: 'Femenin',
-    score: '3:2',
-    firstTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    secondTeam: {
-      name: 'Știința Baia Mare',
-      logo: 'https://www.stiintaexplorari.ro/images/sigla-expl.png',
-    },
-    sets: '25-20 25-23 15-25 18-25 25-19',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '6',
-    location: 'Craiova',
-    championship: 'Liga Nationala',
-    division: 'Divizia A1',
-    gender: 'Masculin',
-    score: '3:1',
-    firstTeam: {
-      name: 'Craiova',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/c/cb/SCM_Craiova_logo.png',
-    },
-    secondTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    sets: '25-17 27-25 16-25 25-13',
-    createdAt: dateForMatch,
-  },
-  {
-    id: '7',
-    location: 'Suceava',
-    championship: 'Liga Nationala',
-    division: 'Divizia A1',
-    gender: 'Femenin',
-    score: '3:1',
-    firstTeam: {
-      name: 'CSM Suceava',
-      logo: 'http://res.hattrick.org/teamlogo/2/19/185/184441/184441.png',
-    },
-    secondTeam: {
-      name: 'Arcada Galaţi',
-      logo: 'https://upload.wikimedia.org/wikipedia/en/2/25/CS_Arcada_Gala%C8%9Bi_logo.png',
-    },
-    sets: '25-17 21-25 25-19 25-22',
-    createdAt: dateForMatch,
-  },
-]
+
 const Calendar = () => {
-  const [teams, setTeams] = useState([])
   const [startDate, setStartDate] = useState('')
   const [matches, setMatches] = useState([])
   const [matchesOrigin, setMatchesOrigin] = useState([])
@@ -170,8 +23,8 @@ const Calendar = () => {
   const get_all_locations = () => {
     let locations = []
     for (let i = 0; i < matches.length; i++) {
-      if (!locations.includes(matches[i].locatia)) {
-        locations.push(matches[i].locatia)
+      if (!locations.includes(matches[i].locatia.toLowerCase())) {
+        locations.push(matches[i].locatia.toLowerCase())
       }
     }
     setLocations(locations)
@@ -179,8 +32,8 @@ const Calendar = () => {
   const get_all_championships = () => {
     let championships = []
     for (let i = 0; i < matches.length; i++) {
-      if (!championships.includes(matches[i].campionat)) {
-        championships.push(matches[i].campionat)
+      if (!championships.includes(matches[i].campionat.toLowerCase())) {
+        championships.push(matches[i].campionat.toLowerCase())
       }
     }
     setChampionships(championships)
@@ -188,8 +41,8 @@ const Calendar = () => {
   const get_all_divisions = () => {
     let divisions = []
     for (let i = 0; i < matches.length; i++) {
-      if (!divisions.includes(matches[i].divizia)) {
-        divisions.push(matches[i].divizia)
+      if (!divisions.includes(matches[i].divizia.toLowerCase())) {
+        divisions.push(matches[i].divizia.toLowerCase())
       }
     }
     setDivisions(divisions)
@@ -200,7 +53,6 @@ const Calendar = () => {
       if (result.status === 200) {
         setMatches(result.data)
         setMatchesOrigin(result.data)
-        
       } else {
         console.log(result.data.err)
       }
@@ -234,16 +86,25 @@ const Calendar = () => {
   ) => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
-      result = result.filter((match) => match.campionat === championshipFilter)
+      result = result.filter(
+        (match) =>
+          match.campionat.toUpperCase() === championshipFilter.toUpperCase()
+      )
     }
     if (divisionFilter !== '') {
-      result = result.filter((match) => match.divizia === divisionFilter)
+      result = result.filter(
+        (match) => match.divizia.toUpperCase() === divisionFilter.toUpperCase()
+      )
     }
     if (locationFilter !== '') {
-      result = result.filter((match) => match.locatia === locationFilter)
+      result = result.filter(
+        (match) => match.locatia.toUpperCase() === locationFilter.toUpperCase()
+      )
     }
     if (genderFilter !== '') {
-      result = result.filter((match) => match.gen === genderFilter)
+      result = result.filter(
+        (match) => match.gen.toUpperCase() === genderFilter.toUpperCase()
+      )
     }
     if (date !== '') {
       result = result.filter((match) => {
@@ -268,7 +129,7 @@ const Calendar = () => {
               value={championshipFilter}
               id='select-filter-matches-championship'
               defaultValue={''}
-              class='form-select'
+              className='form-select option-capitalise'
               aria-label='Default select example'
               onChange={(e) => {
                 setChampionshipFilter(e.target.value)
@@ -283,7 +144,11 @@ const Calendar = () => {
               <option value=''>All</option>
               {championships.map((championship, index) => {
                 return (
-                  <option key={index} value={championship}>
+                  <option
+                    key={index}
+                    value={championship}
+                    className='option-capitalise'
+                  >
                     {championship}
                   </option>
                 )
@@ -296,7 +161,7 @@ const Calendar = () => {
               value={locationFilter}
               id='select-filter-matches-location'
               defaultValue={''}
-              class='form-select'
+              className='form-select option-capitalise'
               aria-label='Default select example'
               onChange={(e) => {
                 setLocationFilter(e.target.value)
@@ -311,7 +176,11 @@ const Calendar = () => {
               <option value=''>All</option>
               {locations.map((location, index) => {
                 return (
-                  <option key={index} value={location}>
+                  <option
+                    key={index}
+                    value={location}
+                    className='option-capitalise'
+                  >
                     {location}
                   </option>
                 )
@@ -324,7 +193,7 @@ const Calendar = () => {
               value={divisionFilter}
               id='select-filter-matches-division'
               defaultValue={''}
-              class='form-select'
+              className='form-select option-capitalise'
               aria-label='Default select example'
               onChange={(e) => {
                 setDivisionFilter(e.target.value)
@@ -339,7 +208,11 @@ const Calendar = () => {
               <option value=''>All</option>
               {divisions.map((division, index) => {
                 return (
-                  <option key={index} value={division}>
+                  <option
+                    key={index}
+                    value={division}
+                    className='option-capitalise'
+                  >
                     {division}
                   </option>
                 )
@@ -352,7 +225,7 @@ const Calendar = () => {
               value={genderFilter}
               id='select-filter-matches-gender'
               defaultValue={''}
-              class='form-select'
+              className='form-select option-capitalise'
               aria-label='Default select example'
               onChange={(e) => {
                 setGenderFilter(e.target.value)

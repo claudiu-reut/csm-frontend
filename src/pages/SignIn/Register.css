@@ -1,9 +1,9 @@
-.Auth-form-container {
+.Register-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 95vw;
-  height: 95vh;
+  height: 90%;
   transition: all 0.4s ease-in-out;
   margin: 0 auto;
 }
@@ -16,7 +16,6 @@
   border-radius: 8px;
   background-color: white;
 }
-
 .Auth-form-content {
   padding-left: 12%;
   padding-right: 12%;
@@ -43,7 +42,7 @@ label {
   color: rgb(34, 34, 34);
 }
 
-@media only screen and (max-width: 550px) {
+@media (max-width: 550px) {
   .Auth-form {
     width: 90vw;
   }

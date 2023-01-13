@@ -1,4 +1,4 @@
-import React, {useRef } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './AddMeci.css'
 import axios from '../../api/axios'
@@ -7,9 +7,7 @@ import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
-import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react'
 
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
@@ -26,64 +24,65 @@ function EditMeci() {
   const [data, setData] = useState('')
   const [id_echipa1, setIdEchipa1] = useState('')
   const [id_echipa2, setIdEchipa2] = useState('')
-  const [nume1,setNume1]=useState('');
-  const [nume2,setNume2]=useState('');
+  const [nume1, setNume1] = useState('')
+  const [nume2, setNume2] = useState('')
   const errRef = useRef()
-  const [teams,setTeams]=useState([])
-  const params=useParams();
-  function handleDate(){
-    var givenDate=Date.parse(document.getElementById("data").value);
-    var rez1 = document.getElementById('rez1')
-    var rez2 = document.getElementById('rez2')
-    var todaysDate = new Date().setHours(0, 0, 0, 0); 
-    if (givenDate >= todaysDate)
-    {
-      rez1.disabled=true;
-      rez2.disabled=true;
-      setRezultat("-:-");
+  const [teams, setTeams] = useState([])
+  const params = useParams()
+  function handleDate(e) {
+    setData(e.target.value)
+    let givenDate = new Date(e.target.value)
+    let rez1 = document.getElementById('rez1')
+    let rez2 = document.getElementById('rez2')
+    let sets = document.getElementById('match-sets-id')
+    let todaysDate = new Date().setHours(0, 0, 0, 0)
+    if (givenDate >= todaysDate) {
+      rez1.disabled = true
+      rez2.disabled = true
+      sets.disabled = true
+      setRezultat('-:-')
+      setSets('')
+    } else {
+      rez1.disabled = false
+      rez2.disabled = false
+      sets.disabled = false
     }
-    setData(givenDate);
   }
 
-  const getMeci= async () => {
+  const getMeci = async () => {
     try {
-        var rez1 = document.getElementById('rez1')
-        var rez2 = document.getElementById('rez2')  
-      const result = await axios.get(`/getmatchlogos/${params.id}`);
-      const match = result.data;
-      var datta= new Date(match.data)
-      var temp=match.rezultat.split(':');
-      rez1.value=temp[0];
-      rez2.value=temp[1];
-      setCampionat(match.campionat);
-      setRezultat(match.rezultat);
-      setLocatia(match.locatia);
-      setDescription(match.description);
-      setGen(match.gen);
-      setSets(match.sets);
-      setDivizia(match.divizia);
-      setData(datta);
-      setIdEchipa1(match.id_echipa1);
-      setIdEchipa2(match.id_echipa2);
-      setNume1(match.nume1);
-      setNume2(match.nume2);
+      var rez1 = document.getElementById('rez1')
+      var rez2 = document.getElementById('rez2')
+      const result = await axios.get(`/getmatchlogos/${params.id}`)
+      const match = result.data
+      var temp = match.rezultat.split(':')
+      rez1.value = temp[0]
+      rez2.value = temp[1]
+      setCampionat(match.campionat)
+      setRezultat(match.rezultat)
+      setLocatia(match.locatia)
+      setDescription(match.description)
+      setGen(match.gen)
+      setSets(match.sets)
+      setDivizia(match.divizia)
+      setData(new Date(match.data).toISOString().split('.')[0])
+      setIdEchipa1(match.id_echipa1)
+      setIdEchipa2(match.id_echipa2)
+      setNume1(match.nume1)
+      setNume2(match.nume2)
     } catch (error) {
       console.log(error)
     }
   }
-  
+
   function handleRezultat() {
     var rez1 = document.getElementById('rez1')
     var rez2 = document.getElementById('rez2')
-    var str1=rez1.value;
-    var str2=rez2.value;
-    if(str1==="")
-    str1="-";
-    if(str2==="")
-    str2="-";
-    setRezultat(str1+":"+str2);
-
-   
+    var str1 = rez1.value
+    var str2 = rez2.value
+    if (str1 === '') str1 = '-'
+    if (str2 === '') str2 = '-'
+    setRezultat(str1 + ':' + str2)
   }
   //confirm
   const [checkmark, setCheckmark] = useState(false)
@@ -103,15 +102,26 @@ function EditMeci() {
     } catch (error) {}
   }
   useEffect(() => {
-    getMeci();
-    getTeams();
-  },[])
+    getMeci()
+    getTeams()
+  }, [])
   useEffect(() => {
     setCheckmark(false)
     setIcon(iconLoading)
     setMessage('Logging..')
     setTextColor('black')
-  }, [campionat, rezultat, locatia,description,gen,sets,divizia,data,id_echipa1,id_echipa2])
+  }, [
+    campionat,
+    rezultat,
+    locatia,
+    description,
+    gen,
+    sets,
+    divizia,
+    data,
+    id_echipa1,
+    id_echipa2,
+  ])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -120,34 +130,33 @@ function EditMeci() {
     setTextColor('black')
     if (valid) {
       try {
-        await axios.put(`editmatch/${params.id}`,{
+        await axios
+          .put(`editmatch/${params.id}`, {
             data: data,
-            campionat:campionat,
-            rezultat:rezultat,
+            campionat: campionat,
+            rezultat: rezultat,
             id_echipa1: id_echipa1,
             id_echipa2: id_echipa2,
             locatia: locatia,
             description: description,
             gen: gen,
             divizia: divizia,
-            sets: sets,   
-        }).then(function (response) {
+            sets: sets,
+          })
+          .then(function (response) {
             if (response.data.status !== 'ERROR') {
-                setIcon(iconSucces)
-                setMessage('Meci editat cu succes')
-                setTextColor('black')
-              } 
-         
-        })
-        .catch(function (response) {
+              setIcon(iconSucces)
+              setMessage('Meci editat cu succes')
+              setTextColor('black')
+            }
+          })
+          .catch(function (response) {
             setIcon(iconError)
             setMessage('Oops, Eroare.Incearca din nou...')
             setTextColor('red')
-          console.log(response);
-        });
+            console.log(response)
+          })
         setCheckmark(true)
-        
-       
       } catch (err) {
         console.log(err)
         if (!err?.response) {
@@ -177,11 +186,10 @@ function EditMeci() {
   }
 
   return (
-    <div className='Auth-form-container'>
+    <div className='Add-match-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
           <h3 className='Auth-form-title'>Editeaza Meci</h3>
-          
           <div className='form-group mt-3'>
             <label>Campionat</label>
             <input
@@ -204,44 +212,101 @@ function EditMeci() {
               value={locatia}
             />
           </div>
-         
+          <div className='form-group mt-3'>
+            <label>Data</label>
+            <br></br>
+            <input
+              type='datetime-local'
+              onChange={(e) => {
+                handleDate(e)
+              }}
+              id='data'
+              value={data}
+            />
+          </div>
+          <div className='form-group mt-3'>
+            <label>Echipa 1</label>
+            <select
+              class='form-select'
+              onChange={(e) => setIdEchipa1(e.target.value)}
+              value={id_echipa1}
+              placeholder={nume1}
+            >
+              <option selected disabled>
+                Selecteaza prima echipa
+              </option>
+              {teams.map((item) => {
+                return (
+                  <option key={item.id_echipa} value={item.id_echipa}>
+                    {item.nume}
+                  </option>
+                )
+              })}
+            </select>
+            <label>Echipa 2</label>
+            <select
+              class='form-select'
+              onChange={(e) => setIdEchipa2(e.target.value)}
+              value={id_echipa2}
+              placeholder={nume2}
+            >
+              <option selected disabled>
+                Selecteaza a doua echipa
+              </option>
+              {teams.map((item) => {
+                return (
+                  <option key={item.id_echipa} value={item.id_echipa}>
+                    {item.nume}
+                  </option>
+                )
+              })}
+            </select>
+          </div>
           <div className='form-group '>
             <label>Rezultat</label>
             <br></br>
             <div className='scor'>
-            <input
-              type='number'
-              className='form-control rezultat'
-              placeholder='-'
-              required
-              id="rez1"
-              onChange={handleRezultat}
-              min="0"
-              defaultValue="-"
-            /><h3 className="puncte">:</h3>
-            <input
-              type='number'
-              className='form-control rezultat '
-              placeholder='-'
-              required
-              id="rez2"
-              onChange={handleRezultat}
-              defaultValue="-"
-              min="0"
-            />
+              <input
+                type='number'
+                className='form-control rezultat'
+                placeholder='-'
+                required
+                id='rez1'
+                onChange={handleRezultat}
+                min='0'
+                defaultValue='-'
+              />
+              <h3 className='puncte'>:</h3>
+              <input
+                type='number'
+                className='form-control rezultat '
+                placeholder='-'
+                required
+                id='rez2'
+                onChange={handleRezultat}
+                defaultValue='-'
+                min='0'
+              />
             </div>
           </div>
           <div className='form-group mt-3'>
             <label>Gen</label>
-            <select class="form-select" onChange={(e) => setGen(e.target.value) } value={gen}>
-            <option selected disabled>Selecteaza gen...</option>
-                <option>Masculin</option>
-                <option>Feminin</option>
+            <select
+              class='form-select'
+              onChange={(e) => setGen(e.target.value)}
+              value={gen}
+            >
+              <option selected disabled>
+                Selecteaza gen...
+              </option>
+              <option>Masculin</option>
+              <option>Feminin</option>
             </select>
           </div>
           <div className='form-group mt-3'>
             <label>Sets</label>
             <input
+              id='match-sets-id'
               type='text'
               className='form-control '
               placeholder='Sets'
@@ -262,30 +327,13 @@ function EditMeci() {
             />
           </div>
           <div className='form-group mt-3'>
-            <label>Data</label>
-            <br></br>
-            <input type="datetime-local" onChange={handleDate} id="data" value={data}/>
-          </div>
-          <div className='form-group mt-3'>
-            <label>Echipa 1</label>
-            <select class="form-select" onChange={(e) => setIdEchipa1(e.target.value)} value={id_echipa1} placeholder={nume1}>
-                <option selected disabled>Selecteaza prima echipa</option>
-            {teams.map(item => {
-          return (<option key={item.id_echipa} value={item.id_echipa}>{item.nume}</option>);
-         })}
-            </select >
-            <label>Echipa 2</label>
-            <select class="form-select" onChange={(e) => setIdEchipa2(e.target.value)}value={id_echipa2} placeholder={nume2}>
-                <option selected disabled>Selecteaza a doua echipa</option>
-            {teams.map(item => {
-          return (<option key={item.id_echipa} value={item.id_echipa}>{item.nume}</option>);
-         })}
-            </select>
-          </div>
-          <div className='form-group mt-3'>
             <label>Descriere</label>
-            <textarea class="form-control" placeholder='Descriere' onChange={(e) => setDescription(e.target.value)}
-            value={description}></textarea>
+            <textarea
+              class='form-control'
+              placeholder='Descriere'
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+            ></textarea>
           </div>
           <div className='d-grid gap-2 mt-3'>
             <button

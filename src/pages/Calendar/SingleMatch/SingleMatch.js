@@ -106,7 +106,7 @@ function SingleMatch() {
     if (match.sets !== null) {
       setSets(match.sets)
     }
-    if (match.campionat === 'Amical') {
+    if (match.campionat.toUpperCase() === 'AMICAL') {
       setCupLogo(logoAmical)
     } else {
       setCupLogo(logoTurneu)

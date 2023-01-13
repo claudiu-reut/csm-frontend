@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useContext } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './Login.css'
+import './Register.css'
 import { useNavigate } from 'react-router-dom'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'

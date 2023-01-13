@@ -36,7 +36,7 @@ function H2HMatch({ match }) {
   }
   useEffect(() => {}, [])
   useEffect(() => {
-    if (match.campionat === 'Amical') {
+    if (match.campionat.toUpperCase() === 'AMICAL') {
       setCupLogo(logoAmical)
     } else {
       setCupLogo(logoTurneu)

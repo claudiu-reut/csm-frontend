@@ -108,7 +108,7 @@ function Register() {
   }
 
   return (
-    <div className='Auth-form-container'>
+    <div className='Register-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
           <h3 className='Auth-form-title'>Sign Up</h3>

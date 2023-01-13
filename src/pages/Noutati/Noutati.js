@@ -86,7 +86,7 @@ const Noutati = () => {
               value={selectedSortValue}
               id='select-order-noutati'
               defaultValue={''}
-              class='form-select'
+              className='form-select option-capitalise'
               aria-label='Default select example'
               onChange={(e) => {
                 setSelectedSortValue(e.target.value)
@@ -104,7 +104,7 @@ const Noutati = () => {
               value={selectedTag}
               id='select-filter-noutati'
               defaultValue={''}
-              class='form-select'
+              className='form-select'
               aria-label='Default select example'
               onChange={(e) => {
                 setSelectedTag(e.target.value)
