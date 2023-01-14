@@ -19,10 +19,10 @@ function Jucator({img,numeComplet,varsta,nationalitate,post,inaltime}){
             <h5 className='card-title'>{numeComplet}</h5>
             <p className='card-text'></p>
               <ul className='List'>
-                <li><b>Nationalitate:</b>{nationalitate}</li>
-                <li><b>Post:</b>{post}</li>
-                <li><b>Data Nasterii:</b>{calcAge(varsta)}</li>
-                <li><b>Inaltime:</b>{inaltime}</li>
+                <li><b>Naționalitate:</b>{nationalitate}</li>
+                <li><b>Poziție:</b>{post}</li>
+                <li><b>Vârstă:</b>{calcAge(varsta)}</li>
+                <li><b>Inalțime:</b>{inaltime}</li>
               </ul>
           </div>
         </div>

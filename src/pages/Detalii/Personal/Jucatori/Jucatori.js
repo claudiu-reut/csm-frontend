@@ -1,6 +1,6 @@
 import React ,{useState}from 'react'
 import Jucator from './Jucator'
-import {Form,InputGroup } from 'react-bootstrap'
+import {Form } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Jucatori.css'
 function Jucatori() {
@@ -77,8 +77,9 @@ function Jucatori() {
   return (
     <>
     <div className='searchPlayer'>
-      <Form.Control
+      <Form.Control className='searchForm'
         onChange={(e) => setSearch(e.target.value)}
+
         placeholder='search by name' />
     </div>
     <div className='cards'>
