@@ -1,10 +1,66 @@
 const jucatori_init=[
-    {
-        img='./images/sergio',
-        numeComplet="Sergio",
-        dataNasterii="17 Octombrie 2002"
-        nationalitate="Brazilia"
-        post="Libero"
-        inaltime="1.85m"
-    }
-]
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Sergio",
+            varsta:"17 Octombrie 2002",
+            nationalitate:"Brazilia",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Ion",
+            varsta:"20 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            varsta:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            varsta:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            varsta:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            varsta:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            varsta:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        },
+        {
+            img:'./images/sergio.png',
+            numeComplet:"Vasile",
+            varsta:"12 Octombrie 2000",
+            nationalitate:"Romaniaa",
+            post:"Libero",
+            inaltime:"1.85m"
+        }
+    ]

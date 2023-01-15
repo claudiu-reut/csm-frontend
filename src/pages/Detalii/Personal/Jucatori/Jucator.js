@@ -1,18 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Jucator.css'
-function Jucator({img,numeComplet,varsta,nationalitate,post,inaltime}){
-
+import axios from "../../../api/axios";
+function Jucator({img,nume,prenume,data_nasterii,nationalitate,post,inaltime,id_personal,lot_curent}){
+  const [imagine,setImagine]=useState('');
+  const numeComplet=nume+" "+prenume;
   function calcAge(varsta) {
+ 
     var birthday = +new Date(varsta);
+  
     return ~~((Date.now() - birthday) / (31557600000));
   }
-
+ 
+  const getPhoto = async () => {
+    const response = await axios.get(`/getpersonalphoto/${id_personal}`)
+    setImagine(response.data);
+  }
+  useEffect(() => {
+    getPhoto();
+   
+  }, [])
   return (
     
         <div className='card'>
           <div className='img-card'>
           <img
-            src={require('./images/sergio.png')} 
+          className='imag'
+            src={`data:image/jpeg;base64,${imagine}`}
             alt='...'
             position='top'></img></div>
           <div className='card-body'>
@@ -21,8 +34,9 @@ function Jucator({img,numeComplet,varsta,nationalitate,post,inaltime}){
               <ul className='List'>
                 <li><b>Naționalitate:</b>{nationalitate}</li>
                 <li><b>Poziție:</b>{post}</li>
-                <li><b>Vârstă:</b>{calcAge(varsta)}</li>
+                <li><b>Vârstă:</b>{calcAge(data_nasterii)}</li>
                 <li><b>Inalțime:</b>{inaltime}</li>
+                <li><b>Lot:</b>{lot_curent}</li>
               </ul>
           </div>
         </div>

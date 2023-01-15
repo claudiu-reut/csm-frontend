@@ -1,78 +1,22 @@
-import React ,{useState}from 'react'
+import React ,{useState,useEffect}from 'react'
 import Jucator from './Jucator'
 import {Form } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Jucatori.css'
+import axios from "../../../api/axios";
 function Jucatori() {
   const [search, setSearch]= useState('')
+  const [jucatori,setJucatori]=useState([]);
 
-
-    const jucatori_init=[
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Sergio",
-            varsta:"17 Octombrie 2002",
-            nationalitate:"Brazilia",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Ion",
-            varsta:"20 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Vasile",
-            varsta:"12 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Vasile",
-            varsta:"12 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Vasile",
-            varsta:"12 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Vasile",
-            varsta:"12 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Vasile",
-            varsta:"12 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        },
-        {
-            img:'./images/sergio.png',
-            numeComplet:"Vasile",
-            varsta:"12 Octombrie 2000",
-            nationalitate:"Romaniaa",
-            post:"Libero",
-            inaltime:"1.85m"
-        }
-    ]
+  const getJucatori = async () => {
+    const response = await axios.get('/getsimplepersonal')
+    console.log(response);
+    setJucatori(response.data);
+  }
+  useEffect(() => {
+    getJucatori();
+   
+  }, []) 
     
   return (
     <>
@@ -84,18 +28,23 @@ function Jucatori() {
     </div>
     <div className='cards'>
 
-        {jucatori_init.filter((jucator) => {
-          return search.toLowerCase() === '' ? jucator : jucator.numeComplet.toLowerCase().includes(search)
+        {jucatori.filter((jucator) => {
+          const numeComplet=jucator.nume+" "+jucator.prenume
+          return search.toLowerCase() === '' ? jucator : numeComplet.toLowerCase().includes(search)
         })
           .map((jucator) => {
             return (
               <Jucator
                 img={jucator.img}
-                numeComplet={jucator.numeComplet}
-                varsta={jucator.varsta}
+                nume={jucator.nume}
+                prenume={jucator.prenume}
+                data_nasterii={jucator.data_nasterii}
                 nationalitate={jucator.nationalitate}
                 post={jucator.post}
-                inaltime={jucator.inaltime} />
+                inaltime={jucator.inaltime} 
+                id_personal={jucator.id_personal}
+                lot_curent={jucator.lot_curent}
+                />
             )
           })}
       </div></>
