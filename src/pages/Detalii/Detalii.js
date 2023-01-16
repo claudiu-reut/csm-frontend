@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Detalii.css'
 
 const Detalii = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       <div class='main-container'>
         <Link to='/detalii/istorie'>
           <div class='container-lot'>
             <div className='image-div'>
-              <img
-                src=''
-                alt=''
-              />
+              <img src='' alt='' />
             </div>
             <h2>Istorie</h2>
           </div>
@@ -21,10 +21,7 @@ const Detalii = () => {
         <Link to='/detalii/trofee'>
           <div class='container-lot'>
             <div className='image-div'>
-              <img
-                src=''
-                alt=''
-              />
+              <img src='' alt='' />
             </div>
             <h2>Trofee</h2>
           </div>
@@ -33,10 +30,7 @@ const Detalii = () => {
         <Link to='/detalii/viziune'>
           <div class='container-lot'>
             <div className='image-div'>
-              <img
-                src=''
-                alt=''
-              />
+              <img src='' alt='' />
             </div>
             <h2>Viziune</h2>
           </div>
@@ -45,10 +39,7 @@ const Detalii = () => {
         <Link to='/detalii/personal'>
           <div class='container-lot'>
             <div className='image-div'>
-              <img
-                src=''
-                alt=''
-              />
+              <img src='' alt='' />
             </div>
             <h2>Personal</h2>
           </div>

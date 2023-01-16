@@ -71,7 +71,13 @@ function Post({ post, filter_by_tag }) {
   return (
     <div className='post'>
       <div className='post-img'>
-        <img src={`data:image/jpeg;base64,${post.imagine}`}alt='post-img' />
+        <img
+          src={`data:image/jpeg;base64,${post.imagine}`}
+          alt='post-img'
+          onClick={() => {
+            navigate(`/noutati/${post.id_postare}`)
+          }}
+        />
       </div>
       <div className='post-tags'>
         <FaTags size={15} />
