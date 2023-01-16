@@ -25,7 +25,7 @@
   .image-div img {
     width: 100%;
     transition: all 0.8s;
-    border-radius: 5px;
+    border-radius: 6px;
   }
   .container-lot:hover img {
     transform: scale(1.2);
