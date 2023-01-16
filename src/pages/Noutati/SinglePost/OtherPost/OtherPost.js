@@ -7,6 +7,7 @@ function OtherPost({ post }) {
   const [title, setTitle] = useState('')
   const [linkImg, setLinkImg] = useState('')
   const [description, setDescription] = useState('')
+  
   useEffect(() => {
     setLinkImg(post.linkImg)
     if (post.titlu.length > 70) {
@@ -29,7 +30,7 @@ function OtherPost({ post }) {
       }}
     >
       <div className='other-post-img'>
-        <img src={linkImg} alt='imagine-post' />
+        <img src={`data:image/jpeg;base64,${post.imagine}`} alt='imagine-post' />
       </div>
       <div className='other-post-title'>
         <h2>{title}</h2>
