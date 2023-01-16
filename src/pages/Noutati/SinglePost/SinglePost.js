@@ -148,7 +148,7 @@ function SinglePost() {
           </div>
         </div>
         <div className='single-post-image'>
-          <img src={post.linkImg} alt='imagine post' />
+          <img src={`data:image/jpeg;base64,${post.imagine}`} alt='imagine post' />
         </div>
         <div className='single-post-description'>
           <p>{post.descriere}</p>

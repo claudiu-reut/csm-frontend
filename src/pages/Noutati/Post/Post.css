@@ -99,6 +99,9 @@
   max-height: 230px;
   border-radius: 7px;
 }
+.post-img img:hover {
+  cursor: pointer;
+}
 .post-img {
   display: flex;
   align-items: center;
