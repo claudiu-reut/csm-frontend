@@ -71,7 +71,7 @@ function Post({ post, filter_by_tag }) {
   return (
     <div className='post'>
       <div className='post-img'>
-        <img src={post.linkImg} alt='post-img' />
+        <img src={`data:image/jpeg;base64,${post.imagine}`}alt='post-img' />
       </div>
       <div className='post-tags'>
         <FaTags size={15} />

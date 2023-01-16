@@ -19,6 +19,7 @@ function AddPost() {
   const [linkImagine, setLinkImg] = useState('')
   const [descriere, setDescriere] = useState('')
   const [userId, setUserId] = useState()
+  const [selectedFile, setSelectedFile] = useState(null);
   const match = useParams()
   //confirmation
   const [checkmark, setCheckmark] = useState(false)
@@ -39,47 +40,50 @@ function AddPost() {
   const handleAddPost = async () => {
     let title_field = document.getElementById('title-post')
     let tags_field = document.getElementById('tags-post')
-    let image_field = document.getElementById('img-post')
+  
     let description_field = document.getElementById('description-post')
     if (
       check_field(title_field) &&
       check_field(tags_field) &&
-      check_field(image_field) &&
+     
       check_field(description_field)
     ) {
       setCheckmark(true)
       setIcon(iconLoading)
       setMessage('Loading...')
       setTextColor('black')
-      let post = {}
-      post.titlu = titlu
-      post.tags = tags
-      post.linkImg = linkImagine
-      post.descriere = descriere
-      post.linkExtern = ''
-      post.tags = tags
-      post.data = new Date()
-      post.user_id = userId
-
-      try {
-        let result = await axios.put(`/editpost/${match.id}`, post)
-        if (result.status === 200) {
-          setMessage('Postare editata cu succes')
-          setIcon(iconSucces)
-          setTextColor('black')
-        } else {
-          setMessage(result.data.err)
-          setIcon(iconError)
-          setTextColor('red')
-        }
-      } catch (error) {
-        console.log(error)
-        setMessage('Error.Try again later')
-        setIcon(iconError)
-        setTextColor('red')
+      let post = new FormData();
+      post.append('titlu',titlu)  
+      post.append("tags",tags.replace(' ', '')) 
+      post.append("linkImg",linkImagine) 
+      post.append("descriere",descriere);
+      post.append("linkExtern",'');
+      post.append("data",new Date());
+      post.append("user_id",userId);
+      post.append("imagine",selectedFile);
+          axios({
+            method: "put",
+            url: `editpost/${match.id}`,
+            data: post,
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+            .then(function (response) {
+                if (response.data.status !== 'ERROR') {
+                    setIcon(iconSucces)
+                    setMessage('Postare editata cu succes')
+                    setTextColor('black')
+                  } 
+              console.log(response);
+            })
+            .catch(function (response) {
+                setIcon(iconError)
+                setMessage('Oops, Eroare.Incearca din nou...')
+                setTextColor('red')
+              console.log(response);
+            });
       }
     }
-  }
+  
   useEffect(() => {
     setCheckmark(false)
   }, [titlu, tags, linkImagine, descriere])
@@ -143,16 +147,11 @@ function AddPost() {
             <div className='form-group mt-3'>
               <label htmlFor='img-post'>Url imagine:</label>
               <input
-                placeholder='Adresa imaginii'
-                type='text'
-                id='img-post'
-                className='form-control mt-1'
-                onChange={(e) => {
-                  setLinkImg(e.target.value)
-                  e.target.style.backgroundColor = 'white'
-                }}
-                value={linkImagine}
-              />
+          type="file"
+         id='img-post'
+          accept="image/png, image/gif, image/jpeg"
+          onChange= {(e) => setSelectedFile(e.target.files[0])}
+        />
             </div>
             <div className='form-group mt-3'>
               <label htmlFor='description-post'>Descriere:</label>
