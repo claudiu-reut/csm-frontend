@@ -3,42 +3,22 @@ import './Footer.css'
 import {
   MDBFooter,
   MDBContainer,
-  MDBIcon,
+
   MDBInput,
   MDBCol,
   MDBRow,
   MDBBtn
 } from 'mdb-react-ui-kit';
-
+import {FaHome,FaEnvelope,FaPhone,FaFax} from 'react-icons/fa'
 function Footer() {
   return <div className='footer'>
    <MDBFooter className=' footer text-center ' bgColor='blue' color='white'>
       <MDBContainer className='p-4'>
        
-        <section className=''>
-          <form action=''>
-            <MDBRow className='d-flex justify-content-center'>
-              <MDBCol size="auto">
-                <p className='pt-2'>
-                  <strong>Sign up for our newsletter</strong>
-                </p>
-              </MDBCol>
-
-              <MDBCol md='5' start>
-                <MDBInput contrast type='email' className='mb-4' />
-              </MDBCol>
-
-              <MDBCol size="auto">
-                <MDBBtn outline color='light' type='submit' className='mb-4'>
-                  Subscribe
-                </MDBBtn>
-              </MDBCol>
-            </MDBRow>
-          </form>
-        </section>
+       
 
         <section className='mb-4'>
-          <h3>Istoria noastra</h3>
+          <h3 className='text-white fw-bold'>Istoria noastră</h3>
           <p>
           CSM Suceava a fost fondat pe 19 iulie 1972 și includea secțiuni de fotbal, atletism, rugby și volei. Pe parcursul anilor, mai multe secțiuni au fost adăugate, printre care tir cu arcul, baseball, box, lupte greco-romane, handbal, hochei pe gheață, canotaj, patinaj viteză și înot.
           </p>
@@ -47,93 +27,72 @@ function Footer() {
         <section className=''>
           <MDBRow>
             <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-             
-             
-              <a href='/acasa' className=' text-uppercase text-white'>Acasa</a>
-
+              <a href='/acasa' className=' text-uppercase text-white '><h5>Acasa</h5></a>
+              <a href='/calendar' className=' text-uppercase text-white'><h5>Calendar</h5></a>
+            <a href='/noutati' className=' text-uppercase text-white'><h5>Noutati</h5></a>
+            <a href='/sponsori' className=' text-uppercase text-white'><h5>Sponsori</h5></a>
              
             </MDBCol>
 
             <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-              <h5 className='text-uppercase'>Links</h5>
+              <h5 className='text-uppercase'>DETALII CLUB</h5>
 
               <ul className='list-unstyled mb-0'>
                 <li>
-                  <a href='#!' className='text-white'>
-                    Link 1
+                  <a href='/detalii/istorie' className='text-white'>
+                    Istorie
                   </a>
                 </li>
                 <li>
-                  <a href='#!' className='text-white'>
-                    Link 2
+                  <a href='/detalii/trofee' className='text-white'>
+                    Trofee
                   </a>
                 </li>
                 <li>
-                  <a href='#!' className='text-white'>
-                    Link 3
+                  <a href='/detalii/viziune' className='text-white'>
+                    Viziune
                   </a>
                 </li>
                 <li>
-                  <a href='#!' className='text-white'>
-                    Link 4
+                  <a href='/detalii/personal' className='text-white'>
+                    Personal
                   </a>
                 </li>
+              </ul>
+            </MDBCol>
+           
+            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+              <h5 className='text-uppercase' href='/calendar'>Volei Juvenil</h5>
+
+              <ul className='list-unstyled mb-0'>
+                <li>
+                  <a href='/juvenil/cadet' className='text-white'>
+                    Cadet
+                  </a>
+                </li>
+                <li>
+                  <a href='/juvenil/junior' className='text-white'>
+                    Junior
+                  </a>
+                </li>
+                <li>
+                  <a href='/juvenil/sperante' className='text-white'>
+                    Sperante
+                  </a>
+                </li>
+                
               </ul>
             </MDBCol>
 
             <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-              <h5 className='text-uppercase'>Links</h5>
-
-              <ul className='list-unstyled mb-0'>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 1
-                  </a>
-                </li>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 2
-                  </a>
-                </li>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 3
-                  </a>
-                </li>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 4
-                  </a>
-                </li>
-              </ul>
+            <h5 className='text-uppercase' href='/contact'>Contact</h5>
+            <p><FaHome></FaHome> Bulevardul 1 Decembrie 1918, nr.7, Suceava, Romania</p>
+            <p> <FaEnvelope></FaEnvelope> csm.suceava@sport.gov.ro</p>
+            <p> <FaPhone></FaPhone> 0230 531 289</p>
+            <p> <FaFax></FaFax> 0230 524 767</p>
             </MDBCol>
-
-            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
-              <h5 className='text-uppercase'>Links</h5>
-
-              <ul className='list-unstyled mb-0'>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 1
-                  </a>
-                </li>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 2
-                  </a>
-                </li>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 3
-                  </a>
-                </li>
-                <li>
-                  <a href='#!' className='text-white'>
-                    Link 4
-                  </a>
-                </li>
-              </ul>
-            </MDBCol>
+            
+          
           </MDBRow>
         </section>
       </MDBContainer>
