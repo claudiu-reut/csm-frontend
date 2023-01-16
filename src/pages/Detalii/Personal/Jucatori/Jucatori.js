@@ -9,7 +9,7 @@ function Jucatori() {
   const [jucatori,setJucatori]=useState([]);
 
   const getJucatori = async () => {
-    const response = await axios.get('/getsimplepersonal')
+    const response = await axios.get('/getpersonal')
     console.log(response);
     setJucatori(response.data);
   }
@@ -35,7 +35,7 @@ function Jucatori() {
           .map((jucator) => {
             return (
               <Jucator
-                img={jucator.img}
+                img={jucator.imagine}
                 nume={jucator.nume}
                 prenume={jucator.prenume}
                 data_nasterii={jucator.data_nasterii}

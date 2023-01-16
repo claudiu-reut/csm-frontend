@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Jucator.css'
 import axios from "../../../api/axios";
 function Jucator({img,nume,prenume,data_nasterii,nationalitate,post,inaltime,id_personal,lot_curent}){
-  const [imagine,setImagine]=useState('');
+ 
   const numeComplet=nume+" "+prenume;
   function calcAge(varsta) {
  
@@ -11,21 +11,14 @@ function Jucator({img,nume,prenume,data_nasterii,nationalitate,post,inaltime,id_
     return ~~((Date.now() - birthday) / (31557600000));
   }
  
-  const getPhoto = async () => {
-    const response = await axios.get(`/getpersonalphoto/${id_personal}`)
-    setImagine(response.data);
-  }
-  useEffect(() => {
-    getPhoto();
-   
-  }, [])
+  
   return (
     
         <div className='card'>
           <div className='img-card'>
           <img
           className='imag'
-            src={`data:image/jpeg;base64,${imagine}`}
+            src={`data:image/jpeg;base64,${img}`}
             alt='...'
             position='top'></img></div>
           <div className='card-body'>
