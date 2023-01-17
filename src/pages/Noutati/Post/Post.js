@@ -13,7 +13,7 @@ import {
   RedditShareButton,
 } from 'react-share'
 import { useNavigate } from 'react-router-dom'
-function Post({ post, filter_by_tag }) {
+function Post({ post }) {
   let navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -56,12 +56,7 @@ function Post({ post, filter_by_tag }) {
     }
     let result = tags.split(',').map((tag, index) => {
       return (
-        <p
-          key={index}
-          onClick={() => {
-            filter_by_tag(tag)
-          }}
-        >
+        <p key={index} onClick={() => {}}>
           #{tag}
         </p>
       )

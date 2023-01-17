@@ -17,10 +17,18 @@
   padding: 1rem;
   margin: 1rem;
   box-shadow: 1px 1px 25px 1px #ccc;
+  transition: all 0.6s;
   /* min-height: 17rem; */
 }
 .match:hover {
   cursor: pointer;
+
+  border-image: linear-gradient(
+      270deg,
+      rgba(33, 142, 251, 0.808),
+      rgba(230, 229, 229, 0.832)
+    )
+    1;
 }
 .win {
   border-image: linear-gradient(45deg, rgb(80, 253, 77), #ccc) 1;

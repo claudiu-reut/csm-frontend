@@ -39,9 +39,11 @@ export const NavLink = styled(Link)`
   transition: all 0.2s;
   &.active {
     color: #6db1ff;
+    text-decoration: none;
   }
   &:hover {
     color: #6db1ff;
+    text-decoration: none;
   }
   @media screen and (max-width: 1020px) {
     font-size: 16px;

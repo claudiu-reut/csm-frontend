@@ -225,7 +225,7 @@ function AddMeci() {
               })}
             </select>
           </div>
-          <div className='form-group '>
+          <div className='form-group mt-3'>
             <label>Rezultat</label>
             <br></br>
             <div className='scor'>
@@ -237,6 +237,7 @@ function AddMeci() {
                 id='rez1'
                 onChange={handleRezultat}
                 min='0'
+                max='3'
                 defaultValue='-'
               />
               <h3 className='puncte'>:</h3>
@@ -249,6 +250,7 @@ function AddMeci() {
                 onChange={handleRezultat}
                 defaultValue='-'
                 min='0'
+                max='3'
               />
             </div>
           </div>

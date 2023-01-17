@@ -24,12 +24,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 15rem;
+  max-width: 17rem;
   margin: 0 2rem;
+  transition: all 0.5s;
 }
 .noutati-toolbar-item label {
-  width: 100%;
-  margin-right: 0.5rem;
+  width: 30px;
+  margin-right: 0.3rem;
   text-align: center;
 }
 .noutati-reset {
@@ -57,17 +58,17 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 750px) {
   .noutati {
     flex-direction: column;
   }
   .noutati-toolbar-item {
-    width: 8rem;
-    flex-direction: column;
+    max-width: 10rem;
     align-items: center;
     justify-content: center;
-    margin: 0 1rem;
+    margin: 0 0.4rem;
   }
+
   .noutati-toolbar-item label {
     margin: 0;
     margin-bottom: 0.3rem;
@@ -75,5 +76,14 @@
   .noutati-toolbar {
     height: 80px;
     justify-content: space-around;
+  }
+}
+@media (max-width: 450px) {
+  .noutati-reset span {
+    display: none;
+  }
+  .date-range-picker-item {
+    max-width: 6rem;
+    order: -3;
   }
 }

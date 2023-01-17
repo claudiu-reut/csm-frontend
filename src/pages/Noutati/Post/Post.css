@@ -83,6 +83,7 @@
   font-style: bold;
   font-size: 1rem;
   font-weight: bold;
+  line-height: 20px;
 }
 .post-title h2:hover {
   text-decoration: underline;
@@ -113,7 +114,7 @@
 .post-description {
   margin-bottom: 0.4rem;
 }
-@media screen and (max-width: 550px) {
+@media (max-width: 550px) {
   .post {
     width: 90%;
     height: 445px;
@@ -124,9 +125,18 @@
   .post-date {
     flex: 5;
   }
-
   .post-share p {
     margin: 0 0.2rem;
     padding: 0 0.3rem;
+  }
+}
+@media (max-width: 450px) {
+  .post-info {
+    margin-top: 1rem;
+    align-items: flex-end;
+  }
+  .post-title {
+    height: 3.5rem;
+    align-items: center;
   }
 }

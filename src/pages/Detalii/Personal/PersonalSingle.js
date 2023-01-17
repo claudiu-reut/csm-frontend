@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import './Jucator.css'
-import axios from '../../../api/axios'
+import './PersonalSingle.css'
+import axios from '../../api/axios'
 function Jucator({
   img,
   nume,

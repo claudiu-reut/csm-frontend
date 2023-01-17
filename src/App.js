@@ -11,12 +11,10 @@ import Calendar from './pages/Calendar/Calendar'
 import ContactForm from './pages/Contact/ContactForm'
 import Detalii from './pages/Detalii/Detalii'
 import Juvenil from './pages/Juvenil/Juvenil'
-import Personal from './pages/Detalii/Personal/Personal'
 import Istorie from './pages/Detalii/Istorie/Istorie'
 import Viziune from './pages/Detalii/Viziune/Viziune'
 import Trofee from './pages/Detalii/Trofee/Trofee'
-import Jucatori from './pages/Detalii/Personal/Jucatori/Jucatori'
-import Antrenor from './pages/Detalii/Personal/Antrenori/Antrenor'
+import Personal from './pages/Detalii/Personal/Personal'
 import Junior from './pages/Juvenil/Junior/Junior'
 import Cadet from './pages/Juvenil/Cadet/Cadet'
 import Sperante from './pages/Juvenil/Sperante/Sperante'
@@ -62,8 +60,6 @@ function App() {
         <Route path='/detalii/istorie' element={<Istorie />} />
         <Route path='/detalii/viziune' element={<Viziune />} />
         <Route path='/detalii/trofee' element={<Trofee />} />
-        <Route path='/detalii/personal' element={<Antrenor />} />
-        <Route path='/detalii/personal/jucatori' element={<Jucatori />} />
         <Route path='/juvenil' element={<Juvenil />} />
         <Route path='/juvenil/sperante' element={<Sperante />} />
         <Route path='/juvenil/cadet' element={<Cadet />} />

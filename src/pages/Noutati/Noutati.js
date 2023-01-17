@@ -4,13 +4,18 @@ import { useState } from 'react'
 import './Noutati.css'
 import Post from './Post/Post'
 import axios from '../api/axios'
+import { DateRangePicker } from 'rsuite'
 import { GrPowerReset } from 'react-icons/gr'
+import { BiFilterAlt } from 'react-icons/bi'
+import { RiArrowUpDownLine } from 'react-icons/ri'
 const Noutati = () => {
   const [postari, setPostari] = useState([])
   const [postariOrigin, setPostariOrigin] = useState([])
   const [tags, setTags] = useState([])
-  const [selectedTag, setSelectedTag] = useState('')
+  const [tagFilter, setTagFilter] = useState('')
   const [selectedSortValue, setSelectedSortValue] = useState('')
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
   const [, updateState] = React.useState()
   const get_posts = async () => {
     try {
@@ -52,16 +57,6 @@ const Noutati = () => {
     window.scrollTo(0, 0)
     forceUpdate()
   }
-  const filter_by_tag = (tag) => {
-    if (tag === '') {
-      setPostari(postariOrigin)
-      return
-    }
-    let result = postariOrigin.filter((post) => post.tags.includes(tag))
-    setPostari(result)
-    window.scrollTo(0, 0)
-    forceUpdate()
-  }
   const get_all_tags = (postari) => {
     let taguri = []
     if (postari.length !== 0) {
@@ -76,12 +71,32 @@ const Noutati = () => {
     }
     setTags(taguri)
   }
+  const filter_noutati = (tagFilter, dateMinFilter, dateMaxFilter) => {
+    let result = postariOrigin
+    if (tagFilter !== '') {
+      result = result.filter((post) => post.tags.includes(tagFilter))
+    }
+    if (dateMinFilter !== '') {
+      result = result.filter(
+        (post) => new Date(post.createdAt) >= dateMinFilter
+      )
+    }
+    if (dateMaxFilter !== '') {
+      result = result.filter(
+        (post) => new Date(post.createdAt) <= dateMaxFilter
+      )
+    }
+    setPostari(result)
+    window.scrollTo(0, 0)
+  }
   return (
     <>
       <div className='noutati-container'>
         <div className='noutati-toolbar'>
           <div className='noutati-toolbar-item'>
-            <label htmlFor='select-order-noutati'>Ordoneaza dupa</label>
+            <label htmlFor='select-order-noutati'>
+              <RiArrowUpDownLine size={25} />
+            </label>
             <select
               value={selectedSortValue}
               id='select-order-noutati'
@@ -99,16 +114,18 @@ const Noutati = () => {
             </select>
           </div>
           <div className='noutati-toolbar-item'>
-            <label htmlFor='select-filter-noutati'>Filtreaza dupa</label>
+            <label htmlFor='select-filter-noutati'>
+              <BiFilterAlt size={25} />
+            </label>
             <select
-              value={selectedTag}
+              value={tagFilter}
               id='select-filter-noutati'
               defaultValue={''}
               className='form-select'
               aria-label='Default select example'
               onChange={(e) => {
-                setSelectedTag(e.target.value)
-                filter_by_tag(e.target.value)
+                filter_noutati(e.target.value, startDate, endDate)
+                setTagFilter(e.target.value)
               }}
             >
               <option value=''>All</option>
@@ -121,11 +138,25 @@ const Noutati = () => {
               })}
             </select>
           </div>
+          <div className='noutati-toolbar-item date-range-picker-item'>
+            <DateRangePicker
+              showOneCalendar
+              appearance='default'
+              value={[startDate, endDate]}
+              onChange={(value) => {
+                setStartDate(value[0])
+                setEndDate(value[1])
+                filter_noutati(tagFilter, value[0], value[1])
+              }}
+            />
+          </div>
           <div
             className='noutati-reset'
             onClick={() => {
               window.scrollTo(0, 0)
-              setSelectedTag('')
+              setTagFilter('')
+              setStartDate('')
+              setEndDate('')
               setSelectedSortValue('default')
               setPostari(postariOrigin)
             }}
@@ -136,13 +167,7 @@ const Noutati = () => {
         </div>
         <div className='noutati'>
           {postari.map((post) => {
-            return (
-              <Post
-                key={post.createdAt}
-                post={post}
-                filter_by_tag={filter_by_tag}
-              />
-            )
+            return <Post key={post.createdAt} post={post} />
           })}
         </div>
       </div>

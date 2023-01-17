@@ -25,6 +25,7 @@
     "react-scripts": "5.0.1",
     "react-share": "^4.4.1",
     "react-useanimations": "^2.0.8",
+    "rsuite": "^5.24.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
