@@ -12,6 +12,9 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.div-table h1 {
+  margin-left: 1rem;
+}
 table {
   padding: 0;
   margin: 0;
@@ -25,13 +28,14 @@ table {
 .btn-add {
   width: 10rem;
   padding: 0.5rem;
+  margin-top: 1rem;
 }
 .problematic {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   .hidde-on-overflow {
     display: none;
   }

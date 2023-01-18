@@ -1,6 +1,8 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { CgProfile } from 'react-icons/cg'
+import { MdOutlineSettings } from 'react-icons/md'
+import { BiLogOut } from 'react-icons/bi'
+import { TbHandClick } from 'react-icons/tb'
 import { decodeJwt } from 'jose'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +15,6 @@ import {
   NavBtn,
   NavBtnLink,
 } from './NavBarComponents'
-
 const Navbar = ({ toggle }) => {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
   const token = localStorage.getItem('token')
@@ -33,7 +34,7 @@ const Navbar = ({ toggle }) => {
       }
     }
     func()
-  }, [])
+  }, [token])
   return (
     <Nav>
       <NavLink to='/'>
@@ -68,7 +69,7 @@ const Navbar = ({ toggle }) => {
           <NavBtnLink to='/signin'>Sign In</NavBtnLink>
         </NavBtn>
         <div
-          class='dropdown'
+          className='dropdown'
           style={{ display: user !== '' ? 'block' : 'none' }}
           onMouseEnter={() => {
             setOpenDropDownSignIn(true)
@@ -78,7 +79,10 @@ const Navbar = ({ toggle }) => {
           }}
         >
           <div className='profile'>
-            <CgProfile size={30} />
+            <img
+              src='https://pbs.twimg.com/profile_images/1245140850151227399/mS3TXS8T_400x400.jpg'
+              alt='user profile image'
+            />
             <p>Hi, {user}</p>
           </div>
 
@@ -92,24 +96,33 @@ const Navbar = ({ toggle }) => {
               setOpenDropDownSignIn(!openDropDownSignIn)
             }}
           />
-          <div class='dropdown-menu' aria-labelledby='dropdownMenuLink'>
-            <button
-              class='dropdown-item'
+          <div className='dropdown-menu' aria-labelledby='dropdownMenuLink'>
+            <div
+              className='dropdown-item'
               onClick={() => {
                 nav('/admin')
               }}
             >
-              Administration
-            </button>
-            <button class='dropdown-item'>Another action</button>
-            <button
-              class='dropdown-item'
+              <MdOutlineSettings size={20} />
+              <button>Administration</button>
+            </div>
+            <div className='dropdown-item'>
+              <TbHandClick size={20} />
+              <button>Another action</button>
+            </div>
+            <div className='dropdown-item'>
+              <TbHandClick size={20} />
+              <button>Another action</button>
+            </div>
+            <div
+              className='dropdown-item'
               onClick={() => {
                 logOut()
               }}
             >
-              Sign Out
-            </button>
+              <BiLogOut size={20} />
+              <button>Sign Out</button>
+            </div>
           </div>
         </div>
       </NavMenu>

@@ -8,7 +8,7 @@ import { AiOutlineEdit } from 'react-icons/ai'
 import axios from '../api/axios'
 import { ThreeDots } from 'react-loading-icons'
 let iconLoading = (
-  <ThreeDots strokeOpacity={1} stroke='#06bcee' fill='blue' height={15} />
+  <ThreeDots strokeOpacity={1} stroke='#06bcee' fill='blue' height={12} />
 )
 function CreatorContinut() {
   const [isLoadingPosts, setIsLoadingPosts] = useState(false)

@@ -8,7 +8,7 @@ import './Admin.css'
 import axios from '../api/axios'
 import { ThreeDots } from 'react-loading-icons'
 let iconLoading = (
-  <ThreeDots strokeOpacity={1} stroke='#06bcee' fill='blue' height={15} />
+  <ThreeDots strokeOpacity={1} stroke='#06bcee' fill='blue' height={12} />
 )
 
 function Admin() {
@@ -38,7 +38,6 @@ function Admin() {
       <div className='div-table'>
         <h1>Useri</h1>
         <br />
-
         <table
           class='table table-striped'
           style={{ display: isLoadingUsers ? 'none' : 'revert' }}
@@ -94,7 +93,7 @@ function Admin() {
         <br />
         <table
           class='table table-striped'
-          style={{ display: isLoadingUsers ? 'none' : 'revert' }}
+          style={{ display: isLoadingSponsors ? 'none' : 'revert' }}
         >
           <thead>
             <tr>
