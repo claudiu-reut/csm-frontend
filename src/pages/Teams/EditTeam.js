@@ -18,10 +18,20 @@ function EditTeam() {
   const [oras, setOras] = useState('')
   const [tara, setTara] = useState('')
   const [selectedFile, setSelectedFile] = useState(null);
+  const [img,setImg]=useState();
   const params = useParams()
   const errRef = useRef()
   var bodyFormData = new FormData();
+  const handleFile=(e)=>{
+    setSelectedFile(e.target.files[0])
+    const src=e.target.files[0];
+    const imag=document.getElementById("image");
+   
   
+  
+   imag.src=URL.createObjectURL(src);
+ 
+  }
 
   //confirm
   const [checkmark, setCheckmark] = useState(false)
@@ -39,7 +49,7 @@ function EditTeam() {
       setNume(team.nume);
       setOras(team.oras);
       setTara(team.tara);
-      
+      setImg(team.imagine);
       
     } catch (error) {
       console.log(error)
@@ -396,8 +406,11 @@ function EditTeam() {
           type="file"
          
           accept="image/png, image/gif, image/jpeg"
-          onChange= {(e) => setSelectedFile(e.target.files[0])}
+          onChange= {(e) => handleFile(e)}
         />
+         <div className='form-group mt-2'>
+              <img id="image" src={`data:image/jpeg;base64,${img}`} alt="imagine" className='imgprev'  />
+                </div>
          
             <input
               type='checkbox'

@@ -1,23 +1,39 @@
 import React, { useState, useRef } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './AddTeam.css'
-import axios from '../api/axios'
+import './AddPersonal.css'
+import axios from '../../api/axios'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
-import CheckMessage from '../CheckMessage/CheckMessage'
+import CheckMessage from '../../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
 
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
 
-function AddTeam() {
+function AddPersonal() {
   const [nume, setNume] = useState('')
-  const [oras, setOras] = useState('')
-  const [tara, setTara] = useState('')
+  const [prenume, setPrenume] = useState('')
+  const [nationalitate, setNationalitate] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
+  const [pozitie, setPozitie] = useState('')
+  const [tip_personal, setTipPersonal] = useState('')
+  const [descriere,setDescriere]=useState('');
+  const [data_nasterii,setData]=useState('');
+  const [inaltime,setInaltime]=useState('');
+  function handleDate(e) {
+    setData(e.target.value)
+    let givenDate = new Date(e.target.value)
+    let todaysDate = new Date().setHours(0, 0, 0, 0)
+    if (givenDate - todaysDate<=10) {
+     setData(e.target.value);
+    } else {
+      setData(e.target.value)
+    }
+  }
+
   const errRef = useRef()
   var bodyFormData = new FormData()
 
@@ -45,7 +61,7 @@ function AddTeam() {
     setIcon(iconLoading)
     setMessage('Logging..')
     setTextColor('black')
-  }, [nume, oras, tara])
+  }, [nume, prenume, nationalitate])
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIcon(iconLoading)
@@ -55,13 +71,20 @@ function AddTeam() {
       try {
         console.log(selectedFile)
         bodyFormData.append('nume', nume)
-        bodyFormData.append('oras', oras)
-        bodyFormData.append('tara', tara)
+        bodyFormData.append('prenume', prenume)
+        bodyFormData.append('nationalitate', nationalitate)
+        bodyFormData.append('pozitie', pozitie)
+        bodyFormData.append('tip_personal', tip_personal)
         bodyFormData.append('imagine', selectedFile)
+        bodyFormData.append('id_echipa', 4);
+        bodyFormData.append('data_nasterii', data_nasterii);
+        bodyFormData.append('descriere', descriere);
+        bodyFormData.append('inaltime', inaltime);
+        bodyFormData.append('imagine',selectedFile)
         setCheckmark(true)
         axios({
           method: 'post',
-          url: 'addteam',
+          url: 'addpersonal',
           data: bodyFormData,
           headers: { 'Content-Type': 'multipart/form-data' },
         })
@@ -111,7 +134,7 @@ function AddTeam() {
     <div className='Auth-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
-          <h3 className='Auth-form-title'>Adauga Echipa</h3>
+          <h3 className='Auth-form-title'>Adauga Personal</h3>
 
           <div className='form-group mt-3'>
             <label>Nume</label>
@@ -124,21 +147,21 @@ function AddTeam() {
             />
           </div>
           <div className='form-group mt-3'>
-            <label>Oras</label>
+            <label>Prenume</label>
             <input
               type='text'
               className='form-control mt-1'
-              placeholder='Oras'
+              placeholder='Prenume'
               required
-              onChange={(e) => setOras(e.target.value)}
+              onChange={(e) => setPrenume(e.target.value)}
             />
           </div>
 
           <div className='form-group mt-3'>
-            <label>Țara</label>
+            <label>Naționalitate</label>
             <select
               class='form-select'
-              onChange={(e) => setTara(e.target.value)}
+              onChange={(e) => setNationalitate(e.target.value)}
             >
               <option value='0' label='Selecteaza țara... ' selected disabled>
                 Selecteaza țara...{' '}
@@ -425,6 +448,58 @@ function AddTeam() {
               <option value='Zambia'>Zambia</option>
               <option value='Zimbabwe'>Zimbabwe</option>
             </select>
+            <div className='d-grid gap-2 mt-3'>
+            <label>Poziție</label>
+            <select class='form-select' onChange={(e) => setPozitie(e.target.value)}>
+                <option selected disabled>Selecteaza poziție...</option>
+                <option value='Outside Hitter'>Outside Hitter</option>
+                <option value='Opposite Hitter'>Opposite Hitter</option>
+                <option value='Middle Blocker'>Middle Blocker</option>
+                <option value='Setter'>Setter</option>
+                <option value='Libero '>Libero </option>
+                <option value='Outside Hitter'>Capitan</option>
+
+            </select>
+            </div>
+            <div className='d-grid gap-2 mt-3'>
+            <label>Tip Personal</label>
+            <select class='form-select' onChange={(e) => setTipPersonal(e.target.value)}>
+                <option selected disabled>Selecteaza tip personal...</option>
+                <option value='jucator'>Jucator</option>
+                <option value='jucator'>Antrenor</option>
+              
+
+            </select>
+            <div className='form-group mt-3'>
+            <label>Data</label>
+            <br></br>
+            <input
+              type='date'
+              onChange={(e) => {
+                handleDate(e)
+              }}
+              id='data'
+            />
+          </div>
+            </div>
+            <div className='form-group mt-3'>
+            <label>Descriere</label>
+            <textarea
+              class='form-control'
+              placeholder='Descriere'
+              onChange={(e) => setDescriere(e.target.value)}
+            ></textarea>
+          </div>
+          <div className='form-group mt-3'>
+            <label>Inaltime</label>
+            <input
+              type='text'
+              className='form-control mt-1'
+              placeholder='Inaltime'
+              required
+              onChange={(e) => setInaltime(e.target.value)}
+            />
+          </div>
             <label>Imagine</label>
             <input
               type='file'
@@ -443,6 +518,7 @@ function AddTeam() {
               }}
             />
           </div>
+          
           <div className='d-grid gap-2 mt-3'>
             <button
               type='button'
@@ -463,4 +539,4 @@ function AddTeam() {
     </div>
   )
 }
-export default AddTeam
+export default AddPersonal

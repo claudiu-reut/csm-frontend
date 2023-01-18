@@ -8,6 +8,7 @@ import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
 import axios from '../../api/axios'
+
 import jwt_decode from 'jwt-decode'
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
@@ -46,6 +47,16 @@ function AddPost() {
         console.log(result.data.err)
       }
     } catch (error) {}
+  }
+  const handleFile=(e)=>{
+    setSelectedFile(e.target.files[0])
+    const src=e.target.files[0];
+    const imag=document.getElementById("image");
+   
+  
+  
+   imag.src=URL.createObjectURL(src);
+ 
   }
   const handleAddPost = async () => {
     let title_field = document.getElementById('title-post')
@@ -152,12 +163,17 @@ function AddPost() {
               />
             </div>
             <div className='form-group mt-3'>
-              <label htmlFor='img-post'>Url imagine:</label>
+              <label htmlFor='img-post'>Imagine:</label>
+              
               <input
                 type='file'
                 accept='image/png, image/gif, image/jpeg'
-                onChange={(e) => setSelectedFile(e.target.files[0])}
+                id='imginp'
+                onChange={(e) => handleFile(e)}
               />
+              <div className='form-group mt-2'>
+              <img id="image" src="./placeholder.jpg" alt="imagine" className='imgprev'  />
+                </div>
             </div>
             <div className='form-group mt-3'>
               <label htmlFor='description-post'>Descriere:</label>

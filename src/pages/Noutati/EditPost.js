@@ -37,6 +37,16 @@ function AddPost() {
     }
     return true
   }
+  const handleFile=(e)=>{
+    setSelectedFile(e.target.files[0])
+    const src=e.target.files[0];
+    const imag=document.getElementById("image");
+   
+  
+  
+   imag.src=URL.createObjectURL(src);
+ 
+  }
   const handleAddPost = async () => {
     let title_field = document.getElementById('title-post')
     let tags_field = document.getElementById('tags-post')
@@ -94,7 +104,8 @@ function AddPost() {
     setDescriere(post.descriere)
     setTags(post.tags)
     setTitlu(post.titlu)
-    setLinkImg(post.linkImg)
+    setLinkImg(post.imagine);
+    //setSelectedFile(post.imagine)
   }
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -145,14 +156,17 @@ function AddPost() {
               />
             </div>
             <div className='form-group mt-3'>
-              <label htmlFor='img-post'>Url imagine:</label>
+              <label htmlFor='img-post'>Imagine:</label>
               <input
                 type='file'
                 id='img-post'
                 accept='image/png, image/gif, image/jpeg'
-                onChange={(e) => setSelectedFile(e.target.files[0])}
+                onChange={(e) => handleFile(e)}
               />
             </div>
+            <div className='form-group mt-2'>
+              <img id="image" src={`data:image/jpeg;base64,${linkImagine}`} alt="imagine" className='imgprev'  />
+                </div>
             <div className='form-group mt-3'>
               <label htmlFor='description-post'>Descriere:</label>
               <textarea

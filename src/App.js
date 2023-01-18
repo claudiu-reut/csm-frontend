@@ -44,6 +44,7 @@ import DeleteMeci from './pages/Calendar/Meci/DeleteMeci'
 import EditMeci from './pages/Calendar/Meci/EditMeci'
 import EditTeam from './pages/Teams/EditTeam'
 import DeleteTeam from './pages/Teams/DeleteTeam'
+import AddPersonal from './pages/Detalii/Personal/AddPersonal'
 import { useEffect } from 'react'
 function App() {
   useEffect(() => {
@@ -81,6 +82,7 @@ function App() {
             <Route path='/sponsors/delete/:id' element={<DeleteSponsor />} />
             <Route path='/sponsors/:id' element={<EditSponsor />} />
             <Route path='/users/:id' element={<EditUser />} />
+            <Route path='/detalii/personal/addpersonal' element={<AddPersonal/>} />
           </Route>
           <Route path='/creatorcontinut' element={<CreatorContinut />} />
           <Route path='/noutati/addpost' element={<AddPost />} />

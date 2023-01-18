@@ -49,7 +49,7 @@ const Sponsori = () => {
                 return (
                   <Sponsor
                     key={sponsor.id_sponsor}
-                    URLsigla={sponsor.linkImagine}
+                    imagine={sponsor.imagine}
                     nume_complet={sponsor.denumire}
                     URLsite={sponsor.linkSite}
                     className='sponsor'
@@ -73,7 +73,7 @@ const Sponsori = () => {
                 return (
                   <Sponsor
                     key={sponsor.id_sponsor}
-                    URLsigla={sponsor.linkImagine}
+                    imagine={sponsor.imagine}
                     nume_complet={sponsor.denumire}
                     URLsite={sponsor.linkSite}
                     className='sponsor'
@@ -97,7 +97,7 @@ const Sponsori = () => {
                 return (
                   <Sponsor
                     key={sponsor.id_sponsor}
-                    URLsigla={sponsor.linkImagine}
+                    imagine={sponsor.imagine}
                     nume_complet={sponsor.denumire}
                     URLsite={sponsor.linkSite}
                     className='sponsor'

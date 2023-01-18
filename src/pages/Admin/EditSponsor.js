@@ -20,12 +20,20 @@ function EditSponsor() {
   const [linkImagine, setLinkImg] = useState('')
   const [editia, setEditia] = useState('')
   const match = useParams()
+  const [selectedFile, setSelectedFile] = useState(null)
   //validate
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(undefined)
   const [message, setMessage] = useState('')
   const [textColor, setTextColor] = useState('black')
-
+  const handleFile=(e)=>{
+    setSelectedFile(e.target.files[0])
+    const src=e.target.files[0];
+    const imag=document.getElementById("image");
+  
+   imag.src=URL.createObjectURL(src);
+ 
+  }
   const getSponsors = async () => {
     try {
       const result = await axios.get(`/getsponsor/${match.id}`)
@@ -33,7 +41,7 @@ function EditSponsor() {
       setSponsori(sponsor)
       setDenumire(sponsor.denumire)
       setEditia(sponsor.editia)
-      setLinkImg(sponsor.linkImagine)
+      setLinkImg(sponsor.imagine)
       setLinkSite(sponsor.linkSite)
     } catch (error) {
       console.log(error)
@@ -45,31 +53,49 @@ function EditSponsor() {
   }, [])
 
   const handleAddSponsor = () => {
+    console.log("sps");
     getSponsors()
     const addSpon = async () => {
-      try {
-        const response = await axios.put(`/editsponsor/${match.id}`, {
-          denumire,
-          linkSite,
-          linkImagine,
-          editia,
-        })
-        setMessage('Sponsor editat cu succes!')
-        setTextColor('black')
-        setIcon(iconSucces)
-      } catch (error) {
-        setMessage('No Server Response')
-        setTextColor('red')
-        setIcon(iconError)
-      }
-    }
+      console.log("add");
+      let sponsor = new FormData()
+      sponsor.append('denumire', denumire)
+      sponsor.append('linkSite', linkSite)
+      sponsor.append('editia', editia)
+      sponsor.append('imagine', selectedFile)
+          console.log("axios");
+          axios({
+            method: 'put',
+            url: `editsponsor/${match.id}`,
+            data: sponsor,
+            headers: { 'Content-Type': 'multipart/form-data' },
+          })
+            .then(function (response) {
+              if (response.data.status !== 'ERROR') {
+                setIcon(iconSucces)
+                setMessage('Sponsor adaugat cu succes')
+                setTextColor('black')
+              }
+              console.log(response)
+            })
+            .catch(function (response) {
+              setIcon(iconError)
+              setMessage('Oops, Eroare.Incearca din nou...')
+              setTextColor('red')
+              console.log(response)
+            })
+          
+          }
+        
+      
+    
     setCheckmark(true)
-    setMessage('Loading...')
+    setMessage('Sponsor adaugat cu succes')
     setTextColor('black')
-    setIcon(iconLoading)
+    setIcon(iconSucces)
     addSpon()
     getSponsors()
   }
+
   return (
     <div className='Add-form-container'>
       <section>
@@ -90,15 +116,15 @@ function EditSponsor() {
             <div className='form-group mt-3'>
               <label htmlFor='img-url'>Url imagine:</label>
               <input
-                type='text'
-                id='img-url'
-                className='form-control mt-1'
-                onChange={(e) => {
-                  setLinkImg(e.target.value)
-                }}
-                value={linkImagine}
+                type='file'
+                accept='image/png, image/gif, image/jpeg'
+                id='imginp'
+                onChange={(e) => handleFile(e)}
                 required
               />
+              <div className='form-group mt-2'>
+              <img id="image" src={`data:image/jpeg;base64,${linkImagine}`} alt="imagine" className='imgprev'  />
+                </div>
             </div>
             <div className='form-group mt-3'>
               <label htmlFor='site-url'>Oficial site:</label>
