@@ -85,7 +85,7 @@ const Login = () => {
       }
       errRef.current.focus()
     }
-    window.location.reload(false)
+    // window.location.reload(false)
   }
   return (
     <>
@@ -127,7 +127,9 @@ const Login = () => {
                 />
               </div>
               <div className='d-grid gap-2 mt-3'>
-                <button className='btn btn-primary'>Sign In</button>
+                <button type='submit' className='btn btn-primary'>
+                  Sign In
+                </button>
               </div>
               <CheckMessage
                 textColor={textColor}

@@ -4,16 +4,15 @@ import './ContactForm.css'
 import axios from '../api/axios'
 import { Checkmark } from 'react-checkmark'
 import { VscError } from 'react-icons/vsc'
-import UseAnimations from 'react-useanimations'
-import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
 import { TailSpin } from 'react-loading-icons'
-
+import UseAnimations from 'react-useanimations'
+import loading from 'react-useanimations/lib/loading'
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
-// let iconLoading = <UseAnimations animation={loading} size={35} />
-let iconLoading = <TailSpin strokeOpacity={1} stroke='#06bcee' fill='blue' />
+let iconLoading = <UseAnimations animation={loading} size={40} />
+let iconMapLoading = <TailSpin strokeOpacity={1} stroke='#06bcee' fill='blue' />
 const ContactForm = () => {
   const [isLoadingMap, setIsLoadingMap] = useState(true)
   const [status, setStatus] = useState('Send')
@@ -80,7 +79,7 @@ const ContactForm = () => {
             className='loading-content-spinner'
             style={{ display: isLoadingMap ? 'flex' : 'none' }}
           >
-            {iconLoading}
+            {iconMapLoading}
           </div>
           <iframe
             src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d21509.79141653611!2d26.2218165!3d47.6314975!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4734fdd69a0678ff%3A0xc23be436f2c62390!2sBulevardul%201%20Decembrie%201918%207%2C%20Suceava!5e0!3m2!1sro!2sro!4v1670843248268!5m2!1sro!2sro'
@@ -88,7 +87,7 @@ const ContactForm = () => {
             height='100%'
             style={{ border: 0 }}
             allowfullscreen=''
-            loading={iconLoading}
+            loading={iconMapLoading}
             onLoad={() => {
               setIsLoadingMap(false)
             }}
