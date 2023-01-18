@@ -1,8 +1,12 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './Juvenil.css'
 
 const Juvenil = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <>
       <div class='main-container'>
@@ -22,7 +26,7 @@ const Juvenil = () => {
           <div class='container-lot'>
             <div className='image-div'>
               <img
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs3LNAlDLKuPf4RNaVlHyA70Hq-p6E8LOujg&usqp=CAU'
+                src='https://img.svnews.ro/foto/2018/02/08/142594/6d0c00543c28a33be4db9af6d.jpg'
                 alt=''
               />
             </div>

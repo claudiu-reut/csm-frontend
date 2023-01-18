@@ -6,8 +6,13 @@ import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
 import './Calendar.css'
 import { GrPowerReset } from 'react-icons/gr'
-
+import UseAnimations from 'react-useanimations'
+import loading from 'react-useanimations/lib/loading'
+let iconLoading = (
+  <UseAnimations animation={loading} size={55} strokeColor='blue' />
+)
 const Calendar = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [startDate, setStartDate] = useState('')
   const [matches, setMatches] = useState([])
   const [matchesOrigin, setMatchesOrigin] = useState([])
@@ -48,6 +53,7 @@ const Calendar = () => {
     setDivisions(divisions)
   }
   const get_matches = async () => {
+    setIsLoading(true)
     try {
       let result = await axios.get('getmatchlogos')
       if (result.status === 200) {
@@ -56,7 +62,10 @@ const Calendar = () => {
       } else {
         console.log(result.data.err)
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
+    setIsLoading(false)
   }
   const order_by_date = () => {
     let sorted = matches.sort(function (a, b) {
@@ -278,6 +287,12 @@ const Calendar = () => {
           </div>
         </div>
         <div className='matches'>
+          <div
+            className='loading-content-spinner'
+            style={{ display: isLoading ? 'flex' : 'none' }}
+          >
+            {iconLoading}
+          </div>
           {matches.map((match) => {
             return <Meci match={match} key={match.id_meci} />
           })}

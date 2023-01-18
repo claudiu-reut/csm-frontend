@@ -6,18 +6,32 @@ import { Link } from 'react-router-dom'
 import { MdDeleteForever } from 'react-icons/md'
 import { AiOutlineEdit } from 'react-icons/ai'
 import axios from '../api/axios'
+import { ThreeDots } from 'react-loading-icons'
+let iconLoading = (
+  <ThreeDots strokeOpacity={1} stroke='#06bcee' fill='blue' height={15} />
+)
 function CreatorContinut() {
+  const [isLoadingPosts, setIsLoadingPosts] = useState(false)
+  const [isLoadingTeams, setIsLoadingTeams] = useState(false)
+  const [isLoadingMatches, setIsLoadingMatches] = useState(false)
   const [posts, setPosts] = useState([])
   const [teams, setTeams] = useState([])
   const [matches, setMatches] = useState([])
   useEffect(() => {
+    window.scrollTo(0, 0)
     async function fetchData() {
+      setIsLoadingPosts(true)
+      setIsLoadingTeams(true)
+      setIsLoadingMatches(true)
       const response = await axios.get('/getpostsuser')
+      setPosts(response.data)
+      setIsLoadingPosts(false)
       const res = await axios.get('/getsimpleteams')
+      setTeams(res.data)
+      setIsLoadingTeams(false)
       const mts = await axios.get('/getmatchlogos')
       setMatches(mts.data)
-      setPosts(response.data)
-      setTeams(res.data)
+      setIsLoadingMatches(false)
     }
     fetchData()
   }, [])
@@ -47,7 +61,10 @@ function CreatorContinut() {
       <div className='div-table'>
         <h1>Noutati</h1>
         <br />
-        <table class='table table-striped'>
+        <table
+          class='table table-striped'
+          style={{ display: isLoadingPosts ? 'none' : 'revert' }}
+        >
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
@@ -96,6 +113,12 @@ function CreatorContinut() {
             })}
           </tbody>
         </table>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoadingPosts ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
         <Link to='/noutati/addpost' class='btn btn-primary btn-add'>
           Adauga postare
         </Link>
@@ -103,7 +126,10 @@ function CreatorContinut() {
       <div className='div-table'>
         <h1>Echipe</h1>
         <br />
-        <table class='table table-striped'>
+        <table
+          class='table table-striped'
+          style={{ display: isLoadingTeams ? 'none' : 'revert' }}
+        >
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
@@ -149,6 +175,12 @@ function CreatorContinut() {
             })}
           </tbody>
         </table>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoadingTeams ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
         <Link to='/teams/addteam' class='btn btn-primary btn-add'>
           Adauga echipa
         </Link>
@@ -156,7 +188,10 @@ function CreatorContinut() {
       <div className='div-table'>
         <h1>Meciuri</h1>
         <br />
-        <table class='table table-striped'>
+        <table
+          class='table table-striped'
+          style={{ display: isLoadingMatches ? 'none' : 'revert' }}
+        >
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
@@ -222,6 +257,12 @@ function CreatorContinut() {
             })}
           </tbody>
         </table>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoadingMatches ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
         <Link to='/calendar/addmatch' class='btn btn-primary btn-add'>
           Adauga meci
         </Link>

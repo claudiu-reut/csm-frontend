@@ -8,7 +8,13 @@ import { DateRangePicker } from 'rsuite'
 import { GrPowerReset } from 'react-icons/gr'
 import { BiFilterAlt } from 'react-icons/bi'
 import { RiArrowUpDownLine } from 'react-icons/ri'
+import UseAnimations from 'react-useanimations'
+import loading from 'react-useanimations/lib/loading'
+let iconLoading = (
+  <UseAnimations animation={loading} size={55} strokeColor='blue' />
+)
 const Noutati = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [postari, setPostari] = useState([])
   const [postariOrigin, setPostariOrigin] = useState([])
   const [tags, setTags] = useState([])
@@ -17,7 +23,9 @@ const Noutati = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [, updateState] = React.useState()
+
   const get_posts = async () => {
+    setIsLoading(true)
     try {
       let result = await axios.get('getposts')
       if (result.status === 200) {
@@ -28,9 +36,11 @@ const Noutati = () => {
         console.log(result.data.err)
       }
     } catch (error) {}
+    setIsLoading(false)
   }
   const forceUpdate = React.useCallback(() => updateState({}), [])
   useEffect(() => {
+    window.scrollTo(0, 0)
     get_posts()
   }, [])
   useEffect(() => {}, [])
@@ -166,6 +176,12 @@ const Noutati = () => {
           </div>
         </div>
         <div className='noutati'>
+          <div
+            className='loading-content-spinner'
+            style={{ display: isLoading ? 'flex' : 'none' }}
+          >
+            {iconLoading}
+          </div>
           {postari.map((post) => {
             return <Post key={post.createdAt} post={post} />
           })}

@@ -28,6 +28,7 @@ const Login = () => {
   const [success, setSuccess] = useState(false)
   const nav = useNavigate()
   useEffect(() => {
+    window.scrollTo(0, 0)
     userRef.current.focus()
   }, [])
 

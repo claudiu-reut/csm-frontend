@@ -32,6 +32,7 @@ function AddSponsor() {
     }
   }
   useEffect(() => {
+    window.scrollTo(0, 0)
     getSponsors()
   }, [])
   useEffect(() => {

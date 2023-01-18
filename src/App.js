@@ -12,7 +12,6 @@ import ContactForm from './pages/Contact/ContactForm'
 import Detalii from './pages/Detalii/Detalii'
 import Juvenil from './pages/Juvenil/Juvenil'
 import Istorie from './pages/Detalii/Istorie/Istorie'
-import Viziune from './pages/Detalii/Viziune/Viziune'
 import Trofee from './pages/Detalii/Trofee/Trofee'
 import Personal from './pages/Detalii/Personal/Personal'
 import Junior from './pages/Juvenil/Junior/Junior'
@@ -45,7 +44,11 @@ import DeleteMeci from './pages/Calendar/Meci/DeleteMeci'
 import EditMeci from './pages/Calendar/Meci/EditMeci'
 import EditTeam from './pages/Teams/EditTeam'
 import DeleteTeam from './pages/Teams/DeleteTeam'
+import { useEffect } from 'react'
 function App() {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <Router>
       <Home />
@@ -58,7 +61,6 @@ function App() {
         <Route path='/detalii' element={<Detalii />} />
         <Route path='/detalii/personal' element={<Personal />} />
         <Route path='/detalii/istorie' element={<Istorie />} />
-        <Route path='/detalii/viziune' element={<Viziune />} />
         <Route path='/detalii/trofee' element={<Trofee />} />
         <Route path='/juvenil' element={<Juvenil />} />
         <Route path='/juvenil/sperante' element={<Sperante />} />

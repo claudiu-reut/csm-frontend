@@ -6,15 +6,27 @@ import { MdDeleteForever } from 'react-icons/md'
 import { AiOutlineEdit } from 'react-icons/ai'
 import './Admin.css'
 import axios from '../api/axios'
+import { ThreeDots } from 'react-loading-icons'
+let iconLoading = (
+  <ThreeDots strokeOpacity={1} stroke='#06bcee' fill='blue' height={15} />
+)
+
 function Admin() {
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false)
+  const [isLoadingSponsors, setIsLoadingSponsors] = useState(false)
   const [users, setUsers] = useState([])
   const [sponsors, setSponsors] = useState([])
   useEffect(() => {
+    window.scrollTo(0, 0)
     async function fetchData() {
+      setIsLoadingUsers(true)
+      setIsLoadingSponsors(true)
       const response = await axios.get('/getusers')
-      const response2 = await axios.get('/getsponsors')
       setUsers(response.data)
+      setIsLoadingUsers(false)
+      const response2 = await axios.get('/getsponsors')
       setSponsors(response2.data)
+      setIsLoadingSponsors(false)
     }
     fetchData()
   }, [])
@@ -26,7 +38,11 @@ function Admin() {
       <div className='div-table'>
         <h1>Useri</h1>
         <br />
-        <table class='table table-striped'>
+
+        <table
+          class='table table-striped'
+          style={{ display: isLoadingUsers ? 'none' : 'revert' }}
+        >
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
@@ -63,6 +79,12 @@ function Admin() {
             ))}
           </tbody>
         </table>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoadingUsers ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
         <Link to='/register' class='btn btn-primary btn-add'>
           Adauga User
         </Link>
@@ -70,7 +92,10 @@ function Admin() {
       <div className='div-table'>
         <h1>Sponsori</h1>
         <br />
-        <table class='table table-striped'>
+        <table
+          class='table table-striped'
+          style={{ display: isLoadingUsers ? 'none' : 'revert' }}
+        >
           <thead>
             <tr>
               <th scope='col' className='hidde-on-overflow'>
@@ -112,6 +137,12 @@ function Admin() {
             ))}
           </tbody>
         </table>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoadingSponsors ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
         <Link to='/addsponsor' class='btn btn-primary btn-add'>
           Adauga Sponsor
         </Link>

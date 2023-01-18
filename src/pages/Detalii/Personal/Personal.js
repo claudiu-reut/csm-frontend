@@ -6,7 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './Personal.css'
 import { GrPowerReset } from 'react-icons/gr'
 import axios from '../../api/axios'
+import UseAnimations from 'react-useanimations'
+import loading from 'react-useanimations/lib/loading'
+let iconLoading = (
+  <UseAnimations animation={loading} size={55} strokeColor='blue' />
+)
 function Jucatori() {
+  const [isLoading, setIsLoading] = useState(false)
   const [searchFilter, setSearchFilter] = useState('')
   const [personal, setPersonal] = useState([])
   const [personalOrigin, setPersonalOrigin] = useState([])
@@ -15,10 +21,12 @@ function Jucatori() {
   const [ageMinFilter, setAgeMinFilter] = useState('')
   const [ageMaxFilter, setAgeMaxFilter] = useState('')
   const getJucatori = async () => {
+    setIsLoading(true)
     const response = await axios.get('/getpersonal')
     console.log(response)
     setPersonal(response.data)
     setPersonalOrigin(response.data)
+    setIsLoading(false)
   }
   const get_all_positions = () => {
     let positions = []
@@ -30,8 +38,8 @@ function Jucatori() {
     setPositions(positions)
   }
   useEffect(() => {
-    getJucatori()
     window.scrollTo(0, 0)
+    getJucatori()
   }, [])
   useEffect(() => {
     get_all_positions()
@@ -184,6 +192,12 @@ function Jucatori() {
         </div>
       </div>
       <div className='jucatori'>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoading ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
         {personal.map((jucator) => {
           return (
             <PersonalSingle

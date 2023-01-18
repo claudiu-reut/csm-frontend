@@ -12,6 +12,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  min-height: 90vh;
 }
 .jucatori-toolbar {
   width: 100%;
@@ -31,7 +32,7 @@
 .jucatori-toolbar-item {
   display: flex;
   align-items: center;
-  max-width: 12rem;
+  max-width: 14rem;
   margin: 0 2rem;
 }
 .jucatori-toolbar-item label {

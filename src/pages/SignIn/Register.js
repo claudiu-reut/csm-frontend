@@ -47,6 +47,9 @@ function Register() {
     }
   }
   useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+  useEffect(() => {
     setCheckmark(false)
     setIcon(iconLoading)
     setMessage('Logging..')

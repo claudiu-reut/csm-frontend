@@ -31,10 +31,9 @@ function Register() {
   const [textColor, setTextColor] = useState('black')
   const [valid, setValid] = useState(true)
   useEffect(() => {
+    window.scrollTo(0, 0)
     const getUser = async () => {
-      console.log(match.id)
       const response = await axios.get(`/getuser/${match.id}`)
-      console.log(response)
       const user = response.data
       setEmail(user.email)
       setFname(user.firstName)
