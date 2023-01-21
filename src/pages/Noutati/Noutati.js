@@ -168,7 +168,7 @@ const Noutati = () => {
               setStartDate('')
               setEndDate('')
               setSelectedSortValue('default')
-              setPostari(postariOrigin)
+              order_by(postariOrigin, 'default')
             }}
           >
             <GrPowerReset size={20} />

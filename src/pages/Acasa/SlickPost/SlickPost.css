@@ -1,0 +1,75 @@
+.slick-post {
+  width: 100%;
+  overflow: hidden;
+  height: 500px;
+  position: relative;
+}
+.slick-post-image {
+  width: 100%;
+  min-height: 100%;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center top;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(1, 17, 63, 0.11),
+      rgb(0, 9, 35)
+    ),
+    var(--img);
+}
+.slick-post-title {
+  position: absolute;
+  bottom: 4rem;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.slick-post-title h3 {
+  color: white;
+  max-width: 60%;
+  font-size: 1.8rem;
+  transition: all 0.5s;
+  line-height: 40px;
+}
+
+.slick-post-title h3:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.slick-post-date {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 2.5rem;
+  width: 100%;
+}
+.slick-post-date span {
+  color: white;
+  font-size: 1.3rem;
+}
+
+@media (max-width: 800px) {
+  .slick-post {
+    height: 250px;
+  }
+  .slick-post-title {
+    bottom: 3rem;
+  }
+  .slick-post-title h3 {
+    color: white;
+    max-width: 80%;
+    font-size: 1.1rem;
+    line-height: 25px;
+  }
+  .slick-post-date {
+    bottom: 0.5rem;
+    left: 1rem;
+  }
+  .slick-post-date span {
+    font-size: 1rem;
+  }
+}

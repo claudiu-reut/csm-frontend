@@ -1,5 +1,6 @@
-import React from 'react'
-import './Footer.css'
+import React, { useEffect, useState } from 'react'
+import Sponsor from '../../pages/Sponsori/Sponsor/Sponsor'
+import axios from '../../pages/api/axios'
 import {
   MDBFooter,
   MDBContainer,
@@ -9,9 +10,42 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit'
 import { FaHome, FaEnvelope, FaPhone, FaFax } from 'react-icons/fa'
+import './Footer.css'
 function Footer() {
+  const [sponsori, setSponsori] = useState([])
+  const get_sponsors = async () => {
+    try {
+      const response = await axios.get('/getsponsors')
+      setSponsori(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    get_sponsors()
+  }, [])
   return (
     <div className='footer'>
+      <div className='footer-sponsors-section'>
+        <h2 className='footer-sponsors-section-name'>
+          Mulțumim partenerilor CSM Suceava
+        </h2>
+        <div className='footer-sponsors'>
+          {sponsori
+            .filter((sponsor) => sponsor.editia.includes('2022-2023'))
+            .map((sponsor) => {
+              return (
+                <Sponsor
+                  key={sponsor.id_sponsor}
+                  imagine={sponsor.imagine}
+                  nume_complet={sponsor.denumire}
+                  URLsite={sponsor.linkSite}
+                  className='sponsor'
+                />
+              )
+            })}
+        </div>
+      </div>
       <MDBFooter className=' footer text-center ' bgColor='blue' color='white'>
         <MDBContainer className='p-4'>
           <section className='mb-4'>

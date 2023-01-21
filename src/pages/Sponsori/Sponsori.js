@@ -4,24 +4,25 @@ import { useState } from 'react'
 import Sponsor from './Sponsor/Sponsor'
 import './Sponsori.css'
 import axios from '../api/axios'
-import UseAnimations from 'react-useanimations'
 import { Oval } from 'react-loading-icons'
-// let iconLoading = (
-//   <UseAnimations animation={loading} size={45} strokeColor='blue' />
-// )
+
 let iconLoading = <Oval strokeOpacity={1} stroke='#06bcee' fill='blue' />
 const Sponsori = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [sponsori, setSponsori] = useState([])
-  useEffect(() => {
-    window.scrollTo(0, 0)
-    async function fetchData() {
-      setIsLoading(true)
+  const get_sponsors = async () => {
+    setIsLoading(true)
+    try {
       const response = await axios.get('/getsponsors')
       setSponsori(response.data)
-      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
     }
-    fetchData()
+    setIsLoading(false)
+  }
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    get_sponsors()
   }, [])
   return (
     <>
