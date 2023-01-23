@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { MdOutlineSettings } from 'react-icons/md'
 import { BiLogOut } from 'react-icons/bi'
 import { TbHandClick } from 'react-icons/tb'
+
 import './SideBar.css'
 import {
   SideBarContainer,
@@ -88,11 +89,11 @@ function SideBar({ isOpen, toggle }) {
             }}
           >
             <MdOutlineSettings size={20} />
-            <button>Administration</button>
+            <button>Administrare</button>
           </div>
           <div className='dropdown-item'>
-            <TbHandClick size={20} />
-            <button>Another action</button>
+            <CgProfile size={20} />
+            <button>Profil</button>
           </div>
           <div className='dropdown-item'>
             <TbHandClick size={20} />

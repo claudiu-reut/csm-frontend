@@ -47,6 +47,7 @@ import DeleteTeam from './pages/Teams/DeleteTeam'
 import AddPersonal from './pages/Detalii/Personal/AddPersonal'
 import EditPersonal from './pages/Detalii/Personal/EditPersonal'
 import DeletePersonal from './pages/Detalii/Personal/DeletePersonal'
+import Profile from './pages/Profile/Profile'
 import { useEffect } from 'react'
 function App() {
   useEffect(() => {
@@ -88,6 +89,7 @@ function App() {
             <Route path='/detalii/personal/editpersonal/:id' element={<EditPersonal/>} />
             <Route path='/detalii/personal/delete/:id' element={<DeletePersonal/>} />
           </Route>
+          <Route path='/profil' element={<Profile />} />
           <Route path='/creatorcontinut' element={<CreatorContinut />} />
           <Route path='/noutati/addpost' element={<AddPost />} />
           <Route path='/noutati/delete/:id' element={<DeletePost />} />

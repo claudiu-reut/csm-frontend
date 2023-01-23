@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from '../../pages/api/axios'
 import './NavBar.css'
+import data from './images/img.json'
 import {
   Nav,
   NavLink,
@@ -16,30 +17,38 @@ import {
   NavBtn,
   NavBtnLink,
 } from './NavBarComponents'
+import { CgProfile } from 'react-icons/cg'
 const Navbar = ({ toggle }) => {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
   const token = localStorage.getItem('token')
   const [user, setUser] = useState('')
-  const [img,setImg] = useState(' ')
+  const [img,setImg] = useState(data.image)
   const nav = useNavigate()
   const logOut = () => {
     localStorage.setItem('token', undefined)
     nav('/signin')
     setUser('')
+    
+    setImg(data.image)
   }
   useEffect(() => {
+  
     const func = async () => {
       try {
+        
         await setUser(decodeJwt(token).name)
-        const response = await axios.get(`/getphoto/${decodeJwt(token).user_id}`)
+        const response = await axios.get(`/getuserphoto/${decodeJwt(token).user_id}`)
         const result=response.data;
-        console.log(result.imagine);
+        if(result)
         setImg(result);
+        else
+        setImg(data.image)
       } catch (err) {
         console.log(err)
       }
     }
-    func()
+   
+    func();
   }, [token])
   return (
     <Nav>
@@ -110,11 +119,13 @@ const Navbar = ({ toggle }) => {
               }}
             >
               <MdOutlineSettings size={20} />
-              <button>Administration</button>
+              <button>Administrare</button>
             </div>
-            <div className='dropdown-item'>
-              <TbHandClick size={20} />
-              <button>Another action</button>
+            <div className='dropdown-item'  onClick={() => {
+                nav('/profil')
+              }}>
+              <CgProfile size={20} />
+              <button>Profil</button>
             </div>
             <div className='dropdown-item'>
               <TbHandClick size={20} />
