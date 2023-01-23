@@ -8,7 +8,6 @@ import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
-
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />

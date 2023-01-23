@@ -85,9 +85,18 @@ function App() {
             <Route path='/sponsors/delete/:id' element={<DeleteSponsor />} />
             <Route path='/sponsors/:id' element={<EditSponsor />} />
             <Route path='/users/:id' element={<EditUser />} />
-            <Route path='/detalii/personal/addpersonal' element={<AddPersonal/>} />
-            <Route path='/detalii/personal/editpersonal/:id' element={<EditPersonal/>} />
-            <Route path='/detalii/personal/delete/:id' element={<DeletePersonal/>} />
+            <Route
+              path='/detalii/personal/addpersonal'
+              element={<AddPersonal />}
+            />
+            <Route
+              path='/detalii/personal/editpersonal/:id'
+              element={<EditPersonal />}
+            />
+            <Route
+              path='/detalii/personal/delete/:id'
+              element={<DeletePersonal />}
+            />
           </Route>
           <Route path='/profil' element={<Profile />} />
           <Route path='/creatorcontinut' element={<CreatorContinut />} />

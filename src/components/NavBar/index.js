@@ -22,33 +22,30 @@ const Navbar = ({ toggle }) => {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
   const token = localStorage.getItem('token')
   const [user, setUser] = useState('')
-  const [img,setImg] = useState(data.image)
+  const [img, setImg] = useState(data.image)
   const nav = useNavigate()
   const logOut = () => {
     localStorage.setItem('token', undefined)
     nav('/signin')
     setUser('')
-    
     setImg(data.image)
   }
   useEffect(() => {
-  
     const func = async () => {
       try {
-        
         await setUser(decodeJwt(token).name)
-        const response = await axios.get(`/getuserphoto/${decodeJwt(token).user_id}`)
-        const result=response.data;
-        if(result)
-        setImg(result);
-        else
-        setImg(data.image)
+        const response = await axios.get(
+          `/getuserphoto/${decodeJwt(token).user_id}`
+        )
+        const result = response.data
+        if (result) setImg(result)
+        else setImg(data.image)
       } catch (err) {
         console.log(err)
       }
     }
-   
-    func();
+
+    func()
   }, [token])
   return (
     <Nav>
@@ -121,9 +118,12 @@ const Navbar = ({ toggle }) => {
               <MdOutlineSettings size={20} />
               <button>Administrare</button>
             </div>
-            <div className='dropdown-item'  onClick={() => {
+            <div
+              className='dropdown-item'
+              onClick={() => {
                 nav('/profil')
-              }}>
+              }}
+            >
               <CgProfile size={20} />
               <button>Profil</button>
             </div>

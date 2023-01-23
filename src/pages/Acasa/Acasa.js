@@ -10,6 +10,7 @@ import axios from '../api/axios'
 import SlickPost from './SlickPost/SlickPost'
 import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
+
 let iconLoading = (
   <UseAnimations animation={loading} size={55} strokeColor='blue' />
 )
@@ -101,6 +102,7 @@ const Acasa = () => {
   }, [])
   let count_recent_matches = 0
   let count_future_matches = 0
+
   return (
     <>
       <div className='acasa-container'>

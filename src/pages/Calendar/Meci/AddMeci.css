@@ -3,6 +3,7 @@
   height: 90%;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 .rezultat {
   width: 4rem;

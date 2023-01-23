@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import { MdOutlineSettings } from 'react-icons/md'
 import { BiLogOut } from 'react-icons/bi'
 import { TbHandClick } from 'react-icons/tb'
-
 import './SideBar.css'
+import axios from '../../pages/api/axios'
 import {
   SideBarContainer,
   Icon,
@@ -18,11 +18,12 @@ import {
   SideBtnWrap,
   SideBarMenu,
 } from './SideBarComponents'
-
+import data from '../NavBar/images/img.json'
 function SideBar({ isOpen, toggle }) {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
   const [openDropDownJuv, setOpenDropDownJuv] = useState(true)
   const token = localStorage.getItem('token')
+  const [img, setImg] = useState(data.image)
   const [user, setUser] = useState('')
   const nav = useNavigate()
   const logOut = () => {
@@ -34,6 +35,12 @@ function SideBar({ isOpen, toggle }) {
     const func = async () => {
       try {
         await setUser(decodeJwt(token).name)
+        const response = await axios.get(
+          `/getuserphoto/${decodeJwt(token).user_id}`
+        )
+        const result = response.data
+        if (result) setImg(result)
+        else setImg(data.image)
       } catch (err) {
         console.log(err)
       }
@@ -60,10 +67,7 @@ function SideBar({ isOpen, toggle }) {
         }}
       >
         <div className='profile'>
-          <img
-            src='https://pbs.twimg.com/profile_images/1245140850151227399/mS3TXS8T_400x400.jpg'
-            alt='user profile image'
-          />
+          <img src={`data:image/jpeg;base64,${img}`} alt='user profile image' />
           <p>Hi, {user}</p>
         </div>
 
@@ -91,7 +95,12 @@ function SideBar({ isOpen, toggle }) {
             <MdOutlineSettings size={20} />
             <button>Administrare</button>
           </div>
-          <div className='dropdown-item'>
+          <div
+            className='dropdown-item'
+            onClick={() => {
+              nav('/profil')
+            }}
+          >
             <CgProfile size={20} />
             <button>Profil</button>
           </div>
