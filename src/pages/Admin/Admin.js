@@ -16,6 +16,7 @@ function Admin() {
   const [isLoadingSponsors, setIsLoadingSponsors] = useState(false)
   const [users, setUsers] = useState([])
   const [sponsors, setSponsors] = useState([])
+  const [personal,setPersonal] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0)
     async function fetchData() {
@@ -26,6 +27,9 @@ function Admin() {
       setIsLoadingUsers(false)
       const response2 = await axios.get('/getsponsors')
       setSponsors(response2.data)
+      setIsLoadingSponsors(false)
+      const response3 = await axios.get('/getsimplepersonal')
+      setPersonal(response3.data)
       setIsLoadingSponsors(false)
     }
     fetchData()
@@ -146,7 +150,80 @@ function Admin() {
           Adauga Sponsor
         </Link>
       </div>
+      <div className='div-table'>
+        <h1>Personal</h1>
+        <br />
+        <table
+          class='table table-striped'
+          style={{ display: isLoadingSponsors ? 'none' : 'revert' }}
+        >
+          <thead>
+            <tr>
+              <th scope='col' className='hidde-on-overflow'>
+                Nr.
+              </th>
+              <th scope='col'>Nume</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Prenume
+              </th>
+              <th scope='col'>Data Nasterii</th>
+              <th scope='col' className='hidde-on-overflow'>Descriere</th>
+              <th scope='col'>Nationalitate</th>
+              <th scope='col'>Post</th>
+              <th scope='col'>Echipa</th>
+              <th scope='col'>Lot Curent</th>
+              <th scope='col'>Tip Personal</th>
+              <th scope='col'>Inaltime</th>
+              <th scope='col'>Actiune</th>
+            </tr>
+          </thead>
+          <tbody>
+            {personal.map((individ, index) => (
+              <tr key={individ.id_personal}>
+                <td className='hidde-on-overflow'>{index + 1}</td>
+                <td>{individ.nume}</td>
+                <td>{individ.prenume}</td>
+                <td>{individ.data_nasterii}</td>
+
+                <td className='hidde-on-overflow'>{individ.descriere}</td>
+                <td>{individ.nationalitate}</td>
+                <td>{individ.post}</td>
+                <td>{individ.nume_echipa}</td>
+                <td>{individ.lot_curent}</td>
+                <td>{individ.tip_personal}</td>
+                <td>{individ.inaltime}</td>
+                <td>
+                  <span className='problematic'>
+                    <Link
+                      to={`/detalii/personal/editpersonal/${individ.id_personal}`}
+                      className='edit'
+                    >
+                      <AiOutlineEdit size={20} />
+                    </Link>
+                    <Link
+                      to={`/detalii/personal/delete/${individ.id_personal}`}
+                      className='delete'
+                    >
+                      <MdDeleteForever size={20} className='icon' />
+                    </Link>
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div
+          className='loading-content-spinner'
+          style={{ display: isLoadingSponsors ? 'flex' : 'none' }}
+        >
+          {iconLoading}
+        </div>
+        <Link to='/detalii/personal/addpersonal' class='btn btn-primary btn-add'>
+          Adauga Personal
+        </Link>
+      </div>
     </div>
+    
   )
 }
 

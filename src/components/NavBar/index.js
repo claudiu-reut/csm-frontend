@@ -6,6 +6,7 @@ import { TbHandClick } from 'react-icons/tb'
 import { decodeJwt } from 'jose'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../../pages/api/axios'
 import './NavBar.css'
 import {
   Nav,
@@ -19,6 +20,7 @@ const Navbar = ({ toggle }) => {
   const [openDropDownSignIn, setOpenDropDownSignIn] = useState(false)
   const token = localStorage.getItem('token')
   const [user, setUser] = useState('')
+  const [img,setImg] = useState(' ')
   const nav = useNavigate()
   const logOut = () => {
     localStorage.setItem('token', undefined)
@@ -29,6 +31,10 @@ const Navbar = ({ toggle }) => {
     const func = async () => {
       try {
         await setUser(decodeJwt(token).name)
+        const response = await axios.get(`/getphoto/${decodeJwt(token).user_id}`)
+        const result=response.data;
+        console.log(result.imagine);
+        setImg(result);
       } catch (err) {
         console.log(err)
       }
@@ -80,7 +86,7 @@ const Navbar = ({ toggle }) => {
         >
           <div className='profile'>
             <img
-              src='https://pbs.twimg.com/profile_images/1245140850151227399/mS3TXS8T_400x400.jpg'
+              src={`data:image/jpeg;base64,${img}`}
               alt='user profile image'
             />
             <p>Hi, {user}</p>

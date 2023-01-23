@@ -21,6 +21,7 @@ function Register() {
   const [fname, setFname] = useState('')
   const [lname, setLname] = useState('')
   const [role, setRole] = useState('')
+  const [selectedFile,setSelectedFile] = useState();
   const errRef = useRef()
 
   //confirm
@@ -29,7 +30,17 @@ function Register() {
   const [message, setMessage] = useState('')
   const [textColor, setTextColor] = useState('black')
   const [valid, setValid] = useState(true)
-
+  const user = new FormData();
+  const handleFile=(e)=>{
+    setSelectedFile(e.target.files[0])
+    const src=e.target.files[0];
+    const imag=document.getElementById("image");
+   
+  
+  
+   imag.src=URL.createObjectURL(src);
+ 
+  }
   function checkPass() {
     var pass = document.getElementById('password')
     var confirm = document.getElementById('confirm_password')
@@ -63,14 +74,17 @@ function Register() {
     if (valid) {
       try {
         setCheckmark(true)
-        const response = await axios.post(LOGIN_URL, {
-          firstName: fname,
-          lastName: lname,
-          email: email,
-          role: role,
-          password: password,
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true,
+        user.append('firstName',fname);
+        user.append('lastName',lname);
+        user.append('email',email);
+        user.append('password',password)
+        user.append('role',role);
+        user.append('imagine',selectedFile);
+        const response = await axios({
+          method: 'post',
+          url: 'register',
+          data: user,
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
         console.log(JSON.stringify(response?.data))
         if (response.data.status !== 'ERROR') {
@@ -198,6 +212,17 @@ function Register() {
               }}
             />
           </div>
+          <div className='form-group mt-3'>
+          <label>Imagine</label>
+            <input
+              type='file'
+              accept='image/png, image/gif, image/jpeg'
+              onChange={(e) => handleFile(e)}
+            />
+              <div className='form-group mt-2'>
+              <img id="image" src="./placeholder.jpg" alt="imagine" className='imgprev'  />
+                </div>
+                </div>      
           <div className='d-grid gap-2 mt-3'>
             <button
               type='button'

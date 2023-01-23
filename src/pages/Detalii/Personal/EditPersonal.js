@@ -8,12 +8,13 @@ import UseAnimations from 'react-useanimations'
 import loading from 'react-useanimations/lib/loading'
 import CheckMessage from '../../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
 let iconLoading = <UseAnimations animation={loading} size={35} />
 
-function AddPersonal() {
+function EditPersonal() {
   const [nume, setNume] = useState('')
   const [prenume, setPrenume] = useState('')
   const [nationalitate, setNationalitate] = useState('')
@@ -23,6 +24,8 @@ function AddPersonal() {
   const [descriere,setDescriere]=useState('');
   const [data_nasterii,setData]=useState('');
   const [inaltime,setInaltime]=useState('');
+  const [src,setSrc]=useState('');
+  const match = useParams();
   function handleDate(e) {
     setData(e.target.value)
     let givenDate = new Date(e.target.value)
@@ -53,7 +56,27 @@ function AddPersonal() {
    imag.src=URL.createObjectURL(src);
  
   }
+  const getPersonal = async () => {
+    try {
+      const result = await axios.get(`/getpersonal/${match.id}`)
+      const personal = result.data;
+      
+      setNume(personal.nume);
+      console.log(nume);
+      setPrenume(personal.prenume);
+      setDescriere(personal.descriere);
+      setData(personal.data_nasterii);
+      setInaltime(personal.inaltime);
+      setSrc(personal.imagine);
+      setPozitie(personal.pozitie);
+      setNationalitate(personal.nationalitate);
+      setTipPersonal(personal.tip_personal);
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useEffect(() => {
+    getPersonal();
     window.scrollTo(0, 0)
   }, [])
   useEffect(() => {
@@ -84,15 +107,15 @@ function AddPersonal() {
         console.log(bodyFormData);
         setCheckmark(true)
         axios({
-          method: 'post',
-          url: 'addpersonal',
+          method: 'put',
+          url: `editpersonal/${match.id}`,
           data: bodyFormData,
           headers: { 'Content-Type': 'multipart/form-data' },
         })
           .then(function (response) {
             if (response.data.status !== 'ERROR') {
               setIcon(iconSucces)
-              setMessage('Personal creat cu succes')
+              setMessage('Personal editat cu succes')
               setTextColor('black')
             }
             console.log(response)
@@ -135,7 +158,7 @@ function AddPersonal() {
     <div className='Auth-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
-          <h3 className='Auth-form-title'>Adauga Personal</h3>
+          <h3 className='Auth-form-title'>Editeaza Personal</h3>
 
           <div className='form-group mt-3'>
             <label>Nume</label>
@@ -144,6 +167,7 @@ function AddPersonal() {
               className='form-control mt-1'
               placeholder='Nume'
               required
+              value={nume}
               onChange={(e) => setNume(e.target.value)}
             />
           </div>
@@ -154,6 +178,7 @@ function AddPersonal() {
               className='form-control mt-1'
               placeholder='Prenume'
               required
+              value={prenume}
               onChange={(e) => setPrenume(e.target.value)}
             />
           </div>
@@ -161,6 +186,7 @@ function AddPersonal() {
           <div className='form-group mt-3'>
             <label>Naționalitate</label>
             <select
+            value={nationalitate}
               class='form-select'
               onChange={(e) => setNationalitate(e.target.value)}
             >
@@ -451,7 +477,7 @@ function AddPersonal() {
             </select>
             <div className='d-grid gap-2 mt-3'>
             <label>Poziție</label>
-            <select class='form-select' onChange={(e) => setPozitie(e.target.value)}>
+            <select class='form-select' onChange={(e) => setPozitie(e.target.value)} value={pozitie}>
                 <option selected disabled>Selecteaza poziție...</option>
                 <option value='Outside Hitter'>Outside Hitter</option>
                 <option value='Opposite Hitter'>Opposite Hitter</option>
@@ -464,7 +490,7 @@ function AddPersonal() {
             </div>
             <div className='d-grid gap-2 mt-3'>
             <label>Tip Personal</label>
-            <select class='form-select' onChange={(e) => setTipPersonal(e.target.value)}>
+            <select class='form-select' onChange={(e) => setTipPersonal(e.target.value)} value={tip_personal}>
                 <option selected disabled>Selecteaza tip personal...</option>
                 <option value='jucator'>Jucator</option>
                 <option value='jucator'>Antrenor</option>
@@ -475,6 +501,7 @@ function AddPersonal() {
             <label>Data</label>
             <br></br>
             <input
+            value={data_nasterii.toString().slice(0,10)}
               type='date'
               onChange={(e) => {
                 handleDate(e)
@@ -486,6 +513,7 @@ function AddPersonal() {
             <div className='form-group mt-3'>
             <label>Descriere</label>
             <textarea
+            value={descriere}
               class='form-control'
               placeholder='Descriere'
               onChange={(e) => setDescriere(e.target.value)}
@@ -494,6 +522,7 @@ function AddPersonal() {
           <div className='form-group mt-3'>
             <label>Inaltime</label>
             <input
+            value={inaltime}
               type='text'
               className='form-control mt-1'
               placeholder='Inaltime'
@@ -508,7 +537,7 @@ function AddPersonal() {
               onChange={(e) => handleFile(e)}
             />
               <div className='form-group mt-2'>
-              <img id="image" src="./placeholder.jpg" alt="imagine" className='imgprev'  />
+              <img id="image"src={`data:image/jpeg;base64,${src}`}  alt="imagine" className='imgprev'  />
                 </div>
             <input
               type='checkbox'
@@ -540,4 +569,4 @@ function AddPersonal() {
     </div>
   )
 }
-export default AddPersonal
+export default EditPersonal

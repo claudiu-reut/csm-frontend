@@ -2,10 +2,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 95vw;
-    height: 95vh;
+    width: 100vw;
+    height: 100vh;
     transition: all 0.4s ease-in-out;
-    margin: 0 auto;
+    margin: 100px auto;
+   
   }
   .Auth-form {
     margin: 0;
