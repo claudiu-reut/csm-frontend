@@ -1,4 +1,7 @@
-
+body{
+  background-image: url('./images/background.jpg') ;
+  background-size:contain;
+}
   #conference-timeline {
     position: relative;
     max-width: 920px;
@@ -64,6 +67,7 @@
     font-size: 14px;
     line-height: 24px;
     position: relative;
+    font-weight: bold;
   }
   
   .timeline-article p span.article-number {
