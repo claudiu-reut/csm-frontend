@@ -1,14 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sponsor from '../../pages/Sponsori/Sponsor/Sponsor'
 import axios from '../../pages/api/axios'
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBBtn,
-} from 'mdb-react-ui-kit'
+import { MDBFooter, MDBContainer, MDBCol, MDBRow } from 'mdb-react-ui-kit'
 import { FaHome, FaEnvelope, FaPhone, FaFax } from 'react-icons/fa'
 import './Footer.css'
 function Footer() {
