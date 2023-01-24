@@ -467,8 +467,10 @@ function AddPersonal() {
             <select class='form-select' onChange={(e) => setTipPersonal(e.target.value)}>
                 <option selected disabled>Selecteaza tip personal...</option>
                 <option value='jucator'>Jucator</option>
-                <option value='jucator'>Antrenor</option>
-              
+                <option value='antrenor'>Antrenor</option>
+                <option value='cadet'>Cadet</option>
+                <option value='speranta'>Speranțe</option>
+                <option value='junior'>Junior</option>
 
             </select>
             <div className='form-group mt-3'>

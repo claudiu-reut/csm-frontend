@@ -494,6 +494,10 @@ function EditPersonal() {
                 <option selected disabled>Selecteaza tip personal...</option>
                 <option value='jucator'>Jucator</option>
                 <option value='jucator'>Antrenor</option>
+                <option value='cadet'>Cadet</option>
+                <option value='speranta'>Speranțe</option>
+                <option value='junior'>Junior</option>
+
               
 
             </select>
