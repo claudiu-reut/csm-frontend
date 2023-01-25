@@ -16,7 +16,7 @@ function Admin() {
   const [isLoadingSponsors, setIsLoadingSponsors] = useState(false)
   const [users, setUsers] = useState([])
   const [sponsors, setSponsors] = useState([])
-  const [personal,setPersonal] = useState([]);
+  const [personal, setPersonal] = useState([])
   useEffect(() => {
     window.scrollTo(0, 0)
     async function fetchData() {
@@ -28,7 +28,7 @@ function Admin() {
       const response2 = await axios.get('/getsponsors')
       setSponsors(response2.data)
       setIsLoadingSponsors(false)
-      const response3 = await axios.get('/getsimplepersonal')
+      const response3 = await axios.get('/getpersonal')
       setPersonal(response3.data)
       setIsLoadingSponsors(false)
     }
@@ -167,8 +167,10 @@ function Admin() {
                 Prenume
               </th>
               <th scope='col'>Data Nasterii</th>
-              <th scope='col' className='hidde-on-overflow'>Descriere</th>
-              <th scope='col'>Nationalitate</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Descriere
+              </th>
+              <th scope='col'>Gen</th>
               <th scope='col'>Post</th>
               <th scope='col'>Echipa</th>
               <th scope='col'>Lot Curent</th>
@@ -186,7 +188,7 @@ function Admin() {
                 <td>{individ.data_nasterii}</td>
 
                 <td className='hidde-on-overflow'>{individ.descriere}</td>
-                <td>{individ.nationalitate}</td>
+                <td>{individ.gen}</td>
                 <td>{individ.post}</td>
                 <td>{individ.nume_echipa}</td>
                 <td>{individ.lot_curent}</td>
@@ -218,12 +220,14 @@ function Admin() {
         >
           {iconLoading}
         </div>
-        <Link to='/detalii/personal/addpersonal' class='btn btn-primary btn-add'>
+        <Link
+          to='/detalii/personal/addpersonal'
+          class='btn btn-primary btn-add'
+        >
           Adauga Personal
         </Link>
       </div>
     </div>
-    
   )
 }
 

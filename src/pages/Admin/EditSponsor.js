@@ -26,13 +26,12 @@ function EditSponsor() {
   const [icon, setIcon] = useState(undefined)
   const [message, setMessage] = useState('')
   const [textColor, setTextColor] = useState('black')
-  const handleFile=(e)=>{
+  const handleFile = (e) => {
     setSelectedFile(e.target.files[0])
-    const src=e.target.files[0];
-    const imag=document.getElementById("image");
-  
-   imag.src=URL.createObjectURL(src);
- 
+    const src = e.target.files[0]
+    const imag = document.getElementById('image')
+
+    imag.src = URL.createObjectURL(src)
   }
   const getSponsors = async () => {
     try {
@@ -53,41 +52,38 @@ function EditSponsor() {
   }, [])
 
   const handleAddSponsor = () => {
-    console.log("sps");
+    console.log('sps')
     getSponsors()
     const addSpon = async () => {
-      console.log("add");
+      console.log('add')
       let sponsor = new FormData()
       sponsor.append('denumire', denumire)
       sponsor.append('linkSite', linkSite)
       sponsor.append('editia', editia)
       sponsor.append('imagine', selectedFile)
-          console.log("axios");
-          axios({
-            method: 'put',
-            url: `editsponsor/${match.id}`,
-            data: sponsor,
-            headers: { 'Content-Type': 'multipart/form-data' },
-          })
-            .then(function (response) {
-              if (response.data.status !== 'ERROR') {
-                setIcon(iconSucces)
-                setMessage('Sponsor adaugat cu succes')
-                setTextColor('black')
-              }
-              console.log(response)
-            })
-            .catch(function (response) {
-              setIcon(iconError)
-              setMessage('Oops, Eroare.Incearca din nou...')
-              setTextColor('red')
-              console.log(response)
-            })
-          
+      console.log('axios')
+      axios({
+        method: 'put',
+        url: `editsponsor/${match.id}`,
+        data: sponsor,
+        headers: { 'Content-Type': 'multipart/form-data' },
+      })
+        .then(function (response) {
+          if (response.data.status !== 'ERROR') {
+            setIcon(iconSucces)
+            setMessage('Sponsor adaugat cu succes')
+            setTextColor('black')
           }
-        
-      
-    
+          console.log(response)
+        })
+        .catch(function (response) {
+          setIcon(iconError)
+          setMessage('Oops, Eroare.Incearca din nou...')
+          setTextColor('red')
+          console.log(response)
+        })
+    }
+
     setCheckmark(true)
     setMessage('Sponsor adaugat cu succes')
     setTextColor('black')
@@ -98,62 +94,66 @@ function EditSponsor() {
 
   return (
     <div className='Add-form-container'>
-      <section>
-        <div className='Add-form'>
-          <h1 className='Add-form-title'>Editeaza Sponsor</h1>
-          <div className='Add-form-content'>
-            <div className='form-group mt-3'>
-              <label htmlFor='denumire'>Denumire:</label>
-              <input
-                type='text'
-                id='denumire'
-                className='form-control mt-1'
-                onChange={(e) => setDenumire(e.target.value)}
-                value={denumire}
-                required
+      <div className='Auth-form'>
+        <h1 className='Auth-form-title'>Editeaza Sponsor</h1>
+        <div className='Auth-form-content'>
+          <div className='form-group mt-3'>
+            <label htmlFor='denumire'>Denumire:</label>
+            <input
+              type='text'
+              id='denumire'
+              className='form-control mt-1'
+              onChange={(e) => setDenumire(e.target.value)}
+              value={denumire}
+              required
+            />
+          </div>
+          <div className='form-group mt-3'>
+            <label htmlFor='img-url'>Url imagine:</label>
+            <input
+              type='file'
+              accept='image/png, image/gif, image/jpeg'
+              id='imginp'
+              onChange={(e) => handleFile(e)}
+              required
+            />
+            <div className='form-group mt-2'>
+              <img
+                id='image'
+                src={`data:image/jpeg;base64,${linkImagine}`}
+                alt='imagine'
+                className='imgprev'
               />
             </div>
-            <div className='form-group mt-3'>
-              <label htmlFor='img-url'>Url imagine:</label>
-              <input
-                type='file'
-                accept='image/png, image/gif, image/jpeg'
-                id='imginp'
-                onChange={(e) => handleFile(e)}
-                required
-              />
-              <div className='form-group mt-2'>
-              <img id="image" src={`data:image/jpeg;base64,${linkImagine}`} alt="imagine" className='imgprev'  />
-                </div>
-            </div>
-            <div className='form-group mt-3'>
-              <label htmlFor='site-url'>Oficial site:</label>
-              <input
-                type='text'
-                id='site-url'
-                className='form-control mt-1'
-                onChange={(e) => {
-                  setLinkSite(e.target.value)
-                }}
-                value={linkSite}
-                required
-              />
-            </div>
-            <div className='form-group mt-3'>
-              <label htmlFor='editia'>Editia:</label>
-              <input
-                type='text'
-                id='editia'
-                className='form-control mt-1'
-                onChange={(e) => {
-                  setEditia(e.target.value)
-                }}
-                value={editia}
-                required
-              />
-            </div>
+          </div>
+          <div className='form-group mt-3'>
+            <label htmlFor='site-url'>Oficial site:</label>
+            <input
+              type='text'
+              id='site-url'
+              className='form-control mt-1'
+              onChange={(e) => {
+                setLinkSite(e.target.value)
+              }}
+              value={linkSite}
+              required
+            />
+          </div>
+          <div className='form-group mt-3'>
+            <label htmlFor='editia'>Editia:</label>
+            <input
+              type='text'
+              id='editia'
+              className='form-control mt-1'
+              onChange={(e) => {
+                setEditia(e.target.value)
+              }}
+              value={editia}
+              required
+            />
+          </div>
 
-            {/* <div className='form-group'>
+          {/* <div className='form-group'>
               <label htmlFor='checkbox-group'>Lotul:</label>
               <br />
               <div className='checkbox-group' id='checkbox-group'>
@@ -207,20 +207,19 @@ function EditSponsor() {
                 </div>
               </div>
             </div> */}
-            <CheckMessage
-              textColor={textColor}
-              visibility={checkmark}
-              icon={icon}
-              message={message}
-            />
-            <div className='d-grid gap-2 mt-3'>
-              <button className='btn btn-primary' onClick={handleAddSponsor}>
-                Salveaza Sponsor
-              </button>
-            </div>
+          <CheckMessage
+            textColor={textColor}
+            visibility={checkmark}
+            icon={icon}
+            message={message}
+          />
+          <div className='d-grid gap-2 mt-3'>
+            <button className='btn btn-primary' onClick={handleAddSponsor}>
+              Salveaza Sponsor
+            </button>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   )
 }

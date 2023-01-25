@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  margin: 2rem auto;
 }
 .rezultat {
   width: 4rem;

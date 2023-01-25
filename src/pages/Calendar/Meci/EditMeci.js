@@ -102,6 +102,7 @@ function EditMeci() {
     } catch (error) {}
   }
   useEffect(() => {
+    window.scrollTo(0, 0)
     getMeci()
     getTeams()
   }, [])
@@ -178,10 +179,6 @@ function EditMeci() {
         }
       }
       errRef.current.focus()
-    } else {
-      setIcon(iconError)
-      setMessage('Password is invalid')
-      setTextColor('red')
     }
   }
 

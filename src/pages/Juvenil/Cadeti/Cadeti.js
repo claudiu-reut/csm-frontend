@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Cadet = () => {
+const Cadeti = () => {
   return (
     <>
       <div
@@ -17,4 +17,4 @@ const Cadet = () => {
   )
 }
 
-export default Cadet
+export default Cadeti

@@ -23,24 +23,21 @@ function Register() {
   const [lname, setLname] = useState('')
   const [role, setRole] = useState('')
   const errRef = useRef()
-  
+
   //confirm
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
   const [message, setMessage] = useState('')
   const [textColor, setTextColor] = useState('black')
   const [valid, setValid] = useState(true)
-  const [selectedFile,setSelectedFile] = useState();
-  const user = new FormData();
-  const handleFile=(e)=>{
+  const [selectedFile, setSelectedFile] = useState()
+  const user = new FormData()
+  const handleFile = (e) => {
     setSelectedFile(e.target.files[0])
-    const src=e.target.files[0];
-    const imag=document.getElementById("image");
-   
-  
-  
-   imag.src=URL.createObjectURL(src);
- 
+    const src = e.target.files[0]
+    const imag = document.getElementById('image')
+
+    imag.src = URL.createObjectURL(src)
   }
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -87,19 +84,18 @@ function Register() {
     setTextColor('black')
     if (valid) {
       try {
-
         setCheckmark(true)
-        user.append('firstName',fname);
-        user.append('lastName',lname);
-        user.append('email',email);
-        user.append('password',password)
-        user.append('role',role);
-        user.append('imagine',selectedFile);
+        user.append('firstName', fname)
+        user.append('lastName', lname)
+        user.append('email', email)
+        user.append('password', password)
+        user.append('role', role)
+        user.append('imagine', selectedFile)
         const response = await axios({
           method: 'put',
           url: `edituser/${match.id}`,
           data: user,
-          headers: { 'Content-Type': 'multipart/form-data' }
+          headers: { 'Content-Type': 'multipart/form-data' },
         })
         console.log(JSON.stringify(response?.data))
         if (response.data.status !== 'ERROR') {
@@ -140,7 +136,7 @@ function Register() {
   }
 
   return (
-    <div className='Auth-form-container'>
+    <div className='Add-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
           <h3 className='Auth-form-title'>Edit User</h3>
@@ -221,16 +217,21 @@ function Register() {
               <option value='creator'>Content Creator</option>
             </select>
             <div className='form-group mt-3'>
-          <label>Imagine</label>
-            <input
-              type='file'
-              accept='image/png, image/gif, image/jpeg'
-              onChange={(e) => handleFile(e)}
-            />
+              <label>Imagine</label>
+              <input
+                type='file'
+                accept='image/png, image/gif, image/jpeg'
+                onChange={(e) => handleFile(e)}
+              />
               <div className='form-group mt-2'>
-              <img id="image" src={`data:image/jpeg;base64,${selectedFile}`}  alt="imagine" className='imgprev'  />
-                </div>
-                </div>   
+                <img
+                  id='image'
+                  src={`data:image/jpeg;base64,${selectedFile}`}
+                  alt='imagine'
+                  className='imgprev'
+                />
+              </div>
+            </div>
             <input
               type='checkbox'
               checked={checkmark}

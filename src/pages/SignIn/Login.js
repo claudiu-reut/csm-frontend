@@ -10,7 +10,6 @@ import CheckMessage from '../CheckMessage/CheckMessage'
 import AuthContext from './context/AuthProvider'
 import axios from '../api/axios'
 const LOGIN_URL = '/login'
-let iconSucces = <Checkmark size='30px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='30px' />
 let iconLoading = <UseAnimations animation={loading} size={40} />
 const Login = () => {
@@ -25,7 +24,6 @@ const Login = () => {
   const [icon, setIcon] = useState(undefined)
   const [message, setMessage] = useState('')
   const [textColor, setTextColor] = useState('black')
-  const [success, setSuccess] = useState(false)
   const nav = useNavigate()
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -49,14 +47,11 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
       })
-     //console.log(JSON.stringify(response?.data))
       const accessToken = response?.data?.token
       const roles = response?.data?.role
-      //setAuth({ user, pwd, roles, accessToken })
       localStorage.setItem('token', accessToken)
       setUser('')
       setPwd('')
-      setSuccess(true)
       if ((response.status = 200)) {
         if (roles === 'admin') {
           nav('/admin')
@@ -88,60 +83,48 @@ const Login = () => {
     // window.location.reload(false)
   }
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>You are logged in!</h1>
-          <br />
-          <p>
-            <a href='/acasa'>Go to Home</a>
-          </p>
-        </section>
-      ) : (
-        <div className='Auth-form-container'>
-          <form onSubmit={handleSubmit} className='Auth-form'>
-            <h1 className='Auth-form-title'>Sign In</h1>
-            <div className='Auth-form-content'>
-              <div className='form-group mt-3'>
-                <label htmlFor='username'>Email:</label>
-                <input
-                  type='email'
-                  id='username'
-                  ref={userRef}
-                  autoComplete='on'
-                  className='form-control mt-1'
-                  onChange={(e) => setUser(e.target.value)}
-                  value={user}
-                  required
-                />
-              </div>
-              <div className='form-group mt-3'>
-                <label htmlFor='password'>Password:</label>
-                <input
-                  type='password'
-                  id='password'
-                  className='form-control mt-1'
-                  onChange={(e) => setPwd(e.target.value)}
-                  value={pwd}
-                  required
-                />
-              </div>
-              <div className='d-grid gap-2 mt-3'>
-                <button type='submit' className='btn btn-primary'>
-                  Sign In
-                </button>
-              </div>
-              <CheckMessage
-                textColor={textColor}
-                visibility={checkmark}
-                icon={icon}
-                message={message}
-              />
-            </div>
-          </form>
+    <div className='Add-form-container'>
+      <form onSubmit={handleSubmit} className='Auth-form'>
+        <h1 className='Auth-form-title'>Sign In</h1>
+        <div className='Auth-form-content'>
+          <div className='form-group mt-3'>
+            <label htmlFor='username'>Email:</label>
+            <input
+              type='email'
+              id='username'
+              ref={userRef}
+              autoComplete='on'
+              className='form-control mt-1'
+              onChange={(e) => setUser(e.target.value)}
+              value={user}
+              required
+            />
+          </div>
+          <div className='form-group mt-3'>
+            <label htmlFor='password'>Password:</label>
+            <input
+              type='password'
+              id='password'
+              className='form-control mt-1'
+              onChange={(e) => setPwd(e.target.value)}
+              value={pwd}
+              required
+            />
+          </div>
+          <div className='d-grid gap-2 mt-3'>
+            <button type='submit' className='btn btn-primary'>
+              Sign In
+            </button>
+          </div>
+          <CheckMessage
+            textColor={textColor}
+            visibility={checkmark}
+            icon={icon}
+            message={message}
+          />
         </div>
-      )}
-    </>
+      </form>
+    </div>
   )
 }
 
