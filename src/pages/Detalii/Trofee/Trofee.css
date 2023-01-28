@@ -1,0 +1,47 @@
+.trofeu-divs {
+
+  width: 80%;
+  margin:auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 16px;
+    
+  }
+  
+  .trofeu-div {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: 0.5rem;
+   box-shadow:#324dd1 0px 5px 15px;
+    
+  }
+  
+  .trofeu-div:hover{
+      
+      transform: scale(1.1);
+      transition: all 0.5s ease-in-out;  
+  }
+  .trofeu-img {
+    width: max-content;
+    
+    
+  }
+  
+  .trofeu-text {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    
+  }
+  
+  @media (max-width: 768px) {
+    .trofeu-div {
+      grid-template-columns: 1fr;
+    }
+    
+    .trofeu-text {
+      font-size: 18px;
+    }
+  }
+  
