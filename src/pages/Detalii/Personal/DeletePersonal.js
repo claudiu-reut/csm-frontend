@@ -8,7 +8,7 @@ export default function DeletePersonal() {
   useEffect(() => {
     const deletePersonal = async () => {
       console.log(match.id)
-      const response = await axios.delete(`deletepersonal/${match.id}`)
+      const response = await axios.delete(`/deletepersonal/${match.id}`)
       history('/admin')
       console.log(response)
     }

@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './PersonalSingle.css'
-import axios from '../../api/axios'
-function Jucator({
-  img,
-  nume,
-  prenume,
-  data_nasterii,
-  nationalitate,
-  post,
-  inaltime,
-  id_personal,
-  lot_curent,
-}) {
-  const numeComplet = nume + ' ' + prenume
+function Personal({ personal }) {
+  const [numeComplet, setNumeComplet] = useState(
+    personal.nume + ' ' + personal.prenume
+  )
   function calcAge(data_nasterii) {
     var birthday = +new Date(data_nasterii)
 
@@ -24,7 +15,7 @@ function Jucator({
       <div className='img-card'>
         <img
           className='imag'
-          src={`data:image/jpeg;base64,${img}`}
+          src={`data:image/jpeg;base64,${personal.imagine}`}
           alt='...'
           position='top'
         ></img>
@@ -34,24 +25,20 @@ function Jucator({
         <p className='card-text'></p>
         <ul className='List'>
           <li>
-            <b>Naționalitate:</b>
-            {nationalitate}
-          </li>
-          <li>
             <b>Poziție:</b>
-            {post}
+            {personal.post}
           </li>
           <li>
             <b>Vârstă:</b>
-            {calcAge(data_nasterii)}
+            {calcAge(personal.data_nasterii)}
           </li>
           <li>
             <b>Inalțime:</b>
-            {inaltime}
+            {personal.inaltime}
           </li>
           <li>
             <b>Lot:</b>
-            {lot_curent}
+            {personal.lot_curent}
           </li>
         </ul>
       </div>
@@ -59,4 +46,4 @@ function Jucator({
   )
 }
 
-export default Jucator
+export default Personal

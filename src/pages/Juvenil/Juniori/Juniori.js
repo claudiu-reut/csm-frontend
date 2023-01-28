@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Junior = () => {
+const Juniori = () => {
   return (
     <>
       <div
@@ -17,4 +17,4 @@ const Junior = () => {
   )
 }
 
-export default Junior
+export default Juniori

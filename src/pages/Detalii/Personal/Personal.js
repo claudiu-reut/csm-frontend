@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PersonalSingle from './PersonalSingle.js'
+import PersonalSingle from './PersonalSingle/PersonalSingle.js'
 import { Form } from 'react-bootstrap'
 import { FaLongArrowAltRight } from 'react-icons/fa'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -23,7 +23,6 @@ function Jucatori() {
   const getJucatori = async () => {
     setIsLoading(true)
     const response = await axios.get('/getpersonal')
-    console.log(response)
     setPersonal(response.data)
     setPersonalOrigin(response.data)
     setIsLoading(false)
@@ -82,9 +81,9 @@ function Jucatori() {
     return ~~((Date.now() - birthday) / 31557600000)
   }
   return (
-    <div className='container-jucatori'>
-      <div className='jucatori-toolbar'>
-        <div className='jucatori-toolbar-item'>
+    <div className='container-personal'>
+      <div className='personal-toolbar'>
+        <div className='personal-toolbar-item'>
           <label htmlFor='search-player-by-name'>Search</label>
           <div>
             <Form.Control
@@ -103,7 +102,7 @@ function Jucatori() {
             />
           </div>
         </div>
-        <div className='jucatori-toolbar-item'>
+        <div className='personal-toolbar-item'>
           <label htmlFor='filter-player-by-age'>Age</label>
           <div className='filter-player-by-age-container'>
             <Form.Control
@@ -145,7 +144,7 @@ function Jucatori() {
             />
           </div>
         </div>
-        <div className='jucatori-toolbar-item'>
+        <div className='personal-toolbar-item'>
           <label htmlFor='select-filter-jucatori-position'>Position</label>
           <select
             value={positionFilter}
@@ -178,7 +177,7 @@ function Jucatori() {
           </select>
         </div>
         <div
-          className='jucatori-reset'
+          className='personal-reset'
           onClick={() => {
             setSearchFilter('')
             setAgeMaxFilter('')
@@ -191,28 +190,19 @@ function Jucatori() {
           <span>Reset</span>
         </div>
       </div>
-      <div className='jucatori'>
+      <div className='personal'>
         <div
           className='loading-content-spinner'
           style={{ display: isLoading ? 'flex' : 'none' }}
         >
           {iconLoading}
         </div>
-        {personal.map((jucator) => {
-          return (
-            <PersonalSingle
-              img={jucator.imagine}
-              nume={jucator.nume}
-              prenume={jucator.prenume}
-              data_nasterii={jucator.data_nasterii}
-              nationalitate={jucator.nationalitate}
-              post={jucator.post}
-              inaltime={jucator.inaltime}
-              id_personal={jucator.id_personal}
-              lot_curent={jucator.lot_curent}
-              key={jucator.id_personal}
-            />
-          )
+        {personal.map((persoana) => {
+          if (persoana.tip_personal === 'seniori') {
+            return (
+              <PersonalSingle personal={persoana} key={persoana.id_personal} />
+            )
+          }
         })}
       </div>
     </div>

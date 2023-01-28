@@ -27,15 +27,11 @@ function AddTeam() {
   const [message, setMessage] = useState('')
   const [textColor, setTextColor] = useState('black')
   const [valid, setValid] = useState(true)
-  const handleFile=(e)=>{
+  const handleFile = (e) => {
     setSelectedFile(e.target.files[0])
-    const src=e.target.files[0];
-    const imag=document.getElementById("image");
-   
-  
-  
-   imag.src=URL.createObjectURL(src);
- 
+    const src = e.target.files[0]
+    const imag = document.getElementById('image')
+    imag.src = URL.createObjectURL(src)
   }
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -108,11 +104,10 @@ function AddTeam() {
   }
 
   return (
-    <div className='Auth-form-container'>
+    <div className='Add-form-container'>
       <form className='Auth-form'>
         <div className='Auth-form-content'>
           <h3 className='Auth-form-title'>Adauga Echipa</h3>
-
           <div className='form-group mt-3'>
             <label>Nume</label>
             <input
@@ -431,9 +426,14 @@ function AddTeam() {
               accept='image/png, image/gif, image/jpeg'
               onChange={(e) => handleFile(e)}
             />
-              <div className='form-group mt-2'>
-              <img id="image" src="./placeholder.jpg" alt="imagine" className='imgprev'  />
-                </div>
+            <div className='form-group mt-2'>
+              <img
+                id='image'
+                src='./placeholder.jpg'
+                alt='imagine'
+                className='imgprev'
+              />
+            </div>
             <input
               type='checkbox'
               checked={checkmark}

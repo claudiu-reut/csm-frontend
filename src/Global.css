@@ -1,22 +1,22 @@
-.checkbox-group {
-  margin: 0.3rem 0;
+.Add-form-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 95vw;
+  min-height: 95vh;
+  transition: all 0.4s ease-in-out;
+  margin: 2rem auto;
 }
-.Add-form {
+.Auth-form {
   margin: 0;
   width: 80vw;
-  max-width: 600px;
+  max-width: 500px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding: 30px 20px 20px 20px;
   border-radius: 8px;
   background-color: white;
 }
-.btn {
-  min-width: 10rem;
-}
-.Add-form-content {
+.Auth-form-content {
   padding-left: 12%;
   padding-right: 12%;
   display: flex;
@@ -28,7 +28,7 @@
   margin: 0.3rem 0;
   width: 80%;
 }
-.Add-form-title {
+.Auth-form-title {
   text-align: center;
   margin-bottom: 1em;
   font-size: 24px;
@@ -41,12 +41,19 @@ label {
   font-weight: 600;
   color: rgb(34, 34, 34);
 }
-
-@media only screen and (max-width: 550px) {
-  .Add-form {
+.loading-content-spinner {
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  min-height: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 550px) {
+  .Auth-form {
     width: 90vw;
   }
-  .Add-form-content {
+  .Auth-form-content {
     width: 100%;
     padding: 0;
   }

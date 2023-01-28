@@ -14,8 +14,8 @@ import Juvenil from './pages/Juvenil/Juvenil'
 import Istorie from './pages/Detalii/Istorie/Istorie'
 import Trofee from './pages/Detalii/Trofee/Trofee'
 import Personal from './pages/Detalii/Personal/Personal'
-import Junior from './pages/Juvenil/Junior/Junior'
-import Cadet from './pages/Juvenil/Cadet/Cadet'
+import Juniori from './pages/Juvenil/Juniori/Juniori'
+import Cadeti from './pages/Juvenil/Cadeti/Cadeti'
 import Sperante from './pages/Juvenil/Sperante/Sperante'
 import Noutati from './pages/Noutati/Noutati'
 import Sponsori from './pages/Sponsori/Sponsori'
@@ -49,6 +49,7 @@ import EditPersonal from './pages/Detalii/Personal/EditPersonal'
 import DeletePersonal from './pages/Detalii/Personal/DeletePersonal'
 import Profile from './pages/Profile/Profile'
 import { useEffect } from 'react'
+import './Global.css'
 function App() {
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -67,9 +68,9 @@ function App() {
         <Route path='/detalii/istorie' element={<Istorie />} />
         <Route path='/detalii/trofee' element={<Trofee />} />
         <Route path='/juvenil' element={<Juvenil />} />
-        <Route path='/juvenil/sperante' element={<Sperante />} />
-        <Route path='/juvenil/cadet' element={<Cadet />} />
-        <Route path='/juvenil/junior' element={<Junior />} />
+        <Route path='/juvenil/sperante/:gen/' element={<Sperante />} />
+        <Route path='/juvenil/cadeti/:gen/' element={<Cadeti />} />
+        <Route path='/juvenil/juniori/:gen/' element={<Juniori />} />
         <Route path='/noutati' element={<Noutati />} />
         <Route path='/noutati/:id' element={<SinglePost />} />
         <Route path='/sponsori' element={<Sponsori />} />
