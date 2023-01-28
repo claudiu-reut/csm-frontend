@@ -24,7 +24,11 @@ function Personal({ personal }) {
         <h5 className='card-title'>{numeComplet}</h5>
         <p className='card-text'></p>
         <ul className='List'>
-          <li>
+          <li
+            style={{
+              display: personal.tip_personal === 'antrenor' ? 'none' : 'revert',
+            }}
+          >
             <b>Poziție:</b>
             {personal.post}
           </li>

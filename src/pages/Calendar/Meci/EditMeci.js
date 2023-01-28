@@ -296,8 +296,8 @@ function EditMeci() {
               <option selected disabled>
                 Selecteaza gen...
               </option>
-              <option>Masculin</option>
-              <option>Feminin</option>
+              <option value={'masculin'}>Masculin</option>
+              <option value={'feminin'}>Feminin</option>
             </select>
           </div>
           <div className='form-group mt-3'>

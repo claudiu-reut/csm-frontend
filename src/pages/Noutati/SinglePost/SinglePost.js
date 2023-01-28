@@ -52,10 +52,10 @@ function SinglePost() {
   }, [])
 
   let counter = 0
-  let otherPostsArray = posts.map((postare, index) => {
+  let otherPostsArray = posts.map((postare) => {
     if (counter < 4 && post.id_postare !== postare.id_postare) {
       counter += 1
-      return <OtherPost post={postare} />
+      return <OtherPost post={postare} key={postare.id_postare} />
     }
   })
   const get_date_from_str = (str) => {
@@ -148,7 +148,10 @@ function SinglePost() {
           </div>
         </div>
         <div className='single-post-image'>
-          <img src={`data:image/jpeg;base64,${post.imagine}`} alt='imagine post' />
+          <img
+            src={`data:image/jpeg;base64,${post.imagine}`}
+            alt='imagine post'
+          />
         </div>
         <div className='single-post-description'>
           <p>{post.descriere}</p>

@@ -102,7 +102,7 @@ function Jucatori() {
             />
           </div>
         </div>
-        <div className='personal-toolbar-item'>
+        <div className='personal-toolbar-item personal-toolbar-item-age'>
           <label htmlFor='filter-player-by-age'>Age</label>
           <div className='filter-player-by-age-container'>
             <Form.Control
@@ -191,19 +191,44 @@ function Jucatori() {
         </div>
       </div>
       <div className='personal'>
-        <div
-          className='loading-content-spinner'
-          style={{ display: isLoading ? 'flex' : 'none' }}
-        >
-          {iconLoading}
+        <h2 className='lot-title'>Lotul Seniori</h2>
+        <div className='lot-players'>
+          <div
+            className='loading-content-spinner'
+            style={{ display: isLoading ? 'flex' : 'none' }}
+          >
+            {iconLoading}
+          </div>
+          {personal.map((persoana) => {
+            if (persoana.tip_personal === 'seniori') {
+              return (
+                <PersonalSingle
+                  personal={persoana}
+                  key={persoana.id_personal}
+                />
+              )
+            }
+          })}
         </div>
-        {personal.map((persoana) => {
-          if (persoana.tip_personal === 'seniori') {
-            return (
-              <PersonalSingle personal={persoana} key={persoana.id_personal} />
-            )
-          }
-        })}
+        <h2 className='lot-title'>Antrenori</h2>
+        <div className='lot-coaches'>
+          <div
+            className='loading-content-spinner'
+            style={{ display: isLoading ? 'flex' : 'none' }}
+          >
+            {iconLoading}
+          </div>
+          {personalOrigin.map((persoana) => {
+            if (persoana.tip_personal === 'antrenor') {
+              return (
+                <PersonalSingle
+                  personal={persoana}
+                  key={persoana.id_personal}
+                />
+              )
+            }
+          })}
+        </div>
       </div>
     </div>
   )

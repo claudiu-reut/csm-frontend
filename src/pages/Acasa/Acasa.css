@@ -21,7 +21,7 @@
 .slick-prev:before,
 .slick-next::before {
   font-size: 45px;
-  color: rgba(165, 165, 165);
+  color: rgba(145, 169, 249, 0.564);
   opacity: 0.6;
 }
 .slick-prev {
