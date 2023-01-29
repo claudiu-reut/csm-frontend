@@ -222,10 +222,12 @@
   }
 }
 /*End Single-Match*/
+
 .single-match-ads {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 1rem;
   width: 95vw;
   max-width: 200px;

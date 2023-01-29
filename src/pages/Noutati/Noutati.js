@@ -161,7 +161,7 @@ const Noutati = () => {
             />
           </div>
           <div
-            className='noutati-reset'
+            className='noutati-toolbar-item noutati-reset'
             onClick={() => {
               window.scrollTo(0, 0)
               setTagFilter('')
@@ -181,6 +181,18 @@ const Noutati = () => {
             style={{ display: isLoading ? 'flex' : 'none' }}
           >
             {iconLoading}
+          </div>
+          <div
+            className='nothing-found'
+            style={{
+              display:
+                postari.length < 1 && isLoading === false ? 'flex' : 'none',
+            }}
+          >
+            <img
+              src='https://cdn.dribbble.com/users/1242216/screenshots/9326781/dribbble_shot_hd_-_3_4x.png'
+              alt='nothing found image'
+            />
           </div>
           {postari.map((post) => {
             return <Post key={post.createdAt} post={post} />

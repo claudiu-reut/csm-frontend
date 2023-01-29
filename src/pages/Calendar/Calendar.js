@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from '../api/axios'
-import DatePicker from 'react-datepicker'
+import { DateRangePicker } from 'rsuite'
 import 'react-datepicker/dist/react-datepicker.css'
 import { useEffect, useState } from 'react'
 import Meci from './Meci/Meci'
@@ -14,6 +14,7 @@ let iconLoading = (
 const Calendar = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
   const [matches, setMatches] = useState([])
   const [matchesOrigin, setMatchesOrigin] = useState([])
   const [locations, setLocations] = useState([])
@@ -91,7 +92,8 @@ const Calendar = () => {
     locationFilter,
     championshipFilter,
     divisionFilter,
-    date = ''
+    dateMinFilter,
+    dateMaxFilter
   ) => {
     let result = matchesOrigin
     if (championshipFilter !== '') {
@@ -115,15 +117,12 @@ const Calendar = () => {
         (match) => match.gen.toUpperCase() === genderFilter.toUpperCase()
       )
     }
-    if (date !== '') {
-      result = result.filter((match) => {
-        const matchDate = new Date(match.data)
-        return (
-          matchDate.getFullYear() === date.getFullYear() &&
-          matchDate.getMonth() === date.getMonth() &&
-          matchDate.getDate() === date.getDate()
-        )
-      })
+
+    if (dateMinFilter !== '') {
+      result = result.filter((match) => new Date(match.data) >= dateMinFilter)
+    }
+    if (dateMaxFilter !== '') {
+      result = result.filter((match) => new Date(match.data) <= dateMaxFilter)
     }
     setMatches(result)
     window.scrollTo(0, 0)
@@ -146,7 +145,9 @@ const Calendar = () => {
                   genderFilter,
                   locationFilter,
                   e.target.value,
-                  divisionFilter
+                  divisionFilter,
+                  startDate,
+                  endDate
                 )
               }}
             >
@@ -178,7 +179,9 @@ const Calendar = () => {
                   genderFilter,
                   e.target.value,
                   championshipFilter,
-                  divisionFilter
+                  divisionFilter,
+                  startDate,
+                  endDate
                 )
               }}
             >
@@ -210,7 +213,9 @@ const Calendar = () => {
                   genderFilter,
                   locationFilter,
                   championshipFilter,
-                  e.target.value
+                  e.target.value,
+                  startDate,
+                  endDate
                 )
               }}
             >
@@ -242,7 +247,9 @@ const Calendar = () => {
                   e.target.value,
                   locationFilter,
                   championshipFilter,
-                  divisionFilter
+                  divisionFilter,
+                  startDate,
+                  endDate
                 )
               }}
             >
@@ -251,34 +258,35 @@ const Calendar = () => {
               <option value='feminin'>Feminin</option>
             </select>
           </div>
-          <div className='matches-toolbar-item'>
+          <div className='matches-toolbar-item date-range-picker-item'>
             <label htmlFor='select-filter-matches-date'>Data</label>
-            <DatePicker
-              id='select-filter-matches-date'
-              className='select-filter-matches-date'
-              selected={startDate}
-              onChange={(date) => {
-                setStartDate(date)
+            <DateRangePicker
+              showOneCalendar
+              appearance='default'
+              value={[startDate, endDate]}
+              onChange={(value) => {
+                setStartDate(value[0])
+                setEndDate(value[1])
                 filter_matches(
                   genderFilter,
                   locationFilter,
                   championshipFilter,
                   divisionFilter,
-                  date
+                  value[0],
+                  value[1]
                 )
               }}
-              dateFormat='dd/MM/yyyy'
-              placeholderText='--/--/----'
             />
           </div>
           <div
-            className='matches-reset'
+            className='matches-toolbar-item matches-reset'
             onClick={() => {
               setLocationFilter('')
               setDivisionFilter('')
               setChampionshipFilter('')
               setGenderFilter('')
               setStartDate('')
+              setEndDate('')
               setMatches(matchesOrigin)
             }}
           >
@@ -292,6 +300,18 @@ const Calendar = () => {
             style={{ display: isLoading ? 'flex' : 'none' }}
           >
             {iconLoading}
+          </div>
+          <div
+            className='nothing-found'
+            style={{
+              display:
+                matches.length < 1 && isLoading === false ? 'flex' : 'none',
+            }}
+          >
+            <img
+              src='https://cdn.dribbble.com/users/1242216/screenshots/9326781/dribbble_shot_hd_-_3_4x.png'
+              alt='nothing found image'
+            />
           </div>
           {matches.map((match) => {
             return <Meci match={match} key={match.id_meci} />

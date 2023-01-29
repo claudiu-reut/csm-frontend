@@ -49,6 +49,17 @@ label {
   align-items: center;
   justify-content: center;
 }
+.nothing-found {
+  display: none;
+  width: 100%;
+  max-width: 800px;
+  max-height: 100%;
+  margin-bottom: 5rem;
+}
+.nothing-found img {
+  max-width: 100%;
+  max-height: 100%;
+}
 @media (max-width: 550px) {
   .Auth-form {
     width: 90vw;

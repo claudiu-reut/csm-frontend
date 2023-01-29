@@ -199,6 +199,18 @@ function Jucatori() {
           >
             {iconLoading}
           </div>
+          <div
+            className='nothing-found'
+            style={{
+              display:
+                personal.length < 1 && isLoading === false ? 'flex' : 'none',
+            }}
+          >
+            <img
+              src='https://cdn.dribbble.com/users/1242216/screenshots/9326781/dribbble_shot_hd_-_3_4x.png'
+              alt='nothing found image'
+            />
+          </div>
           {personal.map((persoana) => {
             if (persoana.tip_personal === 'seniori') {
               return (

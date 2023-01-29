@@ -47,9 +47,6 @@ function SinglePost() {
     getPost()
     get_posts()
   }, [params.id])
-  useEffect(() => {
-    ;(window.adsbygoogle = window.adsbygoogle || []).push({})
-  }, [])
 
   let counter = 0
   let otherPostsArray = posts.map((postare) => {
@@ -80,16 +77,8 @@ function SinglePost() {
   }
   return (
     <div className='single-post-container'>
-      <div className='singlepost-ads'>
+      <div className='single-post-ads'>
         <span>Ads</span>
-        <ins
-          className='adsbygoogle'
-          style={{ display: 'block', width: '100%', height: '100%' }}
-          data-ad-client='pub-6121769535334597'
-          data-ad-slot='2567266440'
-          data-ad-format='auto'
-          data-full-width-responsive='true'
-        ></ins>
       </div>
       <div className='single-post'>
         <div className='single-post-title'>

@@ -34,6 +34,22 @@ function Admin() {
     }
     fetchData()
   }, [])
+  const get_date_from_str = (str) => {
+    function addZero(i) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      return i
+    }
+    let date = new Date(str)
+    return (
+      addZero(date.getDate()) +
+      '-' +
+      addZero(date.getMonth() + 1) +
+      '-' +
+      date.getFullYear()
+    )
+  }
   return (
     <div className='mainDiv'>
       <Link to='/creatorcontinut' class='btn btn-primary btn-add'>
@@ -164,18 +180,25 @@ function Admin() {
               </th>
               <th scope='col'>Nume</th>
               <th scope='col' className='hidde-on-overflow'>
-                Prenume
+                Data Nasterii
               </th>
-              <th scope='col'>Data Nasterii</th>
               <th scope='col' className='hidde-on-overflow'>
                 Descriere
               </th>
-              <th scope='col'>Gen</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Gen
+              </th>
               <th scope='col'>Post</th>
-              <th scope='col'>Echipa</th>
-              <th scope='col'>Lot Curent</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Echipa
+              </th>
+              <th scope='col' className='hidde-on-overflow'>
+                Lot Curent
+              </th>
               <th scope='col'>Tip Personal</th>
-              <th scope='col'>Inaltime</th>
+              <th scope='col' className='hidde-on-overflow'>
+                Inaltime
+              </th>
               <th scope='col'>Actiune</th>
             </tr>
           </thead>
@@ -183,17 +206,17 @@ function Admin() {
             {personal.map((individ, index) => (
               <tr key={individ.id_personal}>
                 <td className='hidde-on-overflow'>{index + 1}</td>
-                <td>{individ.nume}</td>
-                <td>{individ.prenume}</td>
-                <td>{individ.data_nasterii}</td>
-
+                <td>{individ.nume + ' ' + individ.prenume}</td>
+                <td className='hidde-on-overflow'>
+                  {get_date_from_str(individ.data_nasterii)}
+                </td>
                 <td className='hidde-on-overflow'>{individ.descriere}</td>
-                <td>{individ.gen}</td>
+                <td className='hidde-on-overflow'>{individ.gen}</td>
                 <td>{individ.post}</td>
-                <td>{individ.nume_echipa}</td>
-                <td>{individ.lot_curent}</td>
+                <td className='hidde-on-overflow'>{individ.nume_echipa}</td>
+                <td className='hidde-on-overflow'>{individ.lot_curent}</td>
                 <td>{individ.tip_personal}</td>
-                <td>{individ.inaltime}</td>
+                <td className='hidde-on-overflow'>{individ.inaltime}</td>
                 <td>
                   <span className='problematic'>
                     <Link

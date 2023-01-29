@@ -14,10 +14,11 @@
   min-width: 500px;
   margin: 0 1rem;
 }
-.singlepost-ads {
+.single-post-ads {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 1rem;
   width: 95vw;
   max-width: 200px;
@@ -29,7 +30,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
 }
-.singlepost-ads span {
+.single-post-ads span {
   text-align: center;
   font-size: 2rem;
 }
@@ -101,7 +102,7 @@
     min-width: 300px;
     margin-top: 1rem;
   }
-  .singlepost-ads {
+  .single-post-ads {
     position: relative;
     min-height: 150px;
     max-width: 600px;

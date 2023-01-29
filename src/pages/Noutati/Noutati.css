@@ -79,7 +79,7 @@
     justify-content: space-around;
   }
 }
-@media (max-width: 450px) {
+@media (max-width: 850px) {
   .noutati-reset span {
     display: none;
   }

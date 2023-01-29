@@ -180,9 +180,14 @@ export default function Profile() {
                     Postari recente
                   </MDBCardText>
                   <MDBCardText className='mb-0'>
-                    <a href='/noutati' className='text-muted'>
+                    <button
+                      className='text-muted profile-all-posts-btn'
+                      onClick={() => {
+                        nav(`/noutati/`)
+                      }}
+                    >
                       Arata toate
-                    </a>
+                    </button>
                   </MDBCardText>
                 </div>
                 <div className='recent-user-posts'>{userRecentPosts}</div>
