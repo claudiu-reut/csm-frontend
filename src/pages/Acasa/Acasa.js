@@ -114,7 +114,7 @@ const Acasa = () => {
           })}
         </Slider>
         <div className='acasa-section'>
-          <h2 className='acasa-section-title'>Ultimile articole</h2>
+          <h2 className='acasa-section-title'>Ultimele articole</h2>
           <div className='acasa-section-content'>
             <div
               className='loading-content-spinner'
