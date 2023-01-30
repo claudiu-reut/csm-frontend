@@ -224,7 +224,7 @@ function EditMeci() {
           <div className='form-group mt-3'>
             <label>Echipa 1</label>
             <select
-              class='form-select'
+              className='form-select'
               onChange={(e) => setIdEchipa1(e.target.value)}
               value={id_echipa1}
               placeholder={nume1}
@@ -287,20 +287,6 @@ function EditMeci() {
             </div>
           </div>
           <div className='form-group mt-3'>
-            <label>Gen</label>
-            <select
-              class='form-select'
-              onChange={(e) => setGen(e.target.value)}
-              value={gen}
-            >
-              <option selected disabled>
-                Selecteaza gen...
-              </option>
-              <option value={'masculin'}>Masculin</option>
-              <option value={'feminin'}>Feminin</option>
-            </select>
-          </div>
-          <div className='form-group mt-3'>
             <label>Sets</label>
             <input
               id='match-sets-id'
@@ -313,20 +299,39 @@ function EditMeci() {
             />
           </div>
           <div className='form-group mt-3'>
+            <label>Gen</label>
+            <select
+              className='form-select'
+              onChange={(e) => setGen(e.target.value)}
+              value={gen}
+            >
+              <option selected disabled>
+                Selecteaza gen...
+              </option>
+              <option value={'masculin'}>Masculin</option>
+              <option value={'feminin'}>Feminin</option>
+            </select>
+          </div>
+          <div className='form-group mt-3'>
             <label>Divizia</label>
-            <input
-              type='text'
-              className='form-control '
-              placeholder='Divizia'
-              required
-              onChange={(e) => setDivizia(e.target.value)}
+            <select
+              className='form-select'
               value={divizia}
-            />
+              onChange={(e) => setDivizia(e.target.value)}
+            >
+              <option selected disabled>
+                Selecteaza divizia...
+              </option>
+              <option value={'Divizia A1'}>Divizia A1</option>
+              <option value={'Juniori'}>Juniori</option>
+              <option value={'Cadeti'}>Cadeti</option>
+              <option value={'Sperante'}>Sperante</option>
+            </select>
           </div>
           <div className='form-group mt-3'>
             <label>Descriere</label>
             <textarea
-              class='form-control'
+              className='form-control'
               placeholder='Descriere'
               onChange={(e) => setDescription(e.target.value)}
               value={description}

@@ -29,9 +29,12 @@ function Jucatori() {
   }
   const get_all_positions = () => {
     let positions = []
-    for (let i = 0; i < personal.length; i++) {
-      if (!positions.includes(personal[i].post.toLowerCase())) {
-        positions.push(personal[i].post.toLowerCase())
+    for (let i = 0; i < personalOrigin.length; i++) {
+      if (
+        !positions.includes(personalOrigin[i].post.toLowerCase()) &&
+        personalOrigin[i].post !== ''
+      ) {
+        positions.push(personalOrigin[i].post.toLowerCase())
       }
     }
     setPositions(positions)

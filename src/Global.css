@@ -50,7 +50,9 @@ label {
   justify-content: center;
 }
 .nothing-found {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   max-width: 800px;
   max-height: 100%;

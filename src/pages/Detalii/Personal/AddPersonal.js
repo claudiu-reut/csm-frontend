@@ -152,7 +152,7 @@ function AddPersonal() {
           <div className='form-group mt-3'>
             <label>Gen</label>
             <select
-              class='form-select'
+              className='form-select'
               onChange={(e) => setGen(e.target.value)}
             >
               <option value='0' label='Selecteaza genul... ' selected disabled>
@@ -163,9 +163,25 @@ function AddPersonal() {
             </select>
           </div>
           <div className='form-group d-grid gap-2 mt-3'>
+            <label>Tip Personal</label>
+            <select
+              className='form-select'
+              onChange={(e) => setTipPersonal(e.target.value)}
+            >
+              <option selected disabled>
+                Selecteaza tip personal...
+              </option>
+              <option value='antrenor'>Antrenor</option>
+              <option value='seniori'>Seniori</option>
+              <option value='juniori'>Juniori</option>
+              <option value='cadeti'>Cadeti</option>
+              <option value='sperante'>Speranțe</option>
+            </select>
+          </div>
+          <div className='form-group d-grid gap-2 mt-3'>
             <label>Poziție</label>
             <select
-              class='form-select'
+              className='form-select'
               onChange={(e) => setPozitie(e.target.value)}
             >
               <option selected disabled>
@@ -179,24 +195,8 @@ function AddPersonal() {
               <option value='Outside Hitter'>Capitan</option>
             </select>
           </div>
-          <div className='form-group d-grid gap-2 mt-3'>
-            <label>Tip Personal</label>
-            <select
-              class='form-select'
-              onChange={(e) => setTipPersonal(e.target.value)}
-            >
-              <option selected disabled>
-                Selecteaza tip personal...
-              </option>
-              <option value='antrenor'>Antrenor</option>
-              <option value='seniori'>Seniori</option>
-              <option value='juniori'>Juniori</option>
-              <option value='cadeti'>Cadeti</option>
-              <option value='sperante'>Speranțe</option>
-            </select>
-          </div>
           <div className='form-group mt-3'>
-            <label>Data</label>
+            <label>Data Nasterii</label>
             <br></br>
             <input
               type='date'
@@ -209,7 +209,7 @@ function AddPersonal() {
           <div className='form-group form-group mt-3'>
             <label>Descriere</label>
             <textarea
-              class='form-control'
+              className='form-control'
               placeholder='Descriere'
               onChange={(e) => setDescriere(e.target.value)}
             ></textarea>

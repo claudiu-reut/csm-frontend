@@ -173,7 +173,7 @@ function EditPersonal() {
           <div className='form-group mt-3'>
             <label>Gen</label>
             <select
-              class='form-select'
+              className='form-select'
               onChange={(e) => setGen(e.target.value)}
               value={gen}
             >
@@ -185,9 +185,26 @@ function EditPersonal() {
             </select>
           </div>
           <div className='form-group d-grid gap-2 mt-3'>
+            <label>Tip Personal</label>
+            <select
+              className='form-select'
+              value={tip_personal}
+              onChange={(e) => setTipPersonal(e.target.value)}
+            >
+              <option selected disabled>
+                Selecteaza tip personal...
+              </option>
+              <option value='antrenor'>Antrenor</option>
+              <option value='seniori'>Seniori</option>
+              <option value='juniori'>Juniori</option>
+              <option value='cadeti'>Cadeti</option>
+              <option value='sperante'>Speranțe</option>
+            </select>
+          </div>
+          <div className='form-group d-grid gap-2 mt-3'>
             <label>Poziție</label>
             <select
-              class='form-select'
+              className='form-select'
               onChange={(e) => setPozitie(e.target.value)}
               value={pozitie}
             >
@@ -202,25 +219,8 @@ function EditPersonal() {
               <option value='Outside Hitter'>Capitan</option>
             </select>
           </div>
-          <div className='form-group d-grid gap-2 mt-3'>
-            <label>Tip Personal</label>
-            <select
-              class='form-select'
-              value={tip_personal}
-              onChange={(e) => setTipPersonal(e.target.value)}
-            >
-              <option selected disabled>
-                Selecteaza tip personal...
-              </option>
-              <option value='antrenor'>Antrenor</option>
-              <option value='seniori'>Seniori</option>
-              <option value='juniori'>Juniori</option>
-              <option value='cadeti'>Cadeti</option>
-              <option value='sperante'>Speranțe</option>
-            </select>
-          </div>
           <div className='form-group mt-3'>
-            <label>Data</label>
+            <label>Data Nasterii</label>
             <br></br>
             <input
               type='date'
@@ -235,7 +235,7 @@ function EditPersonal() {
             <label>Descriere</label>
             <textarea
               value={descriere}
-              class='form-control'
+              className='form-control'
               placeholder='Descriere'
               onChange={(e) => setDescriere(e.target.value)}
             ></textarea>

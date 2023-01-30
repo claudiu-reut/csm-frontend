@@ -37,15 +37,12 @@ function AddPost() {
     }
     return true
   }
-  const handleFile=(e)=>{
+  const handleFile = (e) => {
     setSelectedFile(e.target.files[0])
-    const src=e.target.files[0];
-    const imag=document.getElementById("image");
-   
-  
-  
-   imag.src=URL.createObjectURL(src);
- 
+    const src = e.target.files[0]
+    const imag = document.getElementById('image')
+
+    imag.src = URL.createObjectURL(src)
   }
   const handleAddPost = async () => {
     let title_field = document.getElementById('title-post')
@@ -63,7 +60,14 @@ function AddPost() {
       setTextColor('black')
       let post = new FormData()
       post.append('titlu', titlu)
-      post.append('tags', tags.replace(' ', ''))
+      post.append(
+        'tags',
+        tags
+          .trim()
+          .replace(new RegExp('  ', 'g'), ' ')
+          .replace(new RegExp(', ', 'g'), ',')
+          .replace(new RegExp(' ,', 'g'), ',')
+      )
       post.append('linkImg', linkImagine)
       post.append('descriere', descriere)
       post.append('linkExtern', '')
@@ -104,7 +108,7 @@ function AddPost() {
     setDescriere(post.descriere)
     setTags(post.tags)
     setTitlu(post.titlu)
-    setLinkImg(post.imagine);
+    setLinkImg(post.imagine)
     //setSelectedFile(post.imagine)
   }
   useEffect(() => {
@@ -144,7 +148,7 @@ function AddPost() {
             <div className='form-group mt-3'>
               <label htmlFor='tags-post'>Tags:</label>
               <input
-                placeholder='Taguri separate prin spatiu'
+                placeholder='Taguri separate prin virgula'
                 type='text'
                 id='tags-post'
                 className='form-control mt-1'
@@ -165,8 +169,13 @@ function AddPost() {
               />
             </div>
             <div className='form-group mt-2'>
-              <img id="image" src={`data:image/jpeg;base64,${linkImagine}`} alt="imagine" className='imgprev'  />
-                </div>
+              <img
+                id='image'
+                src={`data:image/jpeg;base64,${linkImagine}`}
+                alt='imagine'
+                className='imgprev'
+              />
+            </div>
             <div className='form-group mt-3'>
               <label htmlFor='description-post'>Descriere:</label>
               <textarea

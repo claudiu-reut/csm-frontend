@@ -254,6 +254,17 @@ function AddMeci() {
             </div>
           </div>
           <div className='form-group mt-3'>
+            <label>Sets</label>
+            <input
+              type='text'
+              id='match-sets-id'
+              className='form-control '
+              placeholder='Sets'
+              required
+              onChange={(e) => setSets(e.target.value)}
+            />
+          </div>
+          <div className='form-group mt-3'>
             <label>Gen</label>
             <select
               class='form-select'
@@ -267,25 +278,19 @@ function AddMeci() {
             </select>
           </div>
           <div className='form-group mt-3'>
-            <label>Sets</label>
-            <input
-              type='text'
-              id='match-sets-id'
-              className='form-control '
-              placeholder='Sets'
-              required
-              onChange={(e) => setSets(e.target.value)}
-            />
-          </div>
-          <div className='form-group mt-3'>
             <label>Divizia</label>
-            <input
-              type='text'
-              className='form-control '
-              placeholder='Divizia'
-              required
+            <select
+              className='form-select'
               onChange={(e) => setDivizia(e.target.value)}
-            />
+            >
+              <option selected disabled>
+                Selecteaza divizia...
+              </option>
+              <option value={'Divizia A1'}>Divizia A1</option>
+              <option value={'Juniori'}>Juniori</option>
+              <option value={'Cadeti'}>Cadeti</option>
+              <option value={'Sperante'}>Sperante</option>
+            </select>
           </div>
           <div className='form-group mt-3'>
             <label>Descriere</label>

@@ -243,11 +243,21 @@
   text-align: center;
   font-size: 2rem;
 }
+.h2h-container {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
 .single-match-h2h {
   border-top: 1px solid #ccc;
+  margin-top: 1rem;
   width: 100%;
-  margin-top: 5rem;
   padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 .other-matches {
   display: flex;

@@ -123,24 +123,18 @@ function SingleMatch() {
   let h2hmatches = matches.filter((meci_curent) => {
     return (
       (meci_curent.id_meci !== match.id_meci &&
+        new Date(meci_curent.data) < new Date() &&
         meci_curent.id_echipa1 === match.id_echipa1 &&
         meci_curent.id_echipa2 === match.id_echipa2) ||
       (meci_curent.id_echipa1 === match.id_echipa2 &&
-        meci_curent.id_echipa2 === match.id_echipa1)
+        meci_curent.id_echipa2 === match.id_echipa1 &&
+        new Date(meci_curent.data) < new Date())
     )
   })
   return (
     <div className='single-match-container'>
       <div className='single-match-ads'>
         <span>Ads</span>
-        <ins
-          className='adsbygoogle'
-          style={{ display: 'block', width: '100%', height: '100%' }}
-          data-ad-client='pub-6121769535334597'
-          data-ad-slot='2567266440'
-          data-ad-format='auto'
-          data-full-width-responsive='true'
-        ></ins>
       </div>
       <div className='single-match'>
         <div className='single-match-top'>
@@ -254,11 +248,24 @@ function SingleMatch() {
             )
           })}
         </div>
-        <div className='single-match-h2h'>
+        <div className='h2h-container'>
           <h4>Head-To-Head</h4>
-          {h2hmatches.map((meci) => {
-            return <H2HMatch match={meci} key={meci.id_meci} />
-          })}
+          <div className='single-match-h2h'>
+            <div
+              className='nothing-found'
+              style={{
+                display: h2hmatches.length < 1 ? 'flex' : 'none',
+              }}
+            >
+              <img
+                src='https://cdn.dribbble.com/users/760295/screenshots/4433975/media/03494b209a1511a61868ced337b97931.png?compress=1&resize=400x300'
+                alt='nothing found image'
+              />
+            </div>
+            {h2hmatches.map((meci) => {
+              return <H2HMatch match={meci} key={meci.id_meci} />
+            })}
+          </div>
         </div>
       </div>
       <div className='other-matches'>
