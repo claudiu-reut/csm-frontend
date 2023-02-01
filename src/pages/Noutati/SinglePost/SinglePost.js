@@ -143,7 +143,7 @@ function SinglePost() {
           />
         </div>
         <div className='single-post-description'>
-          <p>{post.descriere}</p>
+          <p dangerouslySetInnerHTML={{ __html: post.descriere }}></p>
         </div>
       </div>
       <div className='other-posts'>

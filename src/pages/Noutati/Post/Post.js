@@ -27,8 +27,21 @@ function Post({ post }) {
       setDescription(post.descriere.slice(0, 150) + '...')
     } else {
       setDescription(post.descriere)
+      console.log(post.descriere)
     }
   }, [])
+  function extractContent(s, space) {
+    var span = document.createElement('span')
+    span.innerHTML = s
+    if (space) {
+      var children = span.querySelectorAll('*')
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].textContent) children[i].textContent += ' '
+        else children[i].innerText += ' '
+      }
+    }
+    return [span.textContent || span.innerText].toString().replace(/ +/g, ' ')
+  }
   const get_date_from_str = (str) => {
     function addZero(i) {
       if (i < 10) {
@@ -87,7 +100,7 @@ function Post({ post }) {
         <h2>{title}</h2>
       </div>
       <div className='post-description'>
-        <p>{description}</p>
+        <p>{extractContent(description, true)}</p>
       </div>
       <div className='post-info'>
         <div className='post-date'>

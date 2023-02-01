@@ -24,7 +24,7 @@
   padding: 0.2rem 0.5rem;
 }
 .other-post-title h2 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin: 0;
 }
@@ -43,7 +43,7 @@
     display: none;
   }
   .other-post-title h2 {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .other-post {
     margin: 0.5rem auto;

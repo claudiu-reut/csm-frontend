@@ -1,4 +1,23 @@
-.imgprev{
-    width:50%;
-    height: 50%;
+.imgprev {
+  width: 50%;
+  height: 50%;
+}
+.add-post-form {
+  max-width: 850px;
+}
+.Add-post-form-content {
+  padding: 0;
+}
+.wrapperClassName {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.editorClassName {
+  border-top: 1px solid #ccc;
+  padding: 0.5rem;
+}
+.public-DraftEditor-content {
+  line-height: 20px;
+  height: 300px !important;
+  overflow-y: auto;
 }

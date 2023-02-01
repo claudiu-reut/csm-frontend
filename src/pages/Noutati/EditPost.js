@@ -9,6 +9,10 @@ import CheckMessage from '../CheckMessage/CheckMessage'
 import { useEffect } from 'react'
 import axios from '../api/axios'
 import jwt_decode from 'jwt-decode'
+import { Editor } from 'react-draft-wysiwyg'
+import { EditorState } from 'draft-js'
+import { stateFromHTML } from 'draft-js-import-html'
+import { stateToHTML } from 'draft-js-export-html'
 import { useParams } from 'react-router-dom'
 let iconSucces = <Checkmark size='25px' color='green' />
 let iconError = <VscError className='icon-inside' color='red' size='25px' />
@@ -16,11 +20,12 @@ let iconLoading = <UseAnimations animation={loading} size={35} />
 function AddPost() {
   const [titlu, setTitlu] = useState('')
   const [tags, setTags] = useState('')
-  const [linkImagine, setLinkImg] = useState('')
-  const [descriere, setDescriere] = useState('')
   const [userId, setUserId] = useState()
   const [selectedFile, setSelectedFile] = useState(null)
-  const match = useParams()
+  const [postImage, setPostImage] = useState('')
+  const params = useParams()
+  //rich text
+  const [editorState, setEditorState] = useState(EditorState.createEmpty())
   //confirmation
   const [checkmark, setCheckmark] = useState(false)
   const [icon, setIcon] = useState(iconLoading)
@@ -41,19 +46,12 @@ function AddPost() {
     setSelectedFile(e.target.files[0])
     const src = e.target.files[0]
     const imag = document.getElementById('image')
-
     imag.src = URL.createObjectURL(src)
   }
-  const handleAddPost = async () => {
+  const handleEditPost = async () => {
     let title_field = document.getElementById('title-post')
     let tags_field = document.getElementById('tags-post')
-
-    let description_field = document.getElementById('description-post')
-    if (
-      check_field(title_field) &&
-      check_field(tags_field) &&
-      check_field(description_field)
-    ) {
+    if (check_field(title_field) && check_field(tags_field)) {
       setCheckmark(true)
       setIcon(iconLoading)
       setMessage('Loading...')
@@ -68,15 +66,13 @@ function AddPost() {
           .replace(new RegExp(', ', 'g'), ',')
           .replace(new RegExp(' ,', 'g'), ',')
       )
-      post.append('linkImg', linkImagine)
-      post.append('descriere', descriere)
-      post.append('linkExtern', '')
+      post.append('descriere', stateToHTML(editorState.getCurrentContent()))
       post.append('data', new Date())
       post.append('user_id', userId)
       post.append('imagine', selectedFile)
       axios({
         method: 'put',
-        url: `editpost/${match.id}`,
+        url: `editpost/${params.id}`,
         data: post,
         headers: { 'Content-Type': 'multipart/form-data' },
       })
@@ -99,17 +95,15 @@ function AddPost() {
 
   useEffect(() => {
     setCheckmark(false)
-  }, [titlu, tags, linkImagine, descriere])
+  }, [titlu, tags, editorState])
+
   const getPost = async () => {
-    console.log(match.id)
-    const response = await axios.get(`/getpost/${match.id}`)
-    console.log(response)
+    const response = await axios.get(`/getpost/${params.id}`)
     const post = response.data
-    setDescriere(post.descriere)
+    setEditorState(EditorState.createWithContent(stateFromHTML(post.descriere)))
     setTags(post.tags)
     setTitlu(post.titlu)
-    setLinkImg(post.imagine)
-    //setSelectedFile(post.imagine)
+    setPostImage(post.imagine)
   }
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -128,9 +122,9 @@ function AddPost() {
   return (
     <div className='Add-form-container'>
       <section>
-        <form className='Add-form'>
+        <form className='Add-form add-post-form'>
           <h1 className='Add-form-title'>Editeaza Stire</h1>
-          <div className='Add-form-content'>
+          <div className='Add-form-content Add-post-form-content'>
             <div className='form-group mt-3'>
               <label htmlFor='title-post'>Titlu:</label>
               <input
@@ -163,6 +157,7 @@ function AddPost() {
               <label htmlFor='img-post'>Imagine:</label>
               <input
                 type='file'
+                className='form-control mt-1'
                 id='img-post'
                 accept='image/png, image/gif, image/jpeg'
                 onChange={(e) => handleFile(e)}
@@ -171,23 +166,18 @@ function AddPost() {
             <div className='form-group mt-2'>
               <img
                 id='image'
-                src={`data:image/jpeg;base64,${linkImagine}`}
+                src={`data:image/jpeg;base64,${postImage}`}
                 alt='imagine'
                 className='imgprev'
               />
             </div>
-            <div className='form-group mt-3'>
-              <label htmlFor='description-post'>Descriere:</label>
-              <textarea
-                placeholder='Continutul postarii'
-                rows={5}
-                id='description-post'
-                className='form-control mt-1'
-                value={descriere}
-                onChange={(e) => {
-                  setDescriere(e.target.value)
-                  e.target.style.backgroundColor = 'white'
-                }}
+            <div className='form-group mt-3 rich-text-editor'>
+              <Editor
+                editorState={editorState}
+                toolbarClassName='toolbarClassName'
+                wrapperClassName='wrapperClassName'
+                editorClassName='editorClassName'
+                onEditorStateChange={setEditorState}
               />
             </div>
             <div className='d-grid gap-2 mt-3'>
@@ -195,7 +185,7 @@ function AddPost() {
                 type='button'
                 className='btn btn-primary'
                 onClick={() => {
-                  handleAddPost()
+                  handleEditPost()
                 }}
               >
                 Editeaza Stire

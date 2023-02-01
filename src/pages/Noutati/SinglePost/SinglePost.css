@@ -73,6 +73,7 @@
   letter-spacing: 1px;
   line-height: 2rem;
   margin-top: 1rem;
+  padding: 1rem;
 }
 .other-posts {
   display: flex;
