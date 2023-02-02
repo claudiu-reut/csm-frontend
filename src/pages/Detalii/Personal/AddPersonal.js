@@ -23,6 +23,7 @@ function AddPersonal() {
   const [descriere, setDescriere] = useState('')
   const [data_nasterii, setData] = useState('')
   const [inaltime, setInaltime] = useState('')
+  const [lot_curent,setLotCurent] = useState('');
   function handleDate(e) {
     setData(e.target.value)
     let givenDate = new Date(e.target.value)
@@ -75,6 +76,7 @@ function AddPersonal() {
         bodyFormData.append('descriere', descriere)
         bodyFormData.append('inaltime', inaltime)
         bodyFormData.append('gen', gen)
+        bodyFormData.append('lot_curent',lot_curent)
         setCheckmark(true)
         axios({
           method: 'post',
@@ -88,7 +90,6 @@ function AddPersonal() {
               setMessage('Personal creat cu succes')
               setTextColor('black')
             }
-            console.log(response)
           })
           .catch(function (response) {
             setIcon(iconError)
@@ -222,6 +223,16 @@ function AddPersonal() {
               placeholder='Inaltime'
               required
               onChange={(e) => setInaltime(e.target.value)}
+            />
+          </div>
+          <div className='form-group mt-3'>
+            <label>Lot Curent</label>
+            <input
+              type='text'
+              className='form-control mt-1'
+              placeholder='Lot Curent'
+              required
+              onChange={(e) => setLotCurent(e.target.value)}
             />
           </div>
           <div className='form-group mt-3'>
